@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Irish+Grover&display=swap" rel="stylesheet">
+
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href= "{{ url_for('static', filename = 'public.css') }}" />
+    </head>
+
+    <body>
+        <div class="logobar">
+            <a href="{{ url_for('home') }}" class="logobar-logo">KOMODO HUB</a>
+            <a href="{{ url_for('login') }}" class="logobar-item logobar-login">Log in</a>
+            <a href="{{ url_for('register') }}" class="logobar-item">Register</a>
+        </div>
+        <div class="navbar">
+            <a href="{{ url_for('home') }}" class="navbar-item">Home</a>
+            <a href="{{ url_for('news') }}" class="navbar-item">News</a>
+            <a href="{{ url_for('forums') }}" class="navbar-item">Forums</a>
+            <a href="{{ url_for('about') }}" class="navbar-item">About Us</a>
+            <a href="{{ url_for('contact') }}" class="navbar-item">Contact</a>
+        </div>
+
+        <div class="body-content">
+            {% block body %}
+            {% endblock %}
+        </div>
+        
+        <footer>
+            <div class = "footer-left">Privacy Policy | Terms of Use</div>
+            <div class = "footer-right">@2025 KOMODO HUB, INC</div>
+        </footer>
+    </body>
+</html>
