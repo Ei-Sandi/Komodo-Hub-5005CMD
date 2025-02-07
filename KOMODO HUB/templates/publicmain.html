@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Irish+Grover&display=swap" rel="stylesheet">
 
-        <title>{% block title %}{% endblock %}</title>
+        {% block head %}{% endblock %}
         <link rel="stylesheet" href= "{{ url_for('static', filename = 'public.css') }}" />
     </head>
 
