@@ -6,6 +6,8 @@ html, body{
     font-family: 'Gothic A1';
  }
 .logobar{
+    top:0;
+    position: fixed;
     background-color: #D10121;
     width: 100%;
     height: 50px;
@@ -24,19 +26,23 @@ html, body{
     font-family: 'Inter';
     font-size: 15px;
     color: white;
+    text-decoration: none;
     margin-right: 30px;
     margin-top: 15px;
+}
+.logobar-item:hover{
+    text-decoration: underline;
 }
 .logobar-login{
     margin-left: auto;
 }
 .navbar {
+    top:50px;
+    position: fixed;
     background-color: #A60A0A;
     display: flex;
     width: 100%;
     height: 35px;
-    display: flex;
-    justify-content: space-evenly;
 }
 .navbar-item {
     text-decoration: none;
@@ -44,28 +50,34 @@ html, body{
     font-family: 'Inter';
     font-weight: bold;
     font-size: 20px;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 4px;
+    text-align: center;
+    width: 20%;
+    padding-top: 4px;
+}
+.navbar-item:hover{
+    background-color: #580801;
 }
 footer{
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 20px;
+    height: 25px;
     background-color: #D10121;
     font-family: 'Inter';
-    font-size: 10px;
+    font-size: 12px;
     color: white;
     display: flex;
 }
 .footer-left{
     margin-left: 30px;
-    margin-top: 3px;
+    margin-top: 5px;
 }
 .footer-right{
     margin-left: auto;
     margin-right: 30px;
-    margin-top: 3px;
+    margin-top: 5px;
+}
+.body-content{
+    margin-top: 85px;
 }
