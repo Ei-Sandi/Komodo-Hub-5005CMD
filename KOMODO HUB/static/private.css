@@ -1,0 +1,108 @@
+html, body{
+    padding: 0;
+    margin: 0;
+    background-color: #FFF6F6;
+    width: 100%;
+    font-family: 'Gothic A1';
+ }
+.horizontal-navbar{
+    top:0;
+    position: fixed;
+    background-color: #D10121;
+    width: 100%;
+    height: 50px;
+    display: flex;
+}
+.hori-logo {
+    font-family: 'Irish Grover';
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    margin-right: 100px;
+    margin-top: 10px;
+}
+.hori-item{
+    font-family: 'Inter';
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    width: 7%;
+    padding-top: 15px;
+}
+.hori-item:hover{
+    font-weight: bold;
+    background-color: #A60A0A;
+}
+#profile-btn{
+    background-color: transparent;
+    border: none;
+    margin-left: auto;
+}
+#profile-icon{
+    width: 45px;
+    height: 45px;
+}
+#profile-btn:hover{
+    background-color: #A60A0A;
+}
+#signout:hover{
+    background-color: #D10121;
+    text-decoration: underline;
+}
+.vertical-navbar {
+    top:50px;
+    position: fixed;
+    background-color: #A60A0A;
+    width: 180px;
+    height: 88%;
+}
+.vertical-navbar ul {
+    list-style-type: none;
+    margin-top: 20px;
+    padding: 0;
+    width: 100%;
+}
+.vertical-navbar li {
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    padding-top: 8px;
+}
+.verti-item {
+    text-decoration: none;
+    color: white;
+    font-family: 'Inter';
+    font-size: 15px;
+    font-weight: bold;
+}
+.vertical-navbar li:hover{
+    background-color: #D10121;
+}
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 25px;
+    background-color: #D10121;
+    font-family: 'Inter';
+    font-size: 12px;
+    color: white;
+    display: flex;
+}
+.footer-left{
+    margin-left: 30px;
+    margin-top: 5px;
+}
+.footer-right{
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: 5px;
+}
+.body-content{
+    margin-top: 50px;
+    margin-left: 180px;
+}

@@ -42,5 +42,10 @@ def about():
 def contact():
     return render_template("contact.html")
 
+#testing privatemain template
+@app.route("/privatemain/")
+def privatemain():
+    return render_template("PrivateMain.html")
+
 if __name__ == "__main__":
     app.run(debug = True)
