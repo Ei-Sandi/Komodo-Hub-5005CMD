@@ -1,0 +1,276 @@
+#BigBox {
+    border: 5px solid rgb(88, 8, 1);
+    border-radius: 10px;
+    height: 550px;
+    width: 1200px;
+    background-color: white;
+
+    position: fixed;
+    top: 100px;
+    left: 150px;
+}
+.gothic-a1-semibold {
+    color: rgb(88, 8, 1);
+    font-family: "Gothic A1", serif;
+    font-weight: 600;
+    font-style: normal;
+}
+.inter {
+    color: white;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+#RegBox1 {
+    height: 50px;
+    width: auto;
+    background-color: white;
+
+    position: absolute;
+    top: 200px;
+    left: 550px;
+}
+#RegBox2 {
+    height: 50px;
+    width: auto;
+    background-color: white;
+
+    position: absolute;
+    top: 300px;
+    left: 400px;
+}
+#RegBox3 {
+    height: 50px;
+    width: auto;
+    background-color: white;
+
+    position: absolute;
+    top: 400px;
+    left: 250px;
+}
+#Organisation {
+    border: 50px solid rgb(166, 10, 10);
+    border-radius: 10px;
+    height: 50px;
+    width: auto;
+    background-color: rgb(166, 10, 10);
+
+    position: absolute;
+    top: 500px;
+    left: 400px;
+}
+#Individual {
+    border: 50px solid rgb(166, 10, 10);
+    border-radius: 10px;
+    height: 50px;
+    width: auto;
+    background-color: rgb(166, 10, 10);
+    position: absolute;
+    top: 500px;
+    left: 850px;
+}
+
+#IndBox1{
+    background-color: white;
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 150px;
+    left: 250px;
+}
+.SB{
+    color: white;
+}
+#Submit{
+    border: 30px solid rgb(166, 10, 10);
+    border-radius: 10px;
+    height: auto;
+    width: auto;
+    background-color: rgb(166, 10, 10);
+
+    position: absolute;
+    top: 500px;
+    left: 1100px;
+}
+#EA{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 250px;
+    left: 250px;
+}
+#Email{
+    position: absolute;
+    top: 290px;
+    left: 250px;
+}
+#FN{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 350px;
+    left: 250px;
+}
+#First{
+    position: absolute;
+    top: 390px;
+    left: 250px;
+}
+#LN{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 350px;
+    left: 450px;
+}
+#Last{
+    position: absolute;
+    top: 390px;
+    left: 450px;
+}
+#DOB{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 450px;
+    left: 250px;
+}
+#Date{
+    position: absolute;
+    top: 490px;
+    left: 250px;
+}
+#UN{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 250px;
+    left: 800px;
+}
+#User{
+    position: absolute;
+    top: 290px;
+    left: 800px;
+}
+#PW{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 350px;
+    left: 800px;
+}
+#Pass{
+    position: absolute;
+    top: 390px;
+    left: 800px;
+}
+#RPW{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 450px;
+    left: 800px;
+}
+#RePass{
+    position: absolute;
+    top: 490px;
+    left: 800px;
+}
+
+#OrgBox{
+    background-color: white;
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 150px;
+    left: 250px;
+}
+.NT{
+    color: white;
+}
+#NEXT{
+    border: 30px solid rgb(166, 10, 10);
+    border-radius: 10px;
+    height: auto;
+    width: auto;
+    background-color: rgb(166, 10, 10);
+
+    position: absolute;
+    top: 500px;
+    left: 1200px;
+}
+#ON{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 250px;
+    left: 250px;
+}
+#Org{
+    position: absolute;
+    top: 290px;
+    left: 250px;
+}
+#P{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 350px;
+    left: 250px;
+}
+#Pro{
+    position: absolute;
+    top: 390px;
+    left: 250px;
+}
+#C{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 450px;
+    left: 250px;
+}
+#Cou{
+    position: absolute;
+    top: 490px;
+    left: 250px;
+}
+#OL{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 550px;
+    left: 250px;
+}
+#File{
+    position: absolute;
+    top: 590px;
+    left: 250px;
+}
+#BI{
+    height: auto;
+    width: auto;
+
+    position: absolute;
+    top: 250px;
+    left: 800px;
+}
+#Intro{
+    position: absolute;
+    top: 290px;
+    left: 800px;
+}

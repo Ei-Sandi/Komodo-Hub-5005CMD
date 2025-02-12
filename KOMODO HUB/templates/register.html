@@ -1,9 +1,26 @@
 {% extends 'publicmain.html' %}
 
 {% block head %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='/Registration.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
 <title>Register</title>
 {% endblock %}
 
 {% block body%}
-    <h1>Code your registeration page content here</h1>
+<div id="BigBox"></div>
+<h1 class="gothic-a1-semibold">
+    <div id="RegBox1">Start Your Learning Journey</div>
+    <div id="RegBox2">Komodo Hub - Trusted Destination For Exploration</div>
+</h1>
+<h2 class="gothic-a1-semibold">
+        <div id="RegBox3">Register as: </div>
+</h2>
+
+<h2>
+    <div id="Organisation"><a href="{{ url_for('Organisation')}}" class="inter">Organisation</a></div>
+    <div id="Individual"><a href="{{ url_for('Individual')}}" class="inter">Individual</a></div>
+</h2>
 {% endblock %}

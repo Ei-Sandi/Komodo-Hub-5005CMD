@@ -17,6 +17,14 @@ def login():
 def register():
     return render_template("register.html")
 
+@app.route('/Organisation/')
+def Organisation():
+    return render_template('RegOrg.html')
+
+@app.route('/Individual/')
+def Individual():
+    return render_template('RegInd.html')
+
 #nav bar buttons
 @app.route("/news/")
 def news():

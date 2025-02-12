@@ -1,0 +1,42 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/Registration.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+    <title>Registration - Individual</title>
+{% endblock %}
+
+{% block body%}
+<div id="BigBox"></div>
+<div id= "IndBox1"><h1 class="gothic-a1-semibold">Enter Your Details</h1></div>
+
+
+<h3 class="gothic-a1-semibold">
+    <div id="EA">Email Address:</div>
+    <div id="FN">First Name:</div>
+    <div id="LN">Last Name:</div>
+    <div id="DOB">Date Of Birth:</div>
+    <div id="UN">Username:</div>
+    <div id="PW">Password:</div>
+    <div id="RPW">Retype Password:</div>
+</h3>
+
+<form action="/" method="POST">
+    <div>
+        <input type="email" id="Email" name="Email" required>
+        <input type="text" id="First" name="First" required>
+        <input type="text" id="Last" name="Last" required>
+        <input type="date" id="Date" name="Date" required>
+        <input type="text" id="User" name="User" required>
+        <input type="password" id="Pass" name="Pass" required>
+        <input type="password" id="RePass" name="RePass" required>
+    </div>
+    <br>
+    <div id="Submit">
+        <h2><a href="" class="SB"><input type="submit" value="SUBMIT"></a></h2>
+    </div>
+</form>
+{% endblock %}
