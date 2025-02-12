@@ -57,7 +57,7 @@
     background-color: rgb(166, 10, 10);
 
     position: absolute;
-    top: 500px;
+    top: 450px;
     left: 400px;
 }
 #Individual {
@@ -67,7 +67,7 @@
     width: auto;
     background-color: rgb(166, 10, 10);
     position: absolute;
-    top: 500px;
+    top: 450px;
     left: 850px;
 }
 
@@ -80,18 +80,9 @@
     top: 150px;
     left: 250px;
 }
-.SB{
-    color: white;
-}
 #Submit{
-    border: 30px solid rgb(166, 10, 10);
-    border-radius: 10px;
-    height: auto;
-    width: auto;
-    background-color: rgb(166, 10, 10);
-
     position: absolute;
-    top: 500px;
+    top: 525px;
     left: 1100px;
 }
 #EA{
@@ -195,18 +186,9 @@
     top: 150px;
     left: 250px;
 }
-.NT{
-    color: white;
-}
 #NEXT{
-    border: 30px solid rgb(166, 10, 10);
-    border-radius: 10px;
-    height: auto;
-    width: auto;
-    background-color: rgb(166, 10, 10);
-
     position: absolute;
-    top: 500px;
+    top: 550px;
     left: 1200px;
 }
 #ON{
