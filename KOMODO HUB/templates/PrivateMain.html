@@ -16,10 +16,18 @@
     <body>
         <div class="horizontal-navbar">
             <a href="{{ url_for('home') }}" class="hori-logo">KOMODO HUB</a>
-            <a href="{{ url_for('news') }}" class="hori-item">News</a>
-            <a href="{{ url_for('forums') }}" class="hori-item">Forums</a>
+            <a href="{{ url_for('forums') }}" class="hori-item">Animals</a>
             <a href="{{ url_for('about') }}" class="hori-item">About Us</a>
-            <a href="{{ url_for('contact') }}" class="hori-item">Contact</a>
+            <a href="{{ url_for('contact') }}" class="hori-item">Contact Us</a>
+            <div class = "hori-item dropdown">
+                <a>Get Involved</a>
+                <div class="dropdown-content">
+                    <a href="#">Discussion</a>
+                    <a href="#">Volunteering</a>
+                    <a href="#">Donations</a>
+                    <a href="#" id = "edg-species">Report Endangered Species</a>
+                </div>
+            </div>
             <button id = "profile-btn"><img id = "profile-icon" src = "/static/images/profile.png"></button>
             <a href="" class="hori-item" id = "signout">Sign Out</a>
         </div>
