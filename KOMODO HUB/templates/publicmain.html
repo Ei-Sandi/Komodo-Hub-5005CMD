@@ -21,10 +21,18 @@
         </div>
         <div class="navbar">
             <a href="{{ url_for('home') }}" class="navbar-item">Home</a>
-            <a href="{{ url_for('news') }}" class="navbar-item">News</a>
-            <a href="{{ url_for('forums') }}" class="navbar-item">Forums</a>
+            <a href="{{ url_for('forums') }}" class="navbar-item">Animals</a>
             <a href="{{ url_for('about') }}" class="navbar-item">About Us</a>
-            <a href="{{ url_for('contact') }}" class="navbar-item">Contact</a>
+            <a href="{{ url_for('contact') }}" class="navbar-item">Contact Us</a>
+            <div class = "navbar-item dropdown">
+                <a>Get Involved</a>
+                <div class="dropdown-content">
+                    <a href="#">Discussion</a>
+                    <a href="#">Volunteering</a>
+                    <a href="#">Donations</a>
+                    <a href="#">Report Endangered Species</a>
+                </div>
+            </div>
         </div>
 
         <div class="body-content">
