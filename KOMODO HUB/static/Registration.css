@@ -5,23 +5,18 @@
     width: 1200px;
     background-color: white;
 
-    position: fixed;
+    position: absolute;
     top: 100px;
-    left: 150px;
+    left: 160px;
 }
-.gothic-a1-semibold {
-    color: rgb(88, 8, 1);
-    font-family: "Gothic A1", serif;
-    font-weight: 600;
-    font-style: normal;
+
+/* Registration Page */
+.TEXT{
+    color: rgb(88, 8, 1);   
 }
-.inter {
+.TX{
     color: white;
-    font-family: "Inter", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-  }
+}
 #RegBox1 {
     height: 50px;
     width: auto;
@@ -49,29 +44,32 @@
     top: 400px;
     left: 250px;
 }
-#Organisation {
+#OrgBox{
     border: 50px solid rgb(166, 10, 10);
     border-radius: 10px;
     height: 50px;
-    width: auto;
+    width: 200px;
     background-color: rgb(166, 10, 10);
 
     position: absolute;
     top: 450px;
     left: 400px;
+    text-align: center;
 }
-#Individual {
+#IndBox{
     border: 50px solid rgb(166, 10, 10);
     border-radius: 10px;
     height: 50px;
-    width: auto;
+    width: 200px;
     background-color: rgb(166, 10, 10);
     position: absolute;
     top: 450px;
-    left: 850px;
+    left: 800px;
+    text-align: center;
 }
 
-#IndBox1{
+/* Individual Page */
+#TitleText{
     background-color: white;
     height: auto;
     width: auto;
@@ -82,10 +80,10 @@
 }
 #Submit{
     position: absolute;
-    top: 525px;
-    left: 1100px;
+    top: 550px;
+    left: 1150px;
 }
-#EA{
+#EmailText{
     height: auto;
     width: auto;
 
@@ -94,11 +92,13 @@
     left: 250px;
 }
 #Email{
+    width: 375px;
+    font-size: 25px;
     position: absolute;
-    top: 290px;
+    top: 280px;
     left: 250px;
 }
-#FN{
+#FirstText{
     height: auto;
     width: auto;
 
@@ -107,11 +107,13 @@
     left: 250px;
 }
 #First{
+    width: 175px;
+    font-size: 25px;
     position: absolute;
-    top: 390px;
+    top: 380px;
     left: 250px;
 }
-#LN{
+#LastText{
     height: auto;
     width: auto;
 
@@ -120,8 +122,10 @@
     left: 450px;
 }
 #Last{
+    width: 175px;
+    font-size: 25px;
     position: absolute;
-    top: 390px;
+    top: 380px;
     left: 450px;
 }
 #DOB{
@@ -133,11 +137,12 @@
     left: 250px;
 }
 #Date{
+    font-size: 25px;
     position: absolute;
-    top: 490px;
+    top: 480px;
     left: 250px;
 }
-#UN{
+#UserText{
     height: auto;
     width: auto;
 
@@ -146,11 +151,13 @@
     left: 800px;
 }
 #User{
+    width: 375px;
+    font-size: 25px;
     position: absolute;
-    top: 290px;
+    top: 280px;
     left: 800px;
 }
-#PW{
+#PassText{
     height: auto;
     width: auto;
 
@@ -159,11 +166,13 @@
     left: 800px;
 }
 #Pass{
+    width: 375px;
+    font-size: 25px;
     position: absolute;
-    top: 390px;
+    top: 380px;
     left: 800px;
 }
-#RPW{
+#RePassText{
     height: auto;
     width: auto;
 
@@ -172,12 +181,15 @@
     left: 800px;
 }
 #RePass{
+    width: 375px;
+    font-size: 25px;
     position: absolute;
-    top: 490px;
+    top: 480px;
     left: 800px;
 }
 
-#OrgBox{
+/* Organisation Page */
+#ForOrg{
     background-color: white;
     height: auto;
     width: auto;
@@ -189,9 +201,9 @@
 #NEXT{
     position: absolute;
     top: 550px;
-    left: 1200px;
+    left: 1150px;
 }
-#ON{
+#OrgText{
     height: auto;
     width: auto;
 
@@ -200,11 +212,13 @@
     left: 250px;
 }
 #Org{
+    width: 375px;
+    font-size: 25px;
     position: absolute;
-    top: 290px;
+    top: 280px;
     left: 250px;
 }
-#P{
+#ProText{
     height: auto;
     width: auto;
 
@@ -213,11 +227,13 @@
     left: 250px;
 }
 #Pro{
+    width: 375px;
+    font-size: 25px;
     position: absolute;
-    top: 390px;
+    top: 380px;
     left: 250px;
 }
-#C{
+#CouText{
     height: auto;
     width: auto;
 
@@ -226,11 +242,13 @@
     left: 250px;
 }
 #Cou{
+    width: 375px;
+    font-size: 25px;
     position: absolute;
-    top: 490px;
+    top: 480px;
     left: 250px;
 }
-#OL{
+#OrgLogo{
     height: auto;
     width: auto;
 
@@ -240,10 +258,10 @@
 }
 #File{
     position: absolute;
-    top: 590px;
+    top: 580px;
     left: 250px;
 }
-#BI{
+#BriefText{
     height: auto;
     width: auto;
 
@@ -252,7 +270,8 @@
     left: 800px;
 }
 #Intro{
+    font-size: 25px;
     position: absolute;
-    top: 290px;
+    top: 280px;
     left: 800px;
 }

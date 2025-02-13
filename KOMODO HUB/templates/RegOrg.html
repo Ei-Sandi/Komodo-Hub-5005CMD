@@ -3,34 +3,32 @@
 {% block head %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='/Registration.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
     <title>Registration - Organisation</title>
 {% endblock %}
 
 {% block body%}
 <div id="BigBox"></div>
-<div id="OrgBox"><h1 class="gothic-a1-semibold">Register For A Organisation</h1></div>
-<h3 class="gothic-a1-semibold">
-    <div id="ON">Organisation Name</div>
-    <div id="P">Province</div>
-    <div id="C">Country</div>
-    <div id="OL">Organisation Logo</div>
-    <div id="BI">Brief Introduction</div>
+<div id="ForOrg"><h1 class="TEXT">Register For An Organisation</h1></div>
+<h3 class="TEXT">
+    <div id="OrgText">Organisation Name:</div>
+    <div id="ProText">Province:</div>
+    <div id="CouText">Country:</div>
+    <div id="OrgLogo">Organisation Logo:</div>
+    <div id="BriefText">Brief Introduction (Max 200 words):</div>
 </h3>
 
-<form action="/" method="POST">
+<form action="/">
     <div>
         <input type="text" id="Org" name="Org" required>
         <input type="text" id="Pro" name="Pro" required>
         <input type="text" id="Cou" name="Cou" required>
-        <textarea id="Intro" name="Intro" rows="15" cols="50" required></textarea>
+        <textarea id="Intro" name="Intro" rows="9" cols="30" required></textarea>
         <input type="file" id="File" name="filename" required>
     </div>
     <br>
     <div id="NEXT">
-        <h2><a href="{{ url_for('Individual')}}" class="NT"><input type="submit" value="NEXT"></a></h2>
+        <h2><a href="{{ url_for('Individual')}}"><input type="submit" value="NEXT"></a></h2>
     </div>
 </form>
 {% endblock %}
