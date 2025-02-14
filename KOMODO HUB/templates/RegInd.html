@@ -1,8 +1,6 @@
 {% extends 'publicmain.html' %}
 
 {% block head %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="{{ url_for('static', filename='/Registration.css') }}">
     <title>Registration - Individual</title>
 {% endblock %}
@@ -11,26 +9,22 @@
 <div id="BigBox">
 <div id= "TitleText"><h1 class="TEXT">Enter Your Details</h1></div>
 
-
-<h3 class="TEXT">
-    <div id="EmailText">Email Address:</div>
-    <div id="FirstText">First Name:</div>
-    <div id="LastText">Last Name:</div>
-    <div id="DOB">Date Of Birth:</div>
-    <div id="UserText">Username:</div>
-    <div id="PassText">Password:</div>
-    <div id="RePassText">Retype Password:</div>
-</h3>
-
 <form action="/">
     <div>
-        <input type="email" id="Email" name="Email" required>
-        <input type="text" id="First" name="First" required>
-        <input type="text" id="Last" name="Last" required>
+        <div id="EmailText"><h3>Email Address:</h3></div>
+        <input type="email" id="Email" name="Email" placeholder="example@gmail.com" required>
+        <div id="FirstText"><h3>First Name:</h3></div>
+        <input type="text" id="First" name="First"placeholder="Reetika" required>
+        <div id="LastText"><h3>Last Name:</h3></div>
+        <input type="text" id="Last" name="Last" placeholder="Thapar" required>
+        <div id="DOB"><h3>Date of Birth:</h3></div>
         <input type="date" id="Date" name="Date" required>
-        <input type="text" id="User" name="User" required>
-        <input type="password" id="Pass" name="Pass" required>
-        <input type="password" id="RePass" name="RePass" required>
+        <div id="UserText"><h3>Username:</h3></div>
+        <input type="text" id="User" name="User" placeholder="thaparr6" required>
+        <div id="PassText"><h3>Password:</h3></div>
+        <input type="password" id="Pass" name="Pass"  placeholder="Password" required>
+        <div id="RePassText"><h3>Re-type Password:</h3></div>
+        <input type="password" id="RePass" name="RePass" placeholder="Password" required>
     </div>
     <br>
     <div id="Submit">

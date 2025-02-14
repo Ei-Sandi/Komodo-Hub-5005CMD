@@ -50,209 +50,214 @@
 }
 
 /* Individual Page */
+h3,
+.h3{
+    font-size: 1.75rem;
+}
+
 #TitleText{
-    background-color: white;
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 50px;
-    margin-left: 75px;
-}
-#Submit{
-    position: absolute;
-    margin-top: 400px;
-    margin-left: 1000px;
+    margin-top: 3%;
+    margin-left: 4%;
 }
 #EmailText{
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 130px;
-    margin-left: 75px;
+    position: flex;
+    margin-top: 3%;
+    margin-left: 4%;
 }
 #Email{
-    width: 375px;
-    font-size: 25px;
-    position: absolute;
-    margin-top: 160px;
-    margin-left: 75px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 30%;
+    font-size: 1.75rem;
+    margin-top: -1%;
+    margin-left: 4%;
 }
 #FirstText{
+    position: flex;
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 230px;
-    margin-left: 75px;
+    margin-top: 3%;
+    margin-left: 4%;
 }
 #First{
-    width: 175px;
-    font-size: 25px;
-    position: absolute;
-    margin-top: 260px;
-    margin-left: 75px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 14%;
+    font-size: 1.75rem;
+    margin-top: -1%;
+    margin-left: 4%;
 }
 #LastText{
+    position: flex;
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 230px;
-    margin-left: 280px;
+    color: rgb(88, 8, 1);
+    margin-top: -9.25%;
+    margin-left: 20%;
 }
 #Last{
-    width: 175px;
-    font-size: 25px;
-    position: absolute;
-    margin-top: 260px;
-    margin-left: 280px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 14%;
+    font-size: 1.75rem;
+    margin-top: -0.9%;
+    margin-left: 20%;
 }
 #DOB{
+    position: flex;
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 330px;
-    margin-left: 75px;
+    margin-top: 3%;
+    margin-left: 4%;
 }
 #Date{
-    font-size: 25px;
-    position: absolute;
-    margin-top: 360px;
-    margin-left: 75px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    font-size: 1.75rem;
+    margin-top: -1%;
+    margin-left: 4%;
 }
 #UserText{
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 130px;
-    margin-left: 600px;
+    position: flex;
+    margin-top: -35.2%;
+    margin-left: 50%;
 }
 #User{
-    width: 375px;
-    font-size: 25px;
-    position: absolute;
-    margin-top: 160px;
-    left: 600px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 30%;
+    font-size: 1.75rem;
+    margin-top: -1%;
+    margin-left: 50%;
 }
 #PassText{
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 230px;
-    margin-left: 600px;
+    position: flex;
+    margin-top: 3%;
+    margin-left: 50%;
 }
 #Pass{
-    width: 375px;
-    font-size: 25px;
-    position: absolute;
-    margin-top: 260px;
-    margin-left: 600px;
-}
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 30%;
+    font-size: 1.75rem;
+    margin-top: -1%;
+    margin-left: 50%;
+}  
 #RePassText{
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 330px;
-    margin-left: 600px;
+    position: flex;
+    margin-top: 3%;
+    margin-left: 50%;
 }
 #RePass{
-    width: 375px;
-    font-size: 25px;
-    position: absolute;
-    margin-top: 360px;
-    margin-left: 600px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 30%;
+    font-size: 1.75rem;
+    margin-top: -1%;
+    margin-left: 50%;
+}
+#Submit{
+    position: flex;
+    margin-top: 5%;
+    margin-left: 80%;
 }
 
 /* Organisation Page */
-#ForOrg{
-    background-color: white;
-    height: auto;
-    width: auto;
-
-    position: absolute;
-    margin-top: 50px;
-    margin-left: 75px;
-}
-#NEXT{
-    position: absolute;
-    margin-top: 400px;
-    margin-left: 1000px;
-}
 #OrgText{
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 130px;
-    margin-left: 75px;
+    position: flex;
+    margin-top: 3%;
+    margin-left: 4%;
 }
 #Org{
-    width: 375px;
-    font-size: 25px;
-    position: absolute;
-    margin-top: 160px;
-    margin-left: 75px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 30%;
+    font-size: 1.75rem;
+    margin-top: -1%;
+    margin-left: 4%;
 }
 #ProText{
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 230px;
-    margin-left: 75px;
+    position: flex;
+    margin-top: 3%;
+    margin-left: 4%;
 }
 #Pro{
-    width: 375px;
-    font-size: 25px;
-    position: absolute;
-    margin-top: 260px;
-    margin-left: 75px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 30%;
+    font-size: 1.75rem;
+    margin-top: -1%;
+    margin-left: 4%;
 }
 #CouText{
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 330px;
-    margin-left: 75px;
+    position: flex;
+    margin-top: 3%;
+    margin-left: 4%;
 }
 #Cou{
-    width: 375px;
-    font-size: 25px;
-    position: absolute;
-    margin-top: 360px;
-    margin-left: 75px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 30%;
+    font-size: 1.75rem;
+    margin-top: -1%;
+    margin-left: 4%;
 }
 #OrgLogo{
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 430px;
-    margin-left: 75px;
+    position: flex;
+    margin-top: 3%;
+    margin-left: 4%;
 }
 #File{
-    position: absolute;
-    margin-top: 460px;
-    margin-left: 75px;
+    position: flex;
+    margin-top: -1%;
+    margin-left: 4%;
 }
 #BriefText{
+    color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-
-    position: absolute;
-    margin-top: 130px;
-    margin-left: 600px;
+    position: flex;
+    margin-top: 3%;
+    margin-left: 4%;
 }
 #Intro{
-    font-size: 20px;
-    position: absolute;
-    margin-top: 160px;
-    margin-left: 600px;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    font-size: 1rem;
+    margin-top: -1%;
+    margin-left: 4%;
+}
+#NEXT{
+    position: flex;
+    margin-top: 5%;
+    margin-left: 80%;
 }
