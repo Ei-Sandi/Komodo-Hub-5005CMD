@@ -1,30 +1,26 @@
 {% extends 'publicmain.html' %}
 
 {% block head %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="{{ url_for('static', filename='/Registration.css') }}">
     <title>Registration - Organisation</title>
 {% endblock %}
 
 {% block body%}
 <div id="BigBox">
-<div id="ForOrg"><h1 class="TEXT">Register For An Organisation</h1></div>
-<h3 class="TEXT">
-    <div id="OrgText">Organisation Name:</div>
-    <div id="ProText">Province:</div>
-    <div id="CouText">Country:</div>
-    <div id="OrgLogo">Organisation Logo:</div>
-    <div id="BriefText">Brief Introduction (Max 200 words):</div>
-</h3>
+<div id="TitleText"><h1 class="TEXT">Register For An Organisation</h1></div>
 
 <form action="/">
     <div>
-        <input type="text" id="Org" name="Org" required>
-        <input type="text" id="Pro" name="Pro" required>
-        <input type="text" id="Cou" name="Cou" required>
-        <textarea id="Intro" name="Intro" rows="9" cols="30" required></textarea>
+        <div id="OrgText"><h3>Organisation Name:</h3></div>
+        <input type="text" id="Org" name="Org" placeholder="Coventry University" required>
+        <div id="ProText"><h3>Province:</h3></div>
+        <input type="text" id="Pro" name="Pro" placeholder="West Midlands" required>
+        <div id="CouText"><h3>Country:</h3></div>
+        <input type="text" id="Cou" name="Cou" placeholder="England" required>
+        <div id="OrgLogo"><h3>Organisation Logo:</h3></div>
         <input type="file" id="File" name="filename" required>
+        <div id="BriefText"><h3>Brief Introduction (Max 200 words):</h3></div>
+        <textarea id="Intro" name="Intro" rows="15" cols="100" placeholder="My Organisation..." required></textarea>
     </div>
     <br>
     <div id="NEXT">
