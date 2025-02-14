@@ -1,71 +1,52 @@
 #BigBox {
     border: 5px solid rgb(88, 8, 1);
-    border-radius: 10px;
-    height: 80vh;
-    width: 75vw;
+    border-radius: 0.625rem;
+    width: 75%;
     background-color: white;
-
-    position: fixed;
-    margin-top: 10px;
-    margin-left: 175px;
+    margin-top: 8%;
+    margin-left: 12%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
 }
-
-/* Registration Page */
-.TEXT{
-    color: rgb(88, 8, 1);   
+/* Main Registration Page */
+.titleText{
+    color: rgb(88, 8, 1);
+    width: auto;
+    background-color: white;
+    text-align: center;
+    padding-top: 0.313rem;
 }
-.TX{
+.regText{
+    text-align: left;
+    padding-left: 1.25rem;
+}
+.btnBar{
+    display: flex;
+    width: 100%;
+    margin-top: 1.25rem;
+}
+.btns{
+    border: none;
+    border-radius: 0.625rem;
+    width: 30%;
+    background-color: rgb(166, 10, 10);
     color: white;
-}
-#RegBox1 {
-    height: 50px;
-    width: auto;
-    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
 
-    position: absolute;
-    margin-top: 100px;
-    margin-left: 350px;
-}
-#RegBox2 {
-    height: 50px;
-    width: auto;
-    background-color: white;
-
-    position: absolute;
-    margin-top: 200px;
-    margin-left: 200px;
-}
-#RegBox3 {
-    height: 50px;
-    width: auto;
-    background-color: white;
-
-    position: absolute;
-    margin-top: 300px;
-    margin-left: 75px;
-}
-#OrgBox{
-    border: 50px solid rgb(166, 10, 10);
-    border-radius: 10px;
-    height: 50px;
-    width: 200px;
-    background-color: rgb(166, 10, 10);
-
-    position: absolute;
-    margin-top: 350px;
-    margin-left: 200px;
+    text-decoration: none;
+    font-family: "inter";
+    font-weight: 500;
+    font-size: 1.25rem;
     text-align: center;
+    letter-spacing: 2px;
+    padding: 5rem 2rem 5rem 2rem;
 }
-#IndBox{
-    border: 50px solid rgb(166, 10, 10);
-    border-radius: 10px;
-    height: 50px;
-    width: 200px;
-    background-color: rgb(166, 10, 10);
-    position: absolute;
-    margin-top: 350px;
-    margin-left: 650px;
-    text-align: center;
+.btns:hover {
+    font-weight: 700;
+    font-size: 1.35rem;
+    background-color: #D10121;
 }
 
 /* Individual Page */

@@ -34,15 +34,17 @@
                 </div>
             </div>
         </div>
-
-        <div class="body-content">
-            {% block body %}
-            {% endblock %}
+        <div id="page-container">
+            <div id="content-wrap">
+                {% block body%}
+                {% endblock %}
+            </div>
+            <footer class = "footer">
+                <div id = "footer-left">Privacy Policy | Terms of Use</div>
+                <div id = "footer-right">@2025 KOMODO HUB, INC</div>
+            </footer>
         </div>
+
         
-        <footer>
-            <div class = "footer-left">Privacy Policy | Terms of Use</div>
-            <div class = "footer-right">@2025 KOMODO HUB, INC</div>
-        </footer>
     </body>
 </html>

@@ -1,25 +1,22 @@
 {% extends 'publicmain.html' %}
 
 {% block head %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{{ url_for('static', filename='/Registration.css') }}">
-<title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/Registration.css') }}">
+    <title>Register</title>
 {% endblock %}
 
 {% block body%}
 <div id="BigBox">
-<h1 class="TEXT">
-    <div id="RegBox1">Start Your Learning Journey</div>
-    <div id="RegBox2">Komodo Hub - Trusted Destination For Exploration</div>
-</h1>
-<h2 class="TEXT">
-        <div id="RegBox3">Register as: </div>
-</h2>
-
-<h1>
-    <div id="OrgBox"><a href="{{ url_for('Organisation')}}" class="TX">Organisation</a></div>
-    <div id="IndBox"><a href="{{ url_for('Individual')}}" class="TX">Individual</a></div>
-</h1>
+    <div class="titleText">
+        <h1>Start Your Learning Journey</h1>
+        <h1>Komodo Hub - Trusted Destination For Exploration</h1>
+    </div>
+    <div class="titleText regText">
+        <h2>Register as: </h2>
+    <div>
+    <div class = "btnBar">
+        <a class = "btns" href="{{ url_for('Organisation')}}" class="TX">ORGANISATION</a>
+        <a class = "btns" href="{{ url_for('Individual')}}" class="TX">INDIVIDUAL</a>
+    </div>
 </div>
 {% endblock %}
