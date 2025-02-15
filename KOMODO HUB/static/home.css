@@ -1,0 +1,89 @@
+.hero {
+    display: flex;
+    padding-bottom: 3vh;
+}
+.column {
+    flex: 50%;
+    padding-top: 5vh;
+    position: relative;
+}
+.column h1{
+    font-family: "Gothic A1";
+    font-weight: bold;
+    text-align: center;
+}
+.column p {
+    font-family: "Gothic A1";
+    font-weight: bold;
+    text-align: justify;
+    font-size: 0.9rem;
+}
+.leftcolumn{
+    margin: 10vh 15vh 15vh 15vh;
+    font-size: 1rem;
+    color: #580801;
+}
+.column img{
+    border-radius: 20%;
+    width: 17vw;
+    height: 17vw;
+    opacity: 0.85;
+    transition: 0.3s;
+}
+.column img:hover{
+    border: solid #580801;
+    opacity: 1;
+}
+.imgs{
+    display: flex;
+    flex-direction: column;
+}
+#ImgTiger {
+    position: absolute;    
+    top: 50%;
+    left: 35%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 17vw;
+    height: 17vw;
+}
+/*About Us */
+#ImgAboutBg{
+    width: 100vw;
+    height: 40vh;
+}
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.centered {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}  
+.title{
+    font-family: 'Just Another Hand';
+    font-size: 4rem;
+    color: black;
+}
+#About-Us p{
+    margin: 1vh 1vw 1vh 1vw;
+    text-align: justify;
+    font-family: "Gothic A1";
+    font-weight: bold;
+    color: #580801;
+}
+.MV {
+    display: flex;
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+}
+.MV h2{
+    transform: rotate(-90deg);
+    height: 4vw;
+    margin-right: -5vh;
+    margin-left: 2vh;
+    margin-top: 5vh;
+}
