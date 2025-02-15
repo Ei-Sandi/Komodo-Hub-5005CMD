@@ -48,20 +48,12 @@
     background-color: #D10121;
 }
 
-/* Individual Page */
+/* Both Pages */
 h3,
 .h3{
     font-size: 1.75rem;
 }
-
-#TitleText{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    margin-top: 3%;
-    margin-left: 4%;
-}
-#EmailText{
+#Text1{
     color: rgb(88, 8, 1);
     height: auto;
     width: auto;
@@ -69,54 +61,33 @@ h3,
     margin-top: 3%;
     margin-left: 4%;
 }
-#Email{
+#Text2{
+    color: rgb(88, 8, 1);
+    height: auto;
+    width: auto;
+    position: flex;
+    margin-top: 3%;
+    margin-left: 50%;
+}
+#InputBox1{
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
     width: 30%;
     font-size: 1.75rem;
     margin-top: -1%;
     margin-left: 4%;
+
 }
-#FirstText{
-    position: flex;
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    margin-top: 3%;
-    margin-left: 4%;
-}
-#First{
+#InputBox2{
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
-    width: 14%;
+    width: 30%;
     font-size: 1.75rem;
     margin-top: -1%;
-    margin-left: 4%;
+    margin-left: 50%;
 }
-#LastText{
-    position: flex;
-    height: auto;
-    width: auto;
-    color: rgb(88, 8, 1);
-    margin-top: -9.25%;
-    margin-left: 20%;
-}
-#Last{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 14%;
-    font-size: 1.75rem;
-    margin-top: -0.9%;
-    margin-left: 20%;
-}
-#DOB{
-    position: flex;
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    margin-top: 3%;
-    margin-left: 4%;
-}
+
+/* Individual Page */
 #Date{
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
@@ -128,48 +99,8 @@ h3,
     color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-    position: flex;
-    margin-top: -35.2%;
-    margin-left: 50%;
-}
-#User{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 30%;
-    font-size: 1.75rem;
-    margin-top: -1%;
-    margin-left: 50%;
-}
-#PassText{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    position: flex;
-    margin-top: 3%;
-    margin-left: 50%;
-}
-#Pass{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 30%;
-    font-size: 1.75rem;
-    margin-top: -1%;
-    margin-left: 50%;
-}  
-#RePassText{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    position: flex;
-    margin-top: 3%;
-    margin-left: 50%;
-}
-#RePass{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 30%;
-    font-size: 1.75rem;
-    margin-top: -1%;
+    position: relative;
+    margin-top: -40%;
     margin-left: 50%;
 }
 #Submit{
@@ -179,62 +110,6 @@ h3,
 }
 
 /* Organisation Page */
-#OrgText{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    position: flex;
-    margin-top: 3%;
-    margin-left: 4%;
-}
-#Org{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 30%;
-    font-size: 1.75rem;
-    margin-top: -1%;
-    margin-left: 4%;
-}
-#ProText{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    position: flex;
-    margin-top: 3%;
-    margin-left: 4%;
-}
-#Pro{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 30%;
-    font-size: 1.75rem;
-    margin-top: -1%;
-    margin-left: 4%;
-}
-#CouText{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    position: flex;
-    margin-top: 3%;
-    margin-left: 4%;
-}
-#Cou{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 30%;
-    font-size: 1.75rem;
-    margin-top: -1%;
-    margin-left: 4%;
-}
-#OrgLogo{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    position: flex;
-    margin-top: 3%;
-    margin-left: 4%;
-}
 #File{
     position: flex;
     margin-top: -1%;
@@ -249,9 +124,10 @@ h3,
     margin-left: 4%;
 }
 #Intro{
+    width: 70%;
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
-    font-size: 1rem;
+    font-size: 1.25rem;
     margin-top: -1%;
     margin-left: 4%;
 }
