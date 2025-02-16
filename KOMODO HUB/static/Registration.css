@@ -65,14 +65,13 @@ h3,
     color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-    position: flex;
     margin-top: 3%;
     margin-left: 50%;
 }
 #InputBox1{
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
-    width: 30%;
+    width: 80%;
     font-size: 1.75rem;
     margin-top: -1%;
     margin-left: 4%;
@@ -99,7 +98,6 @@ h3,
     color: rgb(88, 8, 1);
     height: auto;
     width: auto;
-    position: relative;
     margin-top: -40%;
     margin-left: 50%;
 }
@@ -107,6 +105,10 @@ h3,
     position: flex;
     margin-top: 5%;
     margin-left: 80%;
+}
+#Secondary_Box{
+    display: inline-block;
+    margin-left: 10%;
 }
 
 /* Organisation Page */

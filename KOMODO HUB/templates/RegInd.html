@@ -11,6 +11,7 @@
 
 <form action="/">
     <div>
+        <div id = "Secondary_Box">
         <div id="Text1"><h3>Email Address:</h3></div>
         <input type="email" id="InputBox1" name="Email" placeholder="example@gmail.com" required>
         <div id="Text1"><h3>First Name:</h3></div>
@@ -19,16 +20,19 @@
         <input type="text" id="InputBox1" name="Last" placeholder="Thapar" required>
         <div id="Text1"><h3>Date of Birth:</h3></div>
         <input type="date" id="Date" name="Date" required>
-        <div id="UserText"><h3>Username:</h3></div>
-        <input type="text" id="InputBox2" name="User" placeholder="thaparr6" required>
-        <div id="Text2"><h3>Password:</h3></div>
-        <input type="password" id="InputBox2" name="Pass"  placeholder="Password" required>
-        <div id="Text2"><h3>Re-type Password:</h3></div>
-        <input type="password" id="InputBox2" name="RePass" placeholder="Password" required>
+        </div>
+        <div id = "Secondary_Box">
+        <div id="Text1"><h3>Username:</h3></div>
+        <input type="text" id="InputBox1" name="User" placeholder="thaparr6" required>
+        <div id="Text1"><h3>Password:</h3></div>
+        <input type="password" id="InputBox1" name="Pass"  placeholder="Password" required>
+        <div id="Text1"><h3>Re-type Password:</h3></div>
+        <input type="password" id="InputBox1" name="RePass" placeholder="Password" required>
+        </div>
     </div>
     <br>
     <div id="Submit">
-        <h2><a href="{{ url_for('Individual')}}"><input type="submit" value="SUBMIT"></a></h2>
+        <h2><a href=""><input type="submit" value="SUBMIT"></a></h2>
     </div>
 </form>
 </div>
