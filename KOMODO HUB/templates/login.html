@@ -2,8 +2,29 @@
 
 {% block head %}
     <title>Log in</title>
+    <link rel="stylesheet" href= "{{ url_for('static', filename = 'login.css') }}">
 {% endblock %}
 
 {% block body%}
-    <h1>Code your log in page content here</h1>
+
+
+    
+    <div class="login-container">
+        <h2>Log in to your account</h2>
+        <form>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username">
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+            
+            <a href="#" class="forgot-password">Forgot password?</a>
+            
+            <button type="submit">LOGIN</button>
+        </form>
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+    </div>
+    
+    
+
 {% endblock %}
