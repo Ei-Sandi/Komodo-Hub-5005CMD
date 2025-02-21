@@ -3,6 +3,8 @@
 {% block head %}
     <title>Home</title>
     <link rel="stylesheet" href= "{{ url_for('static', filename = 'home.css') }}" />
+    <script src="https://kit.fontawesome.com/7d9bbfb233.js" crossorigin="anonymous"></script>
+
 {% endblock %}
 
 {% block body%}
@@ -21,16 +23,45 @@
     </div>
 
     <div id="About-Us">
-        <div class = "container">
-            <img src = "/static/images/AboutUs-bg.png" id = "ImgAboutBg">
+        <div class = "AbtBgContainer">
             <h2 class = "centered title">ABOUT US</h2>
+            <img src = "/static/images/AboutUs-bg.png" id = "ImgAboutBg">
         </div>
             <p>Komodo Hub is a digital platform dedicated to the exploration, identification, and protection of Indonesia’s endemic species. With habitat loss and other threats endangering wildlife, we strive to bridge the gap between conservation efforts and public awareness. Through education, research, and community involvement, we empower individuals to take meaningful action in preserving biodiversity. By leveraging technology and collaboration, we aim to create a lasting impact on wildlife conservation, ensuring that Indonesia’s unique species continue to thrive for generations to come.</p>
         <div class = "MV">
-            <h2>Mission</h2>
+            <h2 class = "title">Mission</h2>
             <p>At Komodo Hub, our mission is to preserve Indonesia’s unique wildlife by leveraging digital innovation to explore, identify, and protect endangered endemic species. Through education, advocacy, and community engagement, we aim to raise awareness, promote conservation efforts, and drive impactful actions to ensure a sustainable future for generations to come.</p>
-            <h2>Vision</h2>
+            
+            <h2 class = "title">Vision</h2>
             <p>We envision a future where Indonesia’s endemic species thrive in their natural habitats, free from the threats of habitat destruction, exploitation, and invasive species. Komodo Hub strives to be a leading digital platform that empowers individuals and communities to take action, fostering a deeper connection with nature and ensuring the long-term survival of Indonesia’s wildlife.</p>
+        </div>
+    </div>
+
+    <div id="Contact">
+        <h3 class = "title" id = "contact-title">CONTACT US</h3>
+        
+        <div class = "Add-E-P">
+            <div class = "contents">
+                <i class="fa-solid fa-location-dot"></i>
+                <h1>ADDRESS</h1>
+                <h3>Jakarta, Indonesia</h3>
+            </div>
+            <div class = "contents">   
+                <i class="fa-solid fa-envelope"></i>
+                <h1>EMAIL</h1>
+                <h3>support@komodohub.com</h3>
+            </div>
+            <div class = "contents">
+                <i class="fa-solid fa-phone"></i>
+                <h1>PHONE</h1>
+                <h3>+44 199 199 199</h3>
+            </div>
+        </div>
+        <div class = "socials">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <p>@Komodohub</p>
         </div>
     </div>
     

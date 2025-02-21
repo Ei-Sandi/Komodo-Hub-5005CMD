@@ -26,17 +26,9 @@ def Individual():
     return render_template('RegInd.html')
 
 #nav bar buttons
-@app.route("/news/")
-def news():
-    return render_template("news.html")
-
 @app.route("/forums/")
 def forums():
     return render_template("forums.html")
-
-@app.route("/contact/")
-def contact():
-    return render_template("contact.html")
 
 #testing privatemain template
 @app.route("/privatemain/")
