@@ -51,7 +51,7 @@
 /* Both Pages */
 h3,
 .h3{
-    font-size: 1.75rem;
+    font-size: 1.5rem;
 }
 #Text1{
     color: rgb(88, 8, 1);
@@ -61,18 +61,11 @@ h3,
     margin-top: 3%;
     margin-left: 4%;
 }
-#Text2{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    margin-top: 3%;
-    margin-left: 50%;
-}
 #InputBox1{
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
     width: 80%;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     margin-top: -1%;
     margin-left: 4%;
 
@@ -80,10 +73,11 @@ h3,
 #InputBox2{
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
-    width: 30%;
-    font-size: 1.75rem;
+    width: 55%;
+    font-size: 1.5rem;
     margin-top: -1%;
-    margin-left: 50%;
+    margin-left: 4%;
+
 }
 
 /* Individual Page */
@@ -126,7 +120,7 @@ h3,
     margin-left: 4%;
 }
 #Intro{
-    width: 70%;
+    width: 55%;
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
     font-size: 1.25rem;
@@ -137,4 +131,14 @@ h3,
     position: flex;
     margin-top: 5%;
     margin-left: 80%;
+}
+#Code_Input{
+    height: 1.8rem;
+    border: 0.15rem solid rgb(166,10,10);
+    position: flex;
+    width: 55%;
+    font-size: 1.5rem;
+    margin-top: -1%;
+    margin-left: 4%;
+
 }
