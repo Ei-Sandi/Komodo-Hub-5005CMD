@@ -9,7 +9,22 @@
 <div id="BigBox">
 <div id= "Text1"><h1>Enter Your Details</h1></div>
 
-<form action="/">
+<!-- Checking if both passwords match -->
+<script>
+    function checking()
+    {
+        var form1 = document.getElementById('form1')
+        if (form1.Pass.value != form1.RePass.value)
+        {
+            alert("Passwords do not match")
+            form1.Pass.focus();
+            return false;
+
+        }
+        return true;
+    }
+</script>
+<form action="{{url_for('Individual')}}" method="POST" name = "form1"  id="form1">
     <div>
         <div id = "Secondary_Box">
         <div id="Text1"><h3>Email Address:</h3></div>
@@ -22,6 +37,8 @@
         <input type="date" id="Date" name="Date" required>
         </div>
         <div id = "Secondary_Box">
+        <div id="Text1"><h3>Access code if Applicable:</h3></div>
+        <input type="text" id="InputBox1" name="Code" placeholder="Code">
         <div id="Text1"><h3>Username:</h3></div>
         <input type="text" id="InputBox1" name="User" placeholder="thaparr6" required>
         <div id="Text1"><h3>Password:</h3></div>
@@ -32,7 +49,7 @@
     </div>
     <br>
     <div id="Submit">
-        <h2><a href=""><input type="submit" value="SUBMIT"></a></h2>
+        <h2><input type="submit" value="SUBMIT" onClick="return checking()"></h2>
     </div>
 </form>
 </div>
