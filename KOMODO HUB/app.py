@@ -57,6 +57,10 @@ def home():
 def login():
     return render_template("login.html")
 
+@app.route("/login/forgetpass")
+def forget():
+    return render_template("forget_password.html")
+
 @app.route("/register/")
 def register():
     return render_template("register.html")
@@ -112,17 +116,9 @@ def Organisation():
         return render_template('RegOrg.html')
 
 #nav bar buttons
-@app.route("/news/")
-def news():
-    return render_template("news.html")
-
 @app.route("/forums/")
 def forums():
     return render_template("forums.html")
-
-@app.route("/contact/")
-def contact():
-    return render_template("contact.html")
 
 #testing privatemain template
 @app.route("/privatemain/")
