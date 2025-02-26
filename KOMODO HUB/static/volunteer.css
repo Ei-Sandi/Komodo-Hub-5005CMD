@@ -1,0 +1,99 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter';
+    font-weight: bolder;
+  }
+
+  .container {
+    position: relative;
+    overflow: visible;
+    margin-top: -18px;
+    width: 10px;
+  }
+  
+  .right-box {
+    font-size: 1.9rem;
+    position: absolute;
+    top: 400px;
+    right: 100px;
+    transform: translateY(-50%);
+    background-color: #d10121;
+    color: white;
+    padding: 0px 30px;
+    width: 400px;
+    height: 220px;
+    box-sizing: border-box;
+    text-align: left;
+    z-index: 2;
+    font-style: italic;
+  }
+  
+  .right-box .cta-btn {
+    position: absolute;
+    font-size: 1.3rem;
+    bottom: 30px;
+    left: 50px;
+    background-color: white;
+    color: #d10121;
+    border: none;
+    width: 180px;
+    height: 55px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-style: italic;
+  }
+
+  .left-box {
+    position: absolute;
+    left: 80px;
+    top: 360px;
+    background-color: #d10121;
+    color: white;
+    padding: 0px 0px;
+    width: 250px;
+    z-index: 2; 
+    text-align: center;
+    font-size: 1.05rem;
+  }
+
+.cta-btn {
+    text-align: center;
+    padding: 30px;
+  }
+  
+  .imgs {
+    display: flex;
+    gap: 70px;
+    margin-left: 120px;
+  }
+  
+  .img-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .img-container img {
+    width: 250px;
+    height: 250px;
+    display: block;
+  }
+  
+  .overlay-label {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: white;
+    color: #d10121;
+    padding: 5px 5px;
+    width: 70px;
+    height: 70px;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .title {
+    margin-top: 10px;
+    font-size: 1.35rem;
+    color: #a02420;
+  }

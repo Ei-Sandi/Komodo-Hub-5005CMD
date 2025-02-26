@@ -120,6 +120,18 @@ def Organisation():
 def forums():
     return render_template("forums.html")
 
+@app.route("/contact/")
+def contact():
+    return render_template("contact.html")
+
+@app.route("/volunteer/")
+def volunteer():
+    return render_template("volunteer.html")
+
+@app.route("/discussion/")
+def discussion():
+    return render_template("discussion.html")
+
 #testing privatemain template
 @app.route("/privatemain/")
 def privatemain():
