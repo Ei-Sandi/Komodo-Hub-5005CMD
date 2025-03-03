@@ -48,11 +48,14 @@
     height: 17vw;
 }
 /*About Us */
+#About-Us{
+    scroll-margin-top: 5.313rem;
+}
 #ImgAboutBg{
     width: 100vw;
     height: 40vh;
 }
-.container {
+.AbtBgContainer {
     position: relative;
     text-align: center;
     color: white;
@@ -66,6 +69,7 @@
 .title{
     font-family: 'Just Another Hand';
     font-size: 4rem;
+    font-weight: 100;
     color: black;
 }
 #About-Us p{
@@ -78,12 +82,59 @@
 .MV {
     display: flex;
     margin-top: 2vh;
-    margin-bottom: 3vh;
+    margin-bottom: 1vh;
 }
 .MV h2{
     transform: rotate(-90deg);
     height: 4vw;
-    margin-right: -5vh;
-    margin-left: 2vh;
-    margin-top: 5vh;
+    margin-top: 6vh;
+}
+#Contact{
+    background-color: #D10121;
+    color: white;
+}
+#contact-title{
+    color: white;
+    margin-left: 5vw;
+    margin-top: 1vh;
+    padding: 5vh 0 5vh 0;
+    margin-bottom: 3vh;
+}
+.Add-E-P{
+    display: flex;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    padding-top: 1vh;
+}
+.contents{
+    margin: auto;
+    text-align: center;
+}
+.contents i{
+    font-size: 4rem;
+    border: solid;
+    border-radius: 100%;
+    padding: 1rem;
+}
+.contents h1{
+    font-family: 'Just Another Hand';
+    font-size: 3rem;
+    font-weight: 100;
+    margin-bottom: 0;
+    margin-top: 1rem;
+}
+.contents h3{
+    margin-top: 0;
+}
+.socials{
+    text-align: center;
+    margin-top: 1vh;
+}
+.socials i {
+    font-size: 1.8rem;
+    margin: 7px;
+}
+.socials p {
+    margin: 0;
+    padding: 3vh;
 }

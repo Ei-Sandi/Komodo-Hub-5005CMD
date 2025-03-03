@@ -9,6 +9,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Register.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db=SQLAlchemy(app)
+#Might help with code query
+#https://stackoverflow.com/questions/37281974/check-database-result-based-on-condition
+#https://stackoverflow.com/questions/37388763/how-to-know-if-a-record-exists-in-flask-sqlalchemy
 
 class Reg_Ind(db.Model):
     __tablename__ = "Individual"
@@ -36,9 +39,8 @@ class Reg_Org(db.Model):
     Info = db.Column(db.Text)
 
     def __repr__(self):
-        return f"Reg_Org('{self.Org_Name})"
+        return f"Reg_Org('{self.Org_Access_Code})"
     
-
 
 
 with app.app_context():
@@ -65,6 +67,7 @@ def register():
 
 @app.route("/register/individual/", methods=['POST', 'GET'])
 def Individual():
+    Q1 = Reg_Org.query.filter(Reg_Org.Org_Access_Code).all()
     if request.method == 'POST':
         Data = request.form['User']
         Data2 = request.form['Email']
@@ -96,13 +99,12 @@ def Organisation():
         Data2 = request.form['Pro']
         Data3 = request.form['Cou']
         Data4 = request.form['Intro']
-        Data5 = request.form['Code_Reg']
 
         Up_File = request.files['filename']
         filename = secure_filename(Up_File.filename)
         mimetype = Up_File.mimetype
 
-        New_Data = Reg_Org(Org_Name = Data, Province = Data2, Country = Data3,Info = Data4, Logo_Img = Up_File.read() ,Logo_Name = filename,Logo_Mime = mimetype, Org_Access_Code=Data5)
+        New_Data = Reg_Org(Org_Name = Data, Province = Data2, Country = Data3,Info = Data4, Logo_Img = Up_File.read() ,Logo_Name = filename,Logo_Mime = mimetype)
 
         try:
             db.session.add(New_Data)
@@ -114,10 +116,6 @@ def Organisation():
         return render_template('RegOrg.html')
 
 #nav bar buttons
-@app.route("/news/")
-def news():
-    return render_template("news.html")
-
 @app.route("/forums/")
 def forums():
     return render_template("forums.html")
@@ -125,6 +123,14 @@ def forums():
 @app.route("/contact/")
 def contact():
     return render_template("contact.html")
+
+@app.route("/volunteer/")
+def volunteer():
+    return render_template("volunteer.html")
+
+@app.route("/discussion/")
+def discussion():
+    return render_template("discussion.html")
 
 #testing privatemain template
 @app.route("/privatemain/")

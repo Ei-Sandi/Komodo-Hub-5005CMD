@@ -1,0 +1,48 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+  <title>Volunteer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'volunteer.css') }}">
+{% endblock %}
+
+
+{% block body%}
+<div class="right-box">
+    <p>VOLUNTEER WITH KOMODO HUB  </p>
+    <button class="cta-btn">JOIN US</button>
+</div>
+<div class="left-box">
+    <p>UPCOMING EVENTS</p>
+</div>
+ 
+<div class = "container">
+    <img src = "/static/images/volunteer.png" style="width:1440px;height:300px;">
+</div>
+
+
+<div class="cta-btn">
+    <div class="imgs">
+      <div class="img-wrapper">
+        <a href="/page1.html" class="img-link">
+          <div class="img-container">
+            <img src="/static/images/litter.png">
+            <div class="overlay-label">22 JUNE</div>
+          </div>
+        </a>
+        <h2 class="title">Litter Picking</h2>
+      </div>
+
+      <div class="img-wrapper">
+        <a href="/page2.html" class="img-link">
+          <div class="img-container">
+            <img src="/static/images/monke.png">
+            <div class="overlay-label">16 SEPT</div>
+          </div>
+        </a>
+        <h2 class="title">Animal Feeding</h2>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
