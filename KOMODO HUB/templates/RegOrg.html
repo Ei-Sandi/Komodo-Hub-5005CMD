@@ -7,7 +7,7 @@
 
 {% block body%}
 <div id="BigBox">
-<div id="Text1"><h1 class="TEXT">Register For An Organisation</h1></div>
+<div id="Text2"><h2>Register For An Organisation</h2></div>
 
 <form action="{{url_for('Organisation')}}" enctype="multipart/form-data" method = "POST" name="form2" id="form2">
     <div>
@@ -27,5 +27,14 @@
         <h2><input type="submit" value="NEXT"></h2>
     </div>
 </form>
+
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+        <h2>{{ message }}</h2>
+    {% endfor %}
+</div>
+{% endblock %}
+
 </div>
 {% endblock %}

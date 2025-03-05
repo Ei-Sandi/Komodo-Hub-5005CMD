@@ -1,9 +1,9 @@
 #BigBox {
     border: 5px solid rgb(88, 8, 1);
     border-radius: 0.625rem;
-    width: 75%;
+    width: 65%;
     background-color: white;
-    margin-left: 12%;
+    margin-left: 17%;
     padding-top: 1.25rem;
     padding-bottom: 2.5rem;
 }
@@ -51,22 +51,27 @@
 /* Both Pages */
 h3,
 .h3{
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 #Text1{
     color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
+    height: 1.5rem;
     position: flex;
-    margin-top: 3%;
+    margin-top: 4%;
+    margin-left: 4%;
+}
+#Text2{
+    color: rgb(88, 8, 1);
+    height: auto;
+    position: flex;
+    margin-top: 4%;
     margin-left: 4%;
 }
 #InputBox1{
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
     width: 80%;
-    font-size: 1.5rem;
-    margin-top: -1%;
+    font-size: 1rem;
     margin-left: 4%;
 
 }
@@ -74,31 +79,27 @@ h3,
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
     width: 55%;
-    font-size: 1.5rem;
-    margin-top: -1%;
+    font-size: 1rem;
     margin-left: 4%;
 
 }
 
 /* Individual Page */
+.container{
+    margin-left: 30%;
+    color: rgb(88, 8, 1);
+}
 #Date{
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
-    font-size: 1.75rem;
+    font-size: 1rem;
     margin-top: -1%;
     margin-left: 4%;
-}
-#UserText{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    margin-top: -40%;
-    margin-left: 50%;
 }
 #Submit{
     position: flex;
     margin-top: 5%;
-    margin-left: 80%;
+    margin-left: 70%;
 }
 #Secondary_Box{
     display: inline-block;
@@ -111,34 +112,15 @@ h3,
     margin-top: -1%;
     margin-left: 4%;
 }
-#BriefText{
-    color: rgb(88, 8, 1);
-    height: auto;
-    width: auto;
-    position: flex;
-    margin-top: 3%;
-    margin-left: 4%;
-}
 #Intro{
     width: 55%;
     border: 0.15rem solid rgb(166,10,10);
     position: flex;
-    font-size: 1.25rem;
-    margin-top: -1%;
+    font-size: 1rem;
     margin-left: 4%;
 }
 #NEXT{
     position: flex;
     margin-top: 5%;
     margin-left: 80%;
-}
-#Code_Input{
-    height: 1.8rem;
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 55%;
-    font-size: 1.5rem;
-    margin-top: -1%;
-    margin-left: 4%;
-
 }

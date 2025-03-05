@@ -1,17 +1,16 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from passlib.hash import sha256_crypt
+import warnings
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Register.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'KOMODO'
 
 db=SQLAlchemy(app)
-#Might help with code query
-#https://stackoverflow.com/questions/37281974/check-database-result-based-on-condition
-#https://stackoverflow.com/questions/37388763/how-to-know-if-a-record-exists-in-flask-sqlalchemy
 
 class Reg_Ind(db.Model):
     __tablename__ = "Individual"
@@ -24,13 +23,12 @@ class Reg_Ind(db.Model):
     Code = db.Column(db.String(10))
 
     def __repr__(self):
-        return f"Reg_Ind('{self.Username}','{self.Password}')"
+        return f"{self.Username}, {self.Email}"
 
 
 class Reg_Org(db.Model):
     __tablename__ = "Organisation"
     Org_Name = db.Column(db.String(200), primary_key=True)
-    Org_Access_Code = db.Column(db.String(10))
     Province = db.Column(db.String(120))
     Country = db.Column(db.String(60))
     Logo_Img = db.Column(db.Text)
@@ -39,7 +37,7 @@ class Reg_Org(db.Model):
     Info = db.Column(db.Text)
 
     def __repr__(self):
-        return f"Reg_Org('{self.Org_Access_Code})"
+        return f"Reg_Org('{self.Org_Name})"
     
 
 
@@ -67,10 +65,20 @@ def register():
 
 @app.route("/register/individual/", methods=['POST', 'GET'])
 def Individual():
-    Q1 = Reg_Org.query.filter(Reg_Org.Org_Access_Code).all()
     if request.method == 'POST':
         Data = request.form['User']
+        user = Reg_Ind.query.filter_by(Username = Data).first()
+        if user:
+            flash("Username already exists")
+            return redirect('/register/individual/')
+            
+        
         Data2 = request.form['Email']
+        email = Reg_Ind.query.filter_by(Email = Data2).first()
+        if email:
+            flash("Email already exists")
+            return redirect('/register/individual/')
+        
         Data3 = request.form['First']
         Data4 = request.form['Last']
         Data5 = request.form['Date']
@@ -96,6 +104,11 @@ def Individual():
 def Organisation():
     if request.method == 'POST':
         Data = request.form['Org']
+        Org_check = Reg_Org.query.filter_by(Org_Name = Data).first()
+        if Org_check:
+            flash("Organisation is already registered")
+            return redirect('/register/organisation/')
+        
         Data2 = request.form['Pro']
         Data3 = request.form['Cou']
         Data4 = request.form['Intro']

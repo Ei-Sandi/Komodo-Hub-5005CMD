@@ -7,23 +7,23 @@
 
 {% block body%}
 <div id="BigBox">
-<div id= "Text1"><h1>Enter Your Details</h1></div>
+<div id= "Text2"><h2>Enter Your Details</h2></div>
 
 <!-- Checking if both passwords match -->
-<script>
+ <script>
     function checking()
     {
         var form1 = document.getElementById('form1')
         if (form1.Pass.value != form1.RePass.value)
         {
-            alert("Passwords do not match")
+            alert("Passwords do not match");
             form1.Pass.focus();
             return false;
-
         }
         return true;
     }
-</script>
+ </script>
+
 <form action="{{url_for('Individual')}}" method="POST" name = "form1"  id="form1">
     <div>
         <div id = "Secondary_Box">
@@ -34,7 +34,7 @@
         <div id="Text1"><h3>Last Name:</h3></div>
         <input type="text" id="InputBox1" name="Last" placeholder="Thapar" required>
         <div id="Text1"><h3>Date of Birth:</h3></div>
-        <input type="date" id="Date" name="Date" required>
+        <input type="date" id="Date" name="Date" max="2019-12-31" min="1955-01-01" required>
         </div>
         <div id = "Secondary_Box">
         <div id="Text1"><h3>Access code if Applicable:</h3></div>
@@ -52,5 +52,13 @@
         <h2><input type="submit" value="SUBMIT" onClick="return checking()"></h2>
     </div>
 </form>
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+        <h2>{{ message }}</h2>
+    {% endfor %}
+</div>
+{% endblock %}
+
 </div>
 {% endblock %}
