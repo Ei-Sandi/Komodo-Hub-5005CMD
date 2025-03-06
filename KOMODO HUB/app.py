@@ -55,11 +55,16 @@ def home():
 
 @app.route("/login/")
 def login():
+    
     return render_template("login.html")
 
 @app.route("/login/forgetpass")
 def forget():
     return render_template("forget_password.html")
+
+@app.route("/login/forgetpass/resetpass")
+def resetpass():
+    return render_template("reset_password.html")
 
 @app.route("/register/")
 def register():
