@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, url_for, request, redirect, flash
-=======
 from flask import Flask, render_template, url_for, request, redirect,session
->>>>>>> fbfb618ab68b10ea3e8e3368b0dd69597b4f6d13
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.utils import secure_filename
@@ -29,7 +26,7 @@ class Reg_Ind(db.Model):
     Code = db.Column(db.String(10))
 
     def __repr__(self):
-        return f"{self.Username}, {self.Email}"
+        return f"{self.Username}, {self.Email}, {self.Password}"
 
 
 class Reg_Org(db.Model):
@@ -61,7 +58,9 @@ def home():
 def login():
     """username = request.form["username"]
     password = request.form["password"]
-    
+    user = Reg_Ind.query.filter_by(Username = username).first
+    if user:
+        Pass = Reg_Ind.query.filter(Reg_Ind.Password.has)
     sql = "SELECT password FROM users_table WHERE username = %s"
     cursor.execute(sql, (username,))
     user = cursor.fetchone()
