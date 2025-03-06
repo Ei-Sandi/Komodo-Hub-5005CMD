@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect,session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.utils import secure_filename
@@ -12,6 +12,8 @@ db=SQLAlchemy(app)
 #Might help with code query
 #https://stackoverflow.com/questions/37281974/check-database-result-based-on-condition
 #https://stackoverflow.com/questions/37388763/how-to-know-if-a-record-exists-in-flask-sqlalchemy
+
+
 
 class Reg_Ind(db.Model):
     __tablename__ = "Individual"
@@ -55,6 +57,24 @@ def home():
 
 @app.route("/login/")
 def login():
+    """username = request.form["username"]
+    password = request.form["password"]
+    
+    sql = "SELECT password FROM users_table WHERE username = %s"
+    cursor.execute(sql, (username,))
+    user = cursor.fetchone()
+    
+    if user:
+        stored_password = user[0]  # Get the hashed password from the database
+
+        # Verify the entered password with the stored hashed password
+        if sha256_crypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
+            session["username"] = username  # Store username in session
+            return "Login successful! Welcome, " + username
+        else:
+            return "Invalid password. Try again."
+    else:
+        return "Username not found. Please register."""
     
     return render_template("login.html")
 
