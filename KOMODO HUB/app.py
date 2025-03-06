@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, url_for, request, redirect, flash
+=======
+from flask import Flask, render_template, url_for, request, redirect,session
+>>>>>>> fbfb618ab68b10ea3e8e3368b0dd69597b4f6d13
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.utils import secure_filename
@@ -11,6 +15,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'KOMODO'
 
 db=SQLAlchemy(app)
+
+
 
 class Reg_Ind(db.Model):
     __tablename__ = "Individual"
@@ -53,11 +59,34 @@ def home():
 
 @app.route("/login/")
 def login():
+    """username = request.form["username"]
+    password = request.form["password"]
+    
+    sql = "SELECT password FROM users_table WHERE username = %s"
+    cursor.execute(sql, (username,))
+    user = cursor.fetchone()
+    
+    if user:
+        stored_password = user[0]  # Get the hashed password from the database
+
+        # Verify the entered password with the stored hashed password
+        if sha256_crypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
+            session["username"] = username  # Store username in session
+            return "Login successful! Welcome, " + username
+        else:
+            return "Invalid password. Try again."
+    else:
+        return "Username not found. Please register."""
+    
     return render_template("login.html")
 
 @app.route("/login/forgetpass")
 def forget():
     return render_template("forget_password.html")
+
+@app.route("/login/forgetpass/resetpass")
+def resetpass():
+    return render_template("reset_password.html")
 
 @app.route("/register/")
 def register():
