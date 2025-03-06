@@ -150,5 +150,6 @@ def discussion():
 def privatemain():
     return render_template("PrivateMain.html")
 
+
 if __name__ == "__main__":
     app.run(debug = True)
