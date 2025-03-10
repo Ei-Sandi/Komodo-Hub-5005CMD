@@ -1,8 +1,8 @@
-<<<<<<< HEAD
+#<<<<<<< HEAD
 from flask import Flask, render_template, url_for, request, redirect, flash
-=======
+#=======
 from flask import Flask, render_template, url_for, request, redirect,session
->>>>>>> fbfb618ab68b10ea3e8e3368b0dd69597b4f6d13
+#>>>>>>> fbfb618ab68b10ea3e8e3368b0dd69597b4f6d13
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.utils import secure_filename
@@ -57,28 +57,41 @@ with app.app_context():
 def home():
     return render_template("home.html")
 
-@app.route("/login/")
+@app.route("/login/", methods=["GET", "POST"])
 def login():
-    """username = request.form["username"]
-    password = request.form["password"]
-    
-    sql = "SELECT password FROM users_table WHERE username = %s"
-    cursor.execute(sql, (username,))
-    user = cursor.fetchone()
-    
-    if user:
-        stored_password = user[0]  # Get the hashed password from the database
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
 
-        # Verify the entered password with the stored hashed password
-        if sha256_crypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
-            session["username"] = username  # Store username in session
-            return "Login successful! Welcome, " + username
+        # Check in Individual Users Table
+        user = Reg_Ind.query.filter_by(Username=username).first()
+
+        if user:
+            if sha256_crypt.verify(password, user.Password):
+                session["user_type"] = "individual"
+                session["username"] = username
+                flash(f"Login successful! Welcome, {username}.", "success")
+                return redirect(url_for("user_dashboard"))
+            else:
+                flash("Invalid password. Try again.", "danger")
+
         else:
-            return "Invalid password. Try again."
-    else:
-        return "Username not found. Please register."""
-    
+            # Check in Organisation Table
+            org = Reg_Org.query.filter_by(Org_Name=username).first()
+            if org:
+                if sha256_crypt.verify(password, org.Password):
+                    session["user_type"] = "organization"
+                    session["username"] = username
+                    flash(f"Login successful! Welcome, {username}.", "success")
+                    return redirect(url_for("org_dashboard"))
+                else:
+                    flash("Invalid password. Try again.", "danger")
+            else:
+                flash("Username not found. Please register.", "warning")
+
     return render_template("login.html")
+
+
 
 @app.route("/login/forgetpass")
 def forget():
