@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 #<<<<<<< HEAD
 from flask import Flask, render_template, url_for, request, redirect, flash
 #=======
 from flask import Flask, render_template, url_for, request, redirect,session
 #>>>>>>> fbfb618ab68b10ea3e8e3368b0dd69597b4f6d13
-=======
-from flask import Flask, render_template, url_for, request, redirect, flash
-from flask import Flask, render_template, url_for, request, redirect,session
->>>>>>> origin/main
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.utils import secure_filename
@@ -20,6 +15,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'KOMODO'
 
 db=SQLAlchemy(app)
+
+app.secret_key = 'some_secret_key'
 
 
 
@@ -58,18 +55,17 @@ with app.app_context():
 
 #main page logo bar buttons
 @app.route("/")
-@app.route("/home")
+@app.route("/home/")
 def home():
     return render_template("home.html")
 
 @app.route("/login/", methods=["GET", "POST"])
 def login():
-<<<<<<< HEAD
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
 
-        # Check in Individual Users Table
+        # First, check in the Individual Users Table
         user = Reg_Ind.query.filter_by(Username=username).first()
 
         if user:
@@ -77,38 +73,25 @@ def login():
                 session["user_type"] = "individual"
                 session["username"] = username
                 flash(f"Login successful! Welcome, {username}.", "success")
-                return redirect(url_for("user_dashboard"))
+                return redirect(url_for("home"))  # Redirect to home page
             else:
                 flash("Invalid password. Try again.", "danger")
-=======
-    """username = request.form["username"]
-    password = request.form["password"]
-    user = Reg_Ind.query.filter_by(Username = username).first
-    if user:
-        Pass = Reg_Ind.query.filter(Reg_Ind.Password.has)
-    sql = "SELECT password FROM users_table WHERE username = %s"
-    cursor.execute(sql, (username,))
-    user = cursor.fetchone()
-    
-    if user:
-        stored_password = user[0]  # Get the hashed password from the database
->>>>>>> origin/main
-
         else:
             # Check in Organisation Table
             org = Reg_Org.query.filter_by(Org_Name=username).first()
             if org:
-                if sha256_crypt.verify(password, org.Password):
+                if sha256_crypt.verify(password, org.Password):  # Ensure `Password` exists in the `Reg_Org` table
                     session["user_type"] = "organization"
                     session["username"] = username
                     flash(f"Login successful! Welcome, {username}.", "success")
-                    return redirect(url_for("org_dashboard"))
+                    return redirect(url_for("home"))  # Redirect to home page
                 else:
                     flash("Invalid password. Try again.", "danger")
             else:
                 flash("Username not found. Please register.", "warning")
 
     return render_template("login.html")
+
 
 
 
