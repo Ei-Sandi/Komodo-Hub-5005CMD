@@ -185,6 +185,14 @@ def contact():
 def volunteer():
     return render_template("volunteer.html")
 
+@app.route("/volunteer/litter")
+def litter():
+    return render_template("litter_picking.html")
+
+@app.route("/volunteer/feeding")
+def feeding():
+    return render_template("animal_feeding.html")
+
 @app.route("/discussion/")
 def discussion():
     return render_template("discussion.html")
