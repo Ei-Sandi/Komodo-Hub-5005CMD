@@ -2,7 +2,6 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Inter';
-    font-weight: bolder;
   }
 
   .container {
@@ -27,9 +26,10 @@ html, body {
     text-align: left;
     z-index: 2;
     font-style: italic;
+    font-weight: bolder;
   }
   
-  .right-box .cta-btn {
+  .right-box .btn {
     position: absolute;
     font-size: 1.3rem;
     bottom: 30px;
@@ -42,6 +42,32 @@ html, body {
     padding: 5px 10px;
     cursor: pointer;
     font-style: italic;
+    font-weight: bolder;
+  }
+
+  .popup {
+    width: 700px;
+    height: 300px;
+    position: absolute;
+    border-radius: 6px;
+    top: 50%;
+    left: -50%;
+    background-color: white;
+    color: #d10121;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    padding: 0 30px 30px;
+    visibility: hidden;
+  }
+
+  .open-popup{
+    visibility: visible;
+  }
+
+  .popup .btn{
+    background-color: #d10121;
+    color: white;
+    padding: 10px;
   }
 
   .left-box {
@@ -55,6 +81,7 @@ html, body {
     z-index: 2; 
     text-align: center;
     font-size: 1.05rem;
+    font-weight: bolder;
   }
 
 .cta-btn {

@@ -9,11 +9,30 @@
 {% block body%}
 <div class="right-box">
     <p>VOLUNTEER WITH KOMODO HUB  </p>
-    <button class="cta-btn">JOIN US</button>
+    <button class="btn" onclick= openPopup()>JOIN US</button>
+    <div class = "popup" id = "popup">
+      <h2>Volunteer your interest</h2>
+      <p>By entering your email, we will send you a form with further information 
+        about how to join us on our upcoming events!
+      </p>
+      <button class="btn" onclick=closePopup()>OK</button>
+    </div>
 </div>
 <div class="left-box">
     <p>UPCOMING EVENTS</p>
 </div>
+
+<script>
+let popup = document.getElementById("popup");
+
+function openPopup(){
+  popup.classList.add("open-popup");
+}
+function closePopup(){
+  popup.classList.remove("open-popup");
+}
+
+</script>
  
 <div class = "container">
     <img src = "/static/images/volunteer.png" style="width:1440px;height:300px;">
@@ -23,7 +42,7 @@
 <div class="cta-btn">
     <div class="imgs">
       <div class="img-wrapper">
-        <a href="/page1.html" class="img-link">
+        <a href="{{ url_for('litter') }}" class="litter-picking">
           <div class="img-container">
             <img src="/static/images/litter.png">
             <div class="overlay-label">22 JUNE</div>
@@ -33,7 +52,7 @@
       </div>
 
       <div class="img-wrapper">
-        <a href="/page2.html" class="img-link">
+        <a href="{{ url_for('feeding') }}" class="animal-feeding">
           <div class="img-container">
             <img src="/static/images/monke.png">
             <div class="overlay-label">16 SEPT</div>
