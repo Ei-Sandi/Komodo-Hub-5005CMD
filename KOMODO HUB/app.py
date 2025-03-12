@@ -4,15 +4,17 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from passlib.hash import sha256_crypt
-import warnings
+from flask_socketio import SocketIO, join_room, leave_room, send
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Register.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 app.secret_key = 'KOMODO'
+app.config['SECRET'] = "secret"
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 db=SQLAlchemy(app)
-
 
 
 class Reg_Ind(db.Model):
@@ -42,6 +44,10 @@ class Reg_Org(db.Model):
     def __repr__(self):
         return f"Reg_Org('{self.Org_Name})"
     
+class Messages(db.Model):
+    __tablename__ = "Chat_Logs"
+    id = db.Column(db.Integer, primary_key = True)
+    Message = db.Column(db.Text)
 
 
 with app.app_context():
@@ -179,5 +185,24 @@ def privatemain():
     return render_template("PrivateMain.html")
 
 
+@socketio.on('message')
+def handle_message(message):
+    print("Message Recieved " + message)
+    msg = Messages(Message= message)
+    db.session.add(msg)
+    db.session.commit()
+
+    if message != "Connected":
+        send(message, broadcast=True)
+
+@app.route("/PM_Mess/")
+def PM_Mess():
+    Mess_Hist = Messages.query.all() 
+    return render_template("PM_Mess.html", message = Mess_Hist)
+
 if __name__ == "__main__":
-    app.run(debug = True)
+    socketio.run(app, debug=True, host="localhost")
+
+# if __name__ == "__main__":
+#     socketio.run(app, debug=True, host="192.168.1.108")
+
