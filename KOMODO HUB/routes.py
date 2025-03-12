@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, session
 from flask_login import login_user, logout_user, current_user, login_required
-from models import User,Organisation
+from models import *
 from werkzeug.utils import secure_filename
 
 def all_routes(app):
@@ -26,10 +26,18 @@ def all_routes(app):
     def volunteer():
         return render_template("volunteer.html")
 
+    @app.route("/volunteer/litter")
+    def litter():
+        return render_template("litter_picking.html")
+
+    @app.route("/volunteer/feeding")
+    def feeding():
+        return render_template("animal_feeding.html")
+    
     @app.route("/discussion/")
     def discussion():
         return render_template("discussion.html")
-
+    
     #testing privatemain template
     @app.route("/privatemain/")
     def privatemain():
@@ -126,6 +134,12 @@ def restricted_routes(app):
     def dashboard():
         if "username" in session:
             return render_template("dashboard.html", username = session['username'])
+        
+    @login_required    
+    @app.route("/PM_Mess/")
+    def PM_Mess():
+        message_history = Messages.query.all() 
+        return render_template("PM_Mess.html", message = message_history)
     
 
 

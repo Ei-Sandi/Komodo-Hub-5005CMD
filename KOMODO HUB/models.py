@@ -33,3 +33,7 @@ class Organisation(db.Model):
     def __repr__(self):
         return f"Reg_Org('{self.org_name})"
 
+class Messages(db.Model):
+    __tablename__ = "chat_logs"
+    id = db.Column(db.Integer, primary_key = True)
+    Message = db.Column(db.Text)
