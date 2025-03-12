@@ -1,0 +1,48 @@
+.hero {
+    display: flex;
+}
+.column {
+    flex: 50%;
+    padding-top: 5vh;
+    position: relative;
+}
+.column h1{
+    font-family: "Gothic A1";
+    font-weight: bold;
+    text-align: center;
+}
+.column p {
+    font-family: "Gothic A1";
+    font-weight: bold;
+    text-align: justify;
+    font-size: 0.9rem;
+}
+.leftcolumn{
+    margin: 10vh 15vh 15vh 15vh;
+    font-size: 1rem;
+    color: #580801;
+}
+
+.column img{
+    width: 30vw;
+    height: 25vw;
+}
+
+.imgs{
+    display: flex;
+    flex-direction: column;
+}
+
+.Container {
+    position: relative;
+    text-align: center;
+    margin: 10vh 15vh 15vh 15vh;
+}
+ 
+.title{
+    font-family: 'Just Another Hand';
+    font-size: 3rem;
+    font-weight: 50;
+    color: #a02420;
+    left: 500px;
+}

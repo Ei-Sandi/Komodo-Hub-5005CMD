@@ -11,7 +11,7 @@
     
     <div class="login-container">
         <h2>Log in to your account</h2>
-        <form>
+        <form method="POST" action="/login/" >
             <label for="username">Username</label>
             <input type="text" id="username" name="username">
             
@@ -23,6 +23,18 @@
             <button type="submit">LOGIN</button>
         </form>
         <p>Don't have an account? <a href="{{ url_for('register') }}">Sign up</a></p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="alert alert-{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+
     </div>
     
     
