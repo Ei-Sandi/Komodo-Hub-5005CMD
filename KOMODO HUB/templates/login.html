@@ -2,21 +2,18 @@
 
 {% block head %}
     <title>Log in</title>
-    <link rel="stylesheet" href= "{{ url_for('static', filename = 'login.css') }}">
-    
+    <link rel="stylesheet" href= "{{ url_for('static', filename = 'login.css') }}">   
 {% endblock %}
 
 {% block body%}
-
-    
     <div class="login-container">
         <h2>Log in to your account</h2>
         <form method="POST" action="/login/" >
             <label for="username">Username</label>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" name="username" placeholder="komodoHub@gmail.com" required>
             
             <label for="password">Password</label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
             
             <a href="{{ url_for('forget') }}" class="forgot-password">Forgot password?</a>
             

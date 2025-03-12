@@ -6,12 +6,12 @@
 {% endblock %}
 
 {% block body%}
-<div id="BigBox">
-<div id= "Text2"><h2>Enter Your Details</h2></div>
+<div class= "BigBox">
+    <div class= "enterText"><h2>Enter Your Details</h2></div>
 
 <!-- Checking if both passwords match -->
  <script>
-    function checking()
+    function checkPassword()
     {
         var form1 = document.getElementById('form1')
         if (form1.Pass.value != form1.RePass.value)
@@ -24,41 +24,46 @@
     }
  </script>
 
-<form action="{{url_for('Individual')}}" method="POST" name = "form1"  id="form1">
-    <div>
-        <div id = "Secondary_Box">
-        <div id="Text1"><h3>Email Address:</h3></div>
-        <input type="email" id="InputBox1" name="Email" placeholder="example@gmail.com" required>
-        <div id="Text1"><h3>First Name:</h3></div>
-        <input type="text" id="InputBox1" name="First"placeholder="Reetika" required>
-        <div id="Text1"><h3>Last Name:</h3></div>
-        <input type="text" id="InputBox1" name="Last" placeholder="Thapar" required>
-        <div id="Text1"><h3>Date of Birth:</h3></div>
-        <input type="date" id="Date" name="Date" max="2019-12-31" min="1955-01-01" required>
+<form action="{{url_for('individual')}}" method="POST" name = "form1"  id="form1">
+    <div class = "colContainer">
+        <div class = "columns">
+            <label for="email">Email Address: </label>
+            <input type="email"  name="email" placeholder="example@gmail.com" required>
+
+            <label for="first">First Name: </label>
+            <input type="text" name="first" placeholder="Reetika" required>
+
+            <label for="last">Last Name: </label>
+            <input type="text" name="last" placeholder="Thapar" required>
+
+            <label for="dob">Date of Birth: </label>
+            <input type="date" name="dob" max="2019-12-31" min="1955-01-01" required>
         </div>
-        <div id = "Secondary_Box">
-        <div id="Text1"><h3>Access code if Applicable:</h3></div>
-        <input type="text" id="InputBox1" name="Code" placeholder="Code">
-        <div id="Text1"><h3>Username:</h3></div>
-        <input type="text" id="InputBox1" name="User" placeholder="thaparr6" required>
-        <div id="Text1"><h3>Password:</h3></div>
-        <input type="password" id="InputBox1" name="Pass"  placeholder="Password" required>
-        <div id="Text1"><h3>Re-type Password:</h3></div>
-        <input type="password" id="InputBox1" name="RePass" placeholder="Password" required>
+
+        <div class = "columns">
+            <label for="code">Access Code if Applicable: </label>
+            <input type="text" name="code" placeholder="Code">
+
+            <label for="username">Username: </label>
+            <input type="text" name="username" placeholder="thaparr6" required>
+
+            <label for="Pass">Password: </label>
+            <input type="password" name="Pass"  placeholder="Password" required>
+            
+            <label for="RePass">Retype Password: </label>
+            <input type="password" name="RePass" placeholder="Password" required>
         </div>
     </div>
-    <br>
-    <div id="Submit">
-        <h2><input type="submit" value="SUBMIT" onClick="return checking()"></h2>
-    </div>
-</form>
-{% block content %}
-<div class="container">
-    {% for message in get_flashed_messages() %}
-        <h2>{{ message }}</h2>
-    {% endfor %}
+        <button type="submit" onClick="checkPassword()">SUBMIT</button>
 </div>
-{% endblock %}
+</form>
+    {% block content %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <h2>{{ message }}</h2>
+        {% endfor %}
+    </div>
+    {% endblock %}
 
 </div>
 {% endblock %}

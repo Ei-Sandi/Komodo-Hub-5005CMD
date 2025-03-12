@@ -1,23 +1,24 @@
-#BigBox {
-    border: 5px solid rgb(88, 8, 1);
+/* Main Registration Page */
+.BigBox {
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     border-radius: 0.625rem;
     width: 65%;
     background-color: white;
     margin-left: 17%;
-    padding-top: 1.25rem;
-    padding-bottom: 2.5rem;
+    margin-top: 1.25rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
-/* Main Registration Page */
 .titleText{
-    color: rgb(88, 8, 1);
-    width: auto;
-    background-color: white;
+    color: #a02420;
     text-align: center;
-    padding-top: 0.313rem;
+    background-color: white;
 }
-.regText{
+.titleText h2{
     text-align: left;
-    padding-left: 1.25rem;
+    margin-top: 0;
+    padding-left: 3.15rem;
 }
 .btnBar{
     display: flex;
@@ -48,79 +49,72 @@
     background-color: #D10121;
 }
 
-/* Both Pages */
-h3,
-.h3{
-    font-size: 1rem;
+.enterText h2{
+    color: #a02420;
+    background-color: white;
+    text-align: left;
+    margin: 0;
+    margin-bottom: 1rem;
+    padding-left: 4.5rem;
 }
-#Text1{
-    color: rgb(88, 8, 1);
-    height: 1.5rem;
-    position: flex;
-    margin-top: 4%;
-    margin-left: 4%;
+.colContainer{
+    display: flex;
+    width: 100%;
 }
-#Text2{
-    color: rgb(88, 8, 1);
-    height: auto;
-    position: flex;
-    margin-top: 4%;
-    margin-left: 4%;
+.columns{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10%;
 }
-#InputBox1{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 80%;
-    font-size: 1rem;
-    margin-left: 4%;
-
+form {
+    display: flex;
+    flex-direction: column;
 }
-#InputBox2{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    width: 55%;
-    font-size: 1rem;
-    margin-left: 4%;
-
+label {
+    text-align: left;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #a02420;
 }
-
-/* Individual Page */
-.container{
-    margin-left: 30%;
-    color: rgb(88, 8, 1);
+input {
+    padding: 8px;
+    border: 1px solid #a02420;
+    border-radius: 5px;
+    width: 120%;
+    outline: none;
 }
-#Date{
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
-    font-size: 1rem;
-    margin-top: -1%;
-    margin-left: 4%;
+button {
+    background-color: #a02420;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: 10%;
+    margin-top: 1rem;
+    height: 7vh;
+    width: 8vw;
 }
-#Submit{
-    position: flex;
-    margin-top: 5%;
-    margin-left: 70%;
+button:hover {
+    border: solid;
+    background-color: #D10121;
 }
-#Secondary_Box{
-    display: inline-block;
-    margin-left: 10%;
-}
-
 /* Organisation Page */
-#File{
-    position: flex;
-    margin-top: -1%;
-    margin-left: 4%;
+#introTxt{
+    margin-left: 3.5rem;
 }
 #Intro{
-    width: 55%;
-    border: 0.15rem solid rgb(166,10,10);
-    position: flex;
+    width: auto;
+    max-height: fit-content;
     font-size: 1rem;
-    margin-left: 4%;
-}
-#NEXT{
-    position: flex;
-    margin-top: 5%;
-    margin-left: 80%;
+    border: 1px solid #a02420;
+    padding: 8px;
+    border-radius: 5px;
+    margin-left: 3.5rem;
+    margin-right: 4rem;
 }

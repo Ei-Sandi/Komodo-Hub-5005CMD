@@ -6,17 +6,17 @@
 {% endblock %}
 
 {% block body%}
-<div id="BigBox">
+<div class="BigBox">
     <div class="titleText">
         <h1>Start Your Learning Journey</h1>
         <h1>Komodo Hub - Trusted Destination For Exploration</h1>
     </div>
-    <div class="titleText regText">
+    <div class="titleText">
         <h2>Register as: </h2>
     <div>
     <div class = "btnBar">
-        <a class = "btns" href="{{ url_for('Organisation')}}">ORGANISATION</a>
-        <a class = "btns" href="{{ url_for('Individual')}}">INDIVIDUAL</a>
+        <a class = "btns" href="{{ url_for('organisation')}}">ORGANISATION</a>
+        <a class = "btns" href="{{ url_for('individual')}}">INDIVIDUAL</a>
     </div>
 </div>
 {% endblock %}

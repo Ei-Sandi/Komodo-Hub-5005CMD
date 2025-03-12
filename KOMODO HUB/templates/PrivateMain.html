@@ -17,8 +17,8 @@
         <div class="horizontal-navbar">
             <a href="{{ url_for('home') }}" class="hori-logo">KOMODO HUB</a>
             <a href="" class="hori-item">Animals</a>
-            <a href="" class="hori-item">About Us</a>
-            <a href="" class="hori-item">Contact Us</a>
+            <a href="{{ url_for('home') }}#About-Us" class="hori-item">About Us</a>
+            <a href="{{ url_for('home') }}#Contact" class="hori-item">Contact Us</a>
             <div class = "hori-item dropdown">
                 <a>Get Involved</a>
                 <div class="dropdown-content">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <button id = "profile-btn"><img id = "profile-icon" src = "/static/images/profile.png"></button>
-            <a href="" class="hori-item" id = "signout">Sign Out</a>
+            <a href="{{ url_for('logout') }}" class="hori-item" id = "signout">Sign Out</a>
         </div>
         <div class="vertical-navbar">
             <ul>
