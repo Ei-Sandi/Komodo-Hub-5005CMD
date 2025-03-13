@@ -1,117 +1,72 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+{% extends 'PrivateMain.html' %}
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Irish+Grover&family=Just+Another+Hand&display=swap" rel="stylesheet">
-        
-        {% block head %}{% endblock %}
-        <link rel="stylesheet" href= "{{ url_for('static', filename = 'private.css') }}" />
-        <link rel="stylesheet" href = "{{url_for('static', filename = 'PM_Message.css' )}}"/>
-        <script src="Open_Message.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js" integrity="sha512-8BHxHDLsOHx+flIrQ0DrZcea7MkHqRU5GbTHmbdzMRnAaoCIkZ97PqZcXJkKZckMMhqfoeaJE+DNUVuyoQsO3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <title>Chats</title>
-    </head>
+{% block head %}
+<link rel="stylesheet" href = "{{url_for('static', filename = 'PM_Message.css' )}}"/>
+<script src="Open_Message.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js" integrity="sha512-8BHxHDLsOHx+flIrQ0DrZcea7MkHqRU5GbTHmbdzMRnAaoCIkZ97PqZcXJkKZckMMhqfoeaJE+DNUVuyoQsO3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<title>Chats</title>
+{% endblock %}
 
-    <body>
-        <div class="horizontal-navbar">
-            <a href="{{ url_for('home') }}" class="hori-logo">KOMODO HUB</a>
-            <a href="" class="hori-item">Animals</a>
-            <a href="" class="hori-item">About Us</a>
-            <a href="" class="hori-item">Contact Us</a>
-            <div class = "hori-item dropdown">
-                <a>Get Involved</a>
-                <div class="dropdown-content">
-                    <a href="#">Discussion</a>
-                    <a href="#">Volunteering</a>
-                    <a href="#">Donations</a>
-                    <a href="#" id = "edg-species">Report Endangered Species</a>
-                </div>
+{% block body %}
+    <div class="BoxA" id="BoxA">
+        <button id="PersonA">Reetika</button>
+        <button id="Close_Mess">Close</button>
+    </div>
+    <div class="modal" id="modal">
+        <div class = "modal-inner">
+            <div id="MessageBox">
+                {% for msg in message %}
+                    <li>
+                        {{ msg.Message }}
+                    </li>
+                {% endfor %}
             </div>
-            <button id = "profile-btn"><img id = "profile-icon" src = "/static/images/profile.png"></button>
-            <a href="" class="hori-item" id = "signout">Sign Out</a>
-        </div>
-        <div class="vertical-navbar">
-            <ul>
-                <li><a href="" class="verti-item">Main Page</a></li>
-                <li><a href="" class="verti-item">Classroom</a></li>
-                <li><a href="" class="verti-item">Activity</a></li>
-            </ul>
-        </div>
-        
-
-        <div class="body-content">
-            {% block body %}
-            <div class="BoxA" id="BoxA">
-                <button id="PersonA">Reetika</button>
-                <button id="Close_Mess">Close</button>
+            <div id="Message_Input">
+            <input id="UserName" name="UserName" type="text" placeholder="Username">
+            <input id="Message" name="Message" type="text" placeholder="Type Message">
+            <button id="S_btn">Send</button>
+            <button id="close">Close</button>
             </div>
-            <div class="modal" id="modal">
-                <div class = "modal-inner">
-                    <div id="MessageBox">
-                        {% for msg in message %}
-                            <li>
-                                {{ msg.Message }}
-                            </li>
-                        {% endfor %}
-                    </div>
-                    <div id="Message_Input">
-                    <input id="UserName" name="UserName" type="text" placeholder="Username">
-                    <input id="Message" name="Message" type="text" placeholder="Type Message">
-                    <button id="S_btn">Send</button>
-                    <button id="close">Close</button>
-                    </div>
-                </div>
-            </div>
-            <button id="Mess_btn" class="box">Messages</button>
-            <script type="text/javascript">
-                $(document).ready(function(){
-                    // var socket = io.connect("http://192.168.1.108:5000")
-                    var socket = io.connect("http://localhost:5000")
-                    // socket.on('connect', function() {
-                    //     socket.send("Connected")
-                    // });
-
-                    socket.on('message', function(msg){
-                        $('#MessageBox').append('<li>'+msg+'</li>');
-                    });
-
-                    $('#S_btn').on('click', function(){
-                        socket.send($('#UserName').val() + ': ' + $('#Message').val());
-                        $('#Message').val('');
-                    });
-                });
-
-                const BoxA = document.getElementById("BoxA");
-                const Mess_btn = document.getElementById("Mess_btn");
-                const Close_Mess = document.getElementById("Close_Mess");
-                const openBtn = document.getElementById("PersonA");
-                const closeBtn = document.getElementById("close");
-                const modal = document.getElementById("modal");
-
-                Mess_btn.addEventListener("click", () =>{
-                    BoxA.classList.add("open");
-                });
-                Close_Mess.addEventListener("click", () =>{
-                    BoxA.classList.remove("open");
-                })
-                openBtn.addEventListener("click", () => {
-                    modal.classList.add("open");
-                });
-                closeBtn.addEventListener("click", () =>{
-                    modal.classList.remove("open");
-                })
-            </script>
-            {% endblock %}
         </div>
-        <footer>
-            <div class = "footer-left">Privacy Policy | Terms of Use</div>
-            <div class = "footer-right">@2025 KOMODO HUB, INC</div>
-        </footer>
-    </body>
-</html>
+    </div>
+    <button id="Mess_btn" class="box">Messages</button>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // var socket = io.connect("http://192.168.1.108:5000")
+            var socket = io.connect("http://localhost:5000")
+            // socket.on('connect', function() {
+            //     socket.send("Connected")
+            // });
+
+            socket.on('message', function(msg){
+                $('#MessageBox').append('<li>'+msg+'</li>');
+            });
+
+            $('#S_btn').on('click', function(){
+                socket.send($('#UserName').val() + ': ' + $('#Message').val());
+                $('#Message').val('');
+            });
+        });
+
+        const BoxA = document.getElementById("BoxA");
+        const Mess_btn = document.getElementById("Mess_btn");
+        const Close_Mess = document.getElementById("Close_Mess");
+        const openBtn = document.getElementById("PersonA");
+        const closeBtn = document.getElementById("close");
+        const modal = document.getElementById("modal");
+
+        Mess_btn.addEventListener("click", () =>{
+            BoxA.classList.add("open");
+        });
+        Close_Mess.addEventListener("click", () =>{
+            BoxA.classList.remove("open");
+        })
+        openBtn.addEventListener("click", () => {
+            modal.classList.add("open");
+        });
+        closeBtn.addEventListener("click", () =>{
+            modal.classList.remove("open");
+        })
+    </script>
+{% endblock %}
