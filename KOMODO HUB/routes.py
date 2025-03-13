@@ -53,14 +53,14 @@ def register_routes(app, db, bcrypt):
         if request.method == 'GET':
             return render_template('RegInd.html')
         elif request.method == 'POST':
-            username = request.form['User']
-            email = request.form['Email']
-            firstName = request.form['First']
-            lastName = request.form['Last']
-            dob = request.form['Date']
+            username = request.form['username']
+            email = request.form['email']
+            firstName = request.form['first']
+            lastName = request.form['last']
+            dob = request.form['dob']
             password = request.form['Pass']
             hashed_password = bcrypt.generate_password_hash(password)
-            code = request.form['Code']
+            code = request.form['code']
 
             #check if username already exists
             userCheck = User.query.filter(User.username == username).first()
