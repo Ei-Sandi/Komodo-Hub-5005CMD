@@ -54,7 +54,7 @@
     text-align: left;
     margin: 0;
     margin-bottom: 1rem;
-    padding-left: 4.5rem;
+    margin-left: 8%;
 }
 .colContainer{
     display: flex;
@@ -63,26 +63,39 @@
 .columns{
     display: flex;
     flex-direction: column;
-    margin-left: auto;
+    margin-left: 8%;
     margin-right: auto;
     padding-right: 10%;
 }
-form {
+form, .input-control {
     display: flex;
     flex-direction: column;
 }
-label {
+.input-control label {
     text-align: left;
     margin: 10px 0 5px;
     font-weight: bold;
     color: #a02420;
+    font-size: 15px;
 }
-input {
+.input-control input {
     padding: 8px;
     border: 1px solid #a02420;
     border-radius: 5px;
     width: 120%;
     outline: none;
+    margin-bottom: 8px;
+}
+.input-control.error input {
+    border: 1.5px solid #f4332c;
+}
+.input-control.error label {
+    color: #f4332c;
+}
+.input-control.error {
+    color: #f4332c;
+    font-weight: bold;
+    font-size: 10px;
 }
 button {
     background-color: #a02420;
@@ -94,7 +107,7 @@ button {
     cursor: pointer;
     border-radius: 4px;
     margin-left: auto;
-    margin-right: 10%;
+    margin-right: 8%;
     margin-top: 1rem;
     height: 7vh;
     width: 8vw;

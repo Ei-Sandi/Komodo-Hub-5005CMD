@@ -126,6 +126,7 @@ def login_routes(app, bcrypt):
     @app.route("/logout")
     def logout():
         logout_user()
+        session.clear()
         return redirect(url_for("home"))
     
 def restricted_routes(app):
@@ -135,8 +136,8 @@ def restricted_routes(app):
         if "username" in session:
             return render_template("dashboard.html", username = session['username'])
         
-    @login_required    
     @app.route("/PM_Mess/")
+    @login_required
     def PM_Mess():
         message_history = Messages.query.all() 
         return render_template("PM_Mess.html", message = message_history)
