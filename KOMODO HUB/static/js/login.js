@@ -1,16 +1,49 @@
-const checkUserExists = () => {
-    const email = document.getElementById('email')
-    const emailValue = email.value.trim();
-    const usernameValue = username.value.trim();
+const form = document.getElementById('login-form')
 
-    axios.post('/validate-user-registration'),{
-        email:emailValue
-    } 
+form.addEventListener('submit', async(e) => {
+    e.preventDefault();
+    const usernameValid = await checkUsernameExists();
+    const passwordValid = await checkPassword();
+
+    if (!(usernameValid && passwordValid)) {
+        form.submit();
+    }
+});
+
+const checkUsernameExists = async () => {
+    const form = document.forms['login-form']
+    const username = form['username'].value.trim()
+
+    axios.post('/validate-username-registration/',{
+        username:username
+    })
     .then ((response) => {
-        if (response.data.email_exists == 'true'){
-            setError(email, 'Email exists. Please log in.')
+        if (response.data.username_exists == 'false'){
+            alert ("Invalid Username. Please register first.")
+            return false;
         } else {
-            setSuccess(email);
+            return true;
+        }
+    }, (error) => {
+        console.log(error);
+    })
+}
+
+const checkPassword = async () => {
+    const form = document.forms['login-form']
+    const username = form['username'].value.trim()
+    const password = form['password'].value.trim()
+    
+    axios.post('/check-password/',{
+        username:username,
+        password:password
+    })
+    .then ((response) => {
+        if (response.data.password_match == 'false'){
+            alert ("Invalid Password.")
+            return false;
+        } else {
+            return true;
         }
     }, (error) => {
         console.log(error);

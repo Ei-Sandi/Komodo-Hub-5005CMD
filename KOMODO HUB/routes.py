@@ -117,16 +117,26 @@ def login_routes(app, bcrypt):
             password = request.form.get("password")
 
             user = User.query.filter(User.username == username).first()
-
             if not user:
-                return redirect(url_for("login"))
-            
-            if bcrypt.check_password_hash(user.password,password):
+                return redirect(url_for("register"))
+            elif bcrypt.check_password_hash(user.password,password):
                 login_user(user)
                 session["username"] = username
                 return redirect(url_for("home"))
             else:
                 return redirect(url_for("login"))
+
+    @app.route('/check-password/', methods = ['POST'])
+    def checkPassword():
+        if request.method == 'POST':
+            username = request.get_json()['username']
+            password = request.get_json()['password']
+            user = User.query.filter(User.username == username).first()
+            
+            if user and bcrypt.check_password_hash(user.password,password):
+                return jsonify({'password_match' : 'true'})
+            else:
+                return jsonify({'password_match' : 'false'})
 
     @app.route("/login/forgetpass")
     def forget():
