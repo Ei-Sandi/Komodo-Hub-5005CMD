@@ -6,9 +6,16 @@ const username = document.getElementById('username')
 const password = document.getElementById('Pass')
 const repass = document.getElementById('RePass')
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    validateInputs();
+    if (validateInputs()){
+        const emailValid = await checkEmailExists();
+        const usernameValid = await checkUsernameExists();
+        
+        if (emailValid && usernameValid){
+            form.submit();
+        }
+    }
 });
 
 const setError = (element, message) => {
@@ -131,43 +138,43 @@ const validateInputs = () => {
         setSuccess(repass);
     }
     if (isValid){
-        checkEmailExists();
-        checkUsernameExists();
+        return true;
     }
 };
 
-const checkEmailExists = () => {
+const checkEmailExists = async () => {
     const form = document.forms['form']
     const email = form['email'].value.trim()
 
-    axios.post('/validate-email-registration/',{
-        email:email
-    })
-    .then ((response) => {
+    try {
+        const response = await axios.post('/validate-email-registration/',{email:email});
         if (response.data.email_exists == 'true'){
             setError(form['email'], 'Email exists. Please log in.');
-        } else {
-            setSuccess(form['email']);
+            return false;
         }
-    }, (error) => {
+        setSuccess(form['email']);
+        return true;
+    } catch(error){
         console.log(error);
-    })
+        return false;
+    }
 }
 
-const checkUsernameExists = () => {
+const checkUsernameExists = async () => {
     const form = document.forms['form']
     const username = form['username'].value.trim()
-
-    axios.post('/validate-username-registration/',{
-        username:username
-    })
-    .then ((response) => {
+    
+    try {
+        const response = await axios.post('/validate-username-registration/',{username:username});
         if (response.data.username_exists == 'true'){
             setError(form['username'], 'Username exists. Please log in.');
+            return false;
         } else {
             setSuccess(form['username']);
+            return true;
         }
-    }, (error) => {
+    } catch (error){
         console.log(error);
-    })
+        return false;
+    }
 }
