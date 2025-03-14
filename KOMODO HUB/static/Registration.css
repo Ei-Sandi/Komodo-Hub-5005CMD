@@ -118,7 +118,13 @@ button:hover {
 }
 /* Organisation Page */
 #introTxt{
-    margin-left: 3.5rem;
+    margin-left: 8%;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #a02420;
+    font-size: 15px;
 }
 #Intro{
     width: auto;
@@ -127,6 +133,6 @@ button:hover {
     border: 1px solid #a02420;
     padding: 8px;
     border-radius: 5px;
-    margin-left: 3.5rem;
-    margin-right: 4rem;
+    margin-left: 8%;
+    margin-right: 7%;
 }

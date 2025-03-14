@@ -107,6 +107,16 @@ def register_routes(app, db, bcrypt):
             db.session.commit()
             return redirect("/register/individual/")
         
+    @app.route('/validate-orgname-registration/', methods = ['POST'])
+    def validate_orgname_registration():
+        if request.method == 'POST':
+            orgname = request.get_json()['orgname']
+            orgname = Organisation.query.filter(Organisation.org_name == orgname).first()
+            if orgname:
+                return jsonify({'orgname_exists' : 'true'})
+            else:
+                return jsonify({'orgname_exists' : 'false'})
+        
 def login_routes(app, bcrypt):        
     @app.route("/login/", methods=["GET", "POST"])
     def login():  
