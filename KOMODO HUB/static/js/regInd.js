@@ -14,7 +14,7 @@ form.addEventListener('submit', e => {
 const setError = (element, message) => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
-
+    
     errorDisplay.innerText = message;
     inputControl.classList.add('error');
     inputControl.classList.remove('success');
@@ -49,24 +49,35 @@ const validateInputs = () => {
     const lastValue = last.value.trim();
     const passwordValue = password.value.trim();
     const repassValue = repass.value.trim();
+    let isValid = true;
 
     if (emailValue === ''){
         setError(email, 'Email is required');
-    } else if (!isValidEmail(emailValue)) {
+        isValid = false;
+    } 
+    else if (!isValidEmail(emailValue)) {
         setError(email, 'Provide a valid email address');
-    } else {
+        isValid = false;
+    } 
+    else {
         setSuccess(email);
     }
 
     if (usernameValue === ''){
         setError(username, 'Username is required');
-    } else if (usernameValue.length < 8) {
+        isValid = false;
+    } 
+    else if (usernameValue.length < 8) {
         setError(username, 'Username must be at least 8 characters.');
+        isValid = false;
     } 
     else if (!hasNumber(usernameValue) || !hasChar(usernameValue)) {
         setError(username, 'Username must include characters and numbers.');
-    } else if (hasSpace(usernameValue)){
+        isValid = false;
+    } 
+    else if (hasSpace(usernameValue)){
         setError(username, 'Username cannot include space.');
+        isValid = false;
     }
     else {
         setSuccess(username);
@@ -74,8 +85,11 @@ const validateInputs = () => {
 
     if (firstValue === ''){
         setError(first, 'First name is required');
-    } else if (hasNumber(firstValue)) {
+        isValid = false;
+    } 
+    else if (hasNumber(firstValue)) {
         setError(first, 'First name cannot include numbers');
+        isValid = false;
     }
     else {
         setSuccess(first);
@@ -83,25 +97,77 @@ const validateInputs = () => {
 
     if (lastValue === ''){
         setError(last, 'Last name is required');
-    } else if (hasNumber(lastValue)) {
+        isValid = false;
+    } 
+    else if (hasNumber(lastValue)) {
         setError(last, 'Last name cannot include numbers');
-    }else {
+        isValid = false;
+    }
+    else {
         setSuccess(first);
     }
 
     if (passwordValue === ''){
         setError(password, 'Password is required');
-    } else if (passwordValue.length < 8) {
+        isValid = false;
+    } 
+    else if (passwordValue.length < 8) {
         setError(password, 'Password must be at least 8 characters.');
-    } else {
+        isValid = false;
+    } 
+    else {
         setSuccess(password);
     }
 
     if (repassValue === ''){
         setError(repass, 'Password is required');
-    } else if (repassValue != passwordValue) {
+        isValid = false;
+    } 
+    else if (repassValue != passwordValue) {
         setError(repass, 'Passwords do not match.');
-    } else {
+        isValid = false;
+    } 
+    else {
         setSuccess(repass);
     }
+    if (isValid){
+        checkEmailExists();
+        checkUsernameExists();
+    }
 };
+
+const checkEmailExists = () => {
+    const form = document.forms['form']
+    const email = form['email'].value.trim()
+
+    axios.post('/validate-email-registration/',{
+        email:email
+    })
+    .then ((response) => {
+        if (response.data.email_exists == 'true'){
+            setError(form['email'], 'Email exists. Please log in.');
+        } else {
+            setSuccess(form['email']);
+        }
+    }, (error) => {
+        console.log(error);
+    })
+}
+
+const checkUsernameExists = () => {
+    const form = document.forms['form']
+    const username = form['username'].value.trim()
+
+    axios.post('/validate-username-registration/',{
+        username:username
+    })
+    .then ((response) => {
+        if (response.data.username_exists == 'true'){
+            setError(form['username'], 'Username exists. Please log in.');
+        } else {
+            setSuccess(form['username']);
+        }
+    }, (error) => {
+        console.log(error);
+    })
+}

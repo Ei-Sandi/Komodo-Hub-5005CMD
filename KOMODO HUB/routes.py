@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, jsonify
 from flask_login import login_user, logout_user, current_user, login_required
 from models import *
 from werkzeug.utils import secure_filename
@@ -62,22 +62,32 @@ def register_routes(app, db, bcrypt):
             hashed_password = bcrypt.generate_password_hash(password)
             code = request.form['code']
 
-            #check if username already exists
-            userCheck = User.query.filter(User.username == username).first()
-            if userCheck:
-                return redirect(url_for("individual"))
-            
-            #check if email already exists
-            emailCheck = User.query.filter(User.email == email).first()
-            if emailCheck:
-                return redirect(url_for("individual"))
-
             #add new user into database
             new_user = User(username = username,email = email, first_name = firstName, last_name = lastName, dob = dob, password = hashed_password)
             db.session.add(new_user)
             db.session.commit()
             return redirect(url_for('login'))
-        
+    
+    @app.route('/validate-email-registration/', methods = ['POST'])
+    def validate_email_registration():
+        if request.method == 'POST':
+            email = request.get_json()['email']
+            email = User.query.filter(User.email == email).first()
+            if email:
+                return jsonify({'email_exists' : 'true'})
+            else:
+                return jsonify({'email_exists' : 'false'})
+    
+    @app.route('/validate-username-registration/', methods = ['POST'])
+    def validate_username_registration():
+        if request.method == 'POST':
+            username = request.get_json()['username']
+            username = User.query.filter(User.username == username).first()
+            if username:
+                return jsonify({'username_exists' : 'true'})
+            else:
+                return jsonify({'username_exists' : 'false'})
+
     @app.route('/register/organisation/', methods = ['POST', 'GET'])
     def organisation():
         if request.method == 'GET':
@@ -108,6 +118,9 @@ def login_routes(app, bcrypt):
 
             user = User.query.filter(User.username == username).first()
 
+            if not user:
+                return redirect(url_for("login"))
+            
             if bcrypt.check_password_hash(user.password,password):
                 login_user(user)
                 session["username"] = username
