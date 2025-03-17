@@ -53,6 +53,14 @@ def register_routes(app, db, bcrypt):
         if request.method == 'GET':
             return render_template('RegInd.html')
         elif request.method == 'POST':
+            role = 'student'
+
+            if 'orgName' in session:
+                newOrg = Organisation(org_name = session['orgName'],province = session['province'], country = session['country'], intro = session['intro'])
+                role = 'principal'
+                db.session.add(newOrg)
+                db.session.commit()
+
             username = request.form['username']
             email = request.form['email']
             firstName = request.form['first']
@@ -63,9 +71,10 @@ def register_routes(app, db, bcrypt):
             code = request.form['code']
 
             #add new user into database
-            new_user = User(username = username,email = email, first_name = firstName, last_name = lastName, dob = dob, password = hashed_password)
+            new_user = User(username = username,email = email, first_name = firstName, last_name = lastName, dob = dob, password = hashed_password, role = role)
             db.session.add(new_user)
             db.session.commit()
+            session.clear()
             return redirect(url_for('login'))
     
     @app.route('/validate-email-registration/', methods = ['POST'])
@@ -93,18 +102,15 @@ def register_routes(app, db, bcrypt):
         if request.method == 'GET':
             return render_template('RegOrg.html')
         if request.method == 'POST':
-            orgName = request.form['orgName']
-            province = request.form['province']
-            country = request.form['country']
-            intro = request.form['intro']
-            logo = request.files['filename']
-            filename = secure_filename(logo.filename)
-            mimetype = logo.mimetype
+            session['orgName'] = request.form['orgName']
+            session['province'] = request.form['province']
+            session['country'] = request.form['country']
+            session['intro'] = request.form['intro']
+            #logo = request.files['filename']
+            #if logo:
+                #session['logo'] = logo.read() #read the image as binary
+                #session['mimetype'] = logo.content_type #get MIME type of logo
 
-            newOrg = Organisation(org_name = orgName, province = province, country = country, intro = intro, logo_img = logo.read() , logo_name = filename, logo_type = mimetype)
-
-            db.session.add(newOrg)
-            db.session.commit()
             return redirect("/register/individual/")
         
     @app.route('/validate-orgname-registration/', methods = ['POST'])
