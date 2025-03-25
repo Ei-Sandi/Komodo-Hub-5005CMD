@@ -51,10 +51,5 @@ class user_model(db.Model):
 
 class Messages(db.Model):
     __tablename__ = "chat_logs"
-<<<<<<< HEAD
     id = db.Column(db.Integer, primary_key = True)
     Message = db.Column(db.Text)
-=======
-    msg_id = db.Column(db.Integer, primary_key = True)
-    message = db.Column(db.Text)
->>>>>>> b91bd202e980b2f840a7b03c7716edf642e37aa8
