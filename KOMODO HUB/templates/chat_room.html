@@ -1,0 +1,19 @@
+{% extends 'PrivateMain.html' %}
+
+{% block head %}
+<link rel="stylesheet" href = "{{url_for('static', filename = 'messages.css' )}}"/>
+<script defer src="{{ url_for('static', filename='js/priv_mess.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.14.0/qs.min.js" integrity="sha512-6yLIYbXqyvjSDYNO1pgBRjwWPBw66kMOb+sHqrvn457+iJiret0PeHzUlpLKHH0fYzX9bxGtPDqQ84xKrhEYSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js" integrity="sha512-8BHxHDLsOHx+flIrQ0DrZcea7MkHqRU5GbTHmbdzMRnAaoCIkZ97PqZcXJkKZckMMhqfoeaJE+DNUVuyoQsO3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<title>Chats</title>
+{% endblock %}
+
+{% block body %}
+<div id="message_history">
+</div>
+<form id = "chat_form">
+<input id="chat_message" type="text" placeholder="Enter Message">
+<button>Send</button>
+</form>
+{% endblock %}

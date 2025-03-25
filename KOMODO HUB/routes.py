@@ -2,6 +2,8 @@ from flask import render_template, request, redirect, url_for, session, jsonify
 from flask_login import login_user, logout_user, current_user, login_required
 from models import *
 from werkzeug.utils import secure_filename
+from flask_socketio import SocketIO, join_room, leave_room, send
+
 
 def all_routes(app):
     @app.route("/")
@@ -169,11 +171,38 @@ def restricted_routes(app):
         if "username" in session:
             return render_template("dashboard.html", username = session['username'])
         
-    @app.route("/PM_Mess/")
+    @app.route("/pm_mess/", methods=['POST', 'GET'])
     @login_required
-    def PM_Mess():
+    def pm_mess():
+        username = current_user.username
+        socketio = SocketIO(app, cors_allowed_origins="*")
+
+        @socketio.on('message')
+        def handle_message(message):
+            print("Message Recieved " + message)
+            msg = Messages(Message= username +  message)
+            db.session.add(msg)
+            db.session.commit()
+
+            if message != "Connected":
+                send(message, broadcast=True)
+
         message_history = Messages.query.all() 
-        return render_template("PM_Mess.html", message = message_history)
+        return render_template("pm_mess.html", message = message_history)
+    
+    @app.route('/chat_room/', methods=['POST', 'GET'])
+    @login_required
+    def chat_room():
+        socketio = SocketIO(app, cors_allowed_origins="*")
+
+        @socketio.on('message')
+        def handle_message(message):
+            print("Message Recieved " + message)
+            if message != "Connected":
+                send(message, broadcast=True)
+
+
+        return render_template("chat_room.html")
     
 
 

@@ -15,6 +15,12 @@ button:hover{
     text-align: center;
     margin-top: 2rem;
 }
+#PersonB{
+    border: solid;
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+}
 .BoxA{
     position: flex;
     height: 0rem;
@@ -34,19 +40,43 @@ button:hover{
     opacity: 1;
 
 }
+.modal2 {
+    opacity: 0;
+
+}
+.modal2.open{
+    opacity: 1;
+
+}
 #MessageBox{
-    color: white;
-    background-color: black;
-    height: 90%;
+    border: solid rgb(166, 10, 10);
+    color: black;
+    background-color: white;
+    height: 100%;
 }
 #Message_Input{
+    border: solid rgb(166, 10, 10);
     background-color: white;
 }
 .modal-inner{
     position:fixed;
     margin-top: -30%;
-    margin-left: 20%;
+    margin-left: 2%;
     height: 30rem;
     width: 30rem;
     background-color: white;
+}
+.modal-inner2{
+    position:fixed;
+    margin-top: -30%;
+    margin-left: 30%;
+    height: 30rem;
+    width: 30rem;
+    background-color: white;
+}
+#message_history{
+    background-color: white;
+    border: solid;
+    height: 20rem;
+    width: 20rem;
 }

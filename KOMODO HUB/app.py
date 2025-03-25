@@ -11,6 +11,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///KomodoHub.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SECRET_KEY'] = 'secret'
 
     #for sessions
     app.secret_key = 'KOMODO'
@@ -38,19 +39,6 @@ def create_app():
     
     #to hash passwords, users
     bcrypt = Bcrypt(app)
-
-    #for messaging
-    socketio = SocketIO(app, cors_allowed_origins="*")
-
-    @socketio.on('message')
-    def handle_message(message):
-        print("Message Recieved " + message)
-        msg = Messages(Message= message)
-        db.session.add(msg)
-        db.session.commit()
-
-        if message != "Connected":
-            send(message, broadcast=True)
 
     from routes import all_routes,register_routes, login_routes, restricted_routes
 
