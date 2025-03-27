@@ -45,6 +45,14 @@ def all_routes(app):
     def privatemain():
         return render_template("PrivateMain.html")
     
+    @app.route("/student_classroom/")
+    def student_classroom():
+        return render_template("student_classroom.html")
+    
+    @app.route("/teacher_classroom/")
+    def teacher_classroom():
+        return render_template("teacher_classroom.html")
+    
 def register_routes(app, db, bcrypt):
     @app.route("/register/")
     def register():
