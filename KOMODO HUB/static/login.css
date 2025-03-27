@@ -1,46 +1,72 @@
-body {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
 }
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
 .login-container {
     background-color: white;
     padding: 30px;
     margin: 50px auto;
     width: 350px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 5%;
 }
+
 .login-container h2 {
     color: #a02420;
     place-content: center;
     text-align: center;
 }
+
 form {
     display: flex;
     flex-direction: column;
 }
+
 label {
     text-align: left;
     margin: 10px 0 5px;
     font-weight: bold;
     color: #a02420;
 }
+
 input {
     padding: 8px;
     border: 1px solid #a02420;
     border-radius: 5px;
     outline: none;
 }
+
 .forgot-password {
     text-align: right;
     margin: 10px 0;
     color: #a02420;
     text-decoration: none;
-    font-weight: bold;
 }
-button {
+
+.button {
     background-color: #a02420;
     border: none;
     color: white;
@@ -53,15 +79,26 @@ button {
     cursor: pointer;
     border-radius: 4px;
 }
-button:hover {
-    border: solid;
-    background-color: #D10121;
-}
+
 p {
     margin-top: 20px;
 }
+
 p a {
     color: #a02420;
     text-decoration: none;
     font-weight: bold;
+}
+
+footer {
+    background-color: #a02420;
+    color: white;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
 }
