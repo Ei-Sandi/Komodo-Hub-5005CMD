@@ -53,6 +53,21 @@ def all_routes(app):
     def teacher_classroom():
         return render_template("teacher_classroom.html")
     
+    @app.route('/week_s/')
+    def week_s():
+        course = request.args.get('course')
+        # Fetch course data from database
+        return render_template('week_s.html', course_name=course)
+
+    @app.route('/upload', methods=['POST'])
+    def upload():
+        # Handle file upload logic
+        return redirect(url_for('submission_success'))
+
+    @app.route('/api/upload', methods=['POST'])
+    def api_upload():
+        # Handle API upload logic
+        return jsonify(success=True)
 def register_routes(app, db, bcrypt):
     @app.route("/register/")
     def register():

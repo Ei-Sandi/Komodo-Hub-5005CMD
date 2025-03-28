@@ -18,4 +18,4 @@ function loadCourses() {
         `;
         studentCourses.appendChild(courseDiv);
     });
-}
+} 

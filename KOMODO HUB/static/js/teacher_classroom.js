@@ -36,7 +36,7 @@ function loadCourses() {
         courseDiv.innerHTML = `
             <img src="https://www.flaticon.com/free-icons/computer" alt="Course Icon">
             <span>${course}</span>
-            <button class="button continue-btn" onclick="continueCourse('${course}')">Continue</button>
+            <button class="button continue-btn" onclick="continueCourse('${course}')"  >Continue</button>
             <button class="button remove-btn" onclick="removeCourse(${index})">Remove</button>
             
         `;
@@ -45,7 +45,6 @@ function loadCourses() {
 }
 
 function continueCourse(courseName) {
-    alert("Continuing course: " + courseName);
-    // You can redirect the user to a specific course page here
-    // Example: window.location.href = `/course/${courseName}`;
+    
+    window.location.href = "{{ url_for('js' , filename='week_s') }}" ;
 }
