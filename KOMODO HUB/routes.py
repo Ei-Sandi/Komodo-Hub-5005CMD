@@ -68,6 +68,7 @@ def all_routes(app):
     def api_upload():
         # Handle API upload logic
         return jsonify(success=True)
+    
 def register_routes(app, db, bcrypt):
     @app.route("/register/")
     def register():
@@ -198,7 +199,10 @@ def restricted_routes(app):
     @login_required
     def dashboard():
         if "username" in session:
-            return render_template("dashboard.html", username = session['username'])
+            if current_user.role == 'principal':
+                return render_template("principal_main.html", username = session['username'])
+            else:
+                return render_template("dashboard.html", username = session['username'])
         
     @app.route("/pm_mess/", methods=['POST', 'GET'])
     @login_required
