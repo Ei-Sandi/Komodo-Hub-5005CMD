@@ -4,15 +4,13 @@ from models import *
 from werkzeug.utils import secure_filename
 from flask_socketio import SocketIO, join_room, leave_room, send
 
-
 def all_routes(app):
     @app.route("/")
     @app.route("/home/")
     def home():
         if current_user.is_authenticated:
             username = current_user.username
-            role = current_user.role
-            return redirect(url_for("dashboard", username=username, role=role))
+            return redirect(url_for("dashboard", username=username))
         else:
             return render_template("home.html")
     
@@ -39,11 +37,6 @@ def all_routes(app):
     @app.route("/discussion/")
     def discussion():
         return render_template("discussion.html")
-    
-    #testing privatemain template
-    @app.route("/privatemain/")
-    def privatemain():
-        return render_template("PrivateMain.html")
     
     @app.route("/student_classroom/")
     def student_classroom():
@@ -94,10 +87,12 @@ def register_routes(app, db, bcrypt):
             dob = request.form['dob']
             password = request.form['Pass']
             hashed_password = bcrypt.generate_password_hash(password)
+            org = Organisation.query.filter(Organisation.org_name == session['orgName']).first()
+            org_id = org.org_id if org else None
             code = request.form['code']
 
             #add new user into database
-            new_user = User(username = username,email = email, first_name = firstName, last_name = lastName, dob = dob, password = hashed_password, role = role)
+            new_user = User(username = username,email = email, first_name = firstName, last_name = lastName, dob = dob, password = hashed_password, role = role, org_id = org_id)
             db.session.add(new_user)
             db.session.commit()
             session.clear()
@@ -200,7 +195,9 @@ def restricted_routes(app):
     def dashboard():
         if "username" in session:
             if current_user.role == 'principal':
-                return render_template("principal_main.html", username = session['username'])
+                org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
+                org_name = org.org_name
+                return render_template("principal_main.html", username = session['username'], org_name = org_name)
             else:
                 return render_template("dashboard.html", username = session['username'])
         
@@ -233,7 +230,6 @@ def restricted_routes(app):
             print("Message Recieved " + message)
             if message != "Connected":
                 send(message, broadcast=True)
-
 
         return render_template("chat_room.html")
     
