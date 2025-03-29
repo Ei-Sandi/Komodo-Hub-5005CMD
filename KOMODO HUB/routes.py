@@ -51,6 +51,10 @@ def all_routes(app):
         course = request.args.get('course')
         # Fetch course data from database
         return render_template('week_s.html', course_name=course)
+    
+    @app.route('/admin/')
+    def admin():
+        return render_template("admin.html")
 
     @app.route('/upload', methods=['POST'])
     def upload():
