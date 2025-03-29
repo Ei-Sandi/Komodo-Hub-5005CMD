@@ -11,8 +11,9 @@ form.addEventListener('submit', async (e) => {
     if (validateInputs()){
         const emailValid = await checkEmailExists();
         const usernameValid = await checkUsernameExists();
+        const codeValid = await checkCodeExists();
         
-        if (emailValid && usernameValid){
+        if (emailValid && usernameValid && codeValid){
             form.submit();
         }
     }
@@ -176,5 +177,29 @@ const checkUsernameExists = async () => {
     } catch (error){
         console.log(error);
         return false;
+    }
+}
+
+const checkCodeExists = async () => {
+    const form = document.forms['form']
+    const code = form['code'].value.trim()
+    if (code === ""){
+        setSuccess(form['code']);
+        return true;
+    }
+    else {
+        try {
+            const response = await axios.post('/validate-accesscode/',{code:code});
+            if (response.data.code_exists == 'false'){
+                setError(form['code'], 'Access code does not exist.');
+                return false;
+            } else {
+                setSuccess(form['code']);
+                return true;
+            }
+        } catch (error){
+            console.log(error);
+            return false;
+        }
     }
 }

@@ -3,6 +3,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from models import *
 from werkzeug.utils import secure_filename
 from flask_socketio import SocketIO, join_room, leave_room, send
+import random, string
 
 def all_routes(app):
     @app.route("/")
@@ -77,10 +78,11 @@ def register_routes(app, db, bcrypt):
             return render_template('RegInd.html')
         elif request.method == 'POST':
             role = 'student'
-
+            org = None
             if 'orgName' in session:
-                newOrg = Organisation(org_name = session['orgName'],province = session['province'], country = session['country'], intro = session['intro'])
+                newOrg = Organisation(org_name = session['orgName'],province = session['province'], country = session['country'], intro = session['intro'], access_code = session['access'])
                 role = 'principal'
+                org = Organisation.query.filter(Organisation.org_name == session['orgName']).first()
                 db.session.add(newOrg)
                 db.session.commit()
 
@@ -91,9 +93,13 @@ def register_routes(app, db, bcrypt):
             dob = request.form['dob']
             password = request.form['Pass']
             hashed_password = bcrypt.generate_password_hash(password)
-            org = Organisation.query.filter(Organisation.org_name == session['orgName']).first()
             org_id = org.org_id if org else None
-            code = request.form['code']
+            if org:
+                pass
+            else:
+                code = request.form['code']
+                org = Organisation.query.filter(Organisation.access_code == code).first()
+                org_id = org.org_id if org else None
 
             #add new user into database
             new_user = User(username = username,email = email, first_name = firstName, last_name = lastName, dob = dob, password = hashed_password, role = role, org_id = org_id)
@@ -121,6 +127,16 @@ def register_routes(app, db, bcrypt):
                 return jsonify({'username_exists' : 'true'})
             else:
                 return jsonify({'username_exists' : 'false'})
+    
+    @app.route('/validate-accesscode/', methods = ['POST'])
+    def validate_accesscode():
+        if request.method == 'POST':
+            access = request.get_json()['code']
+            access_code = Organisation.query.filter(Organisation.access_code == access).first()
+            if access_code:
+                return jsonify({'code_exists' : 'true'})
+            else:
+                return jsonify({'code_exists' : 'false'})
 
     @app.route('/register/organisation/', methods = ['POST', 'GET'])
     def organisation():
@@ -131,6 +147,7 @@ def register_routes(app, db, bcrypt):
             session['province'] = request.form['province']
             session['country'] = request.form['country']
             session['intro'] = request.form['intro']
+            session['access'] = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
             #logo = request.files['filename']
             #if logo:
                 #session['logo'] = logo.read() #read the image as binary
@@ -201,7 +218,8 @@ def restricted_routes(app):
             if current_user.role == 'principal':
                 org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
                 org_name = org.org_name
-                return render_template("principal_main.html", username = session['username'], org_name = org_name)
+                access_code = org.access_code
+                return render_template("principal_main.html", username = session['username'], org_name = org_name, access = access_code)
             else:
                 return render_template("dashboard.html", username = session['username'])
         
