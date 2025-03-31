@@ -40,12 +40,13 @@ def create_app():
     #to hash passwords, users
     bcrypt = Bcrypt(app)
 
-    from routes import all_routes,register_routes, login_routes, restricted_routes
+    from routes import all_routes,register_routes, login_routes, restricted_routes, principal_routes
 
     all_routes(app)
     register_routes(app,db,bcrypt)
     login_routes(app, bcrypt)
     restricted_routes(app)
+    principal_routes(app)
 
     migrate = Migrate(app,db)
 

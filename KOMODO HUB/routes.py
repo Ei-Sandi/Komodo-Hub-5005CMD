@@ -81,10 +81,10 @@ def register_routes(app, db, bcrypt):
             org = None
             if 'orgName' in session:
                 newOrg = Organisation(org_name = session['orgName'],province = session['province'], country = session['country'], intro = session['intro'], access_code = session['access'])
-                role = 'principal'
-                org = Organisation.query.filter(Organisation.org_name == session['orgName']).first()
                 db.session.add(newOrg)
                 db.session.commit()
+                role = 'principal'
+                org = Organisation.query.filter(Organisation.org_name == session['orgName']).first()
 
             username = request.form['username']
             email = request.form['email']
@@ -136,8 +136,8 @@ def register_routes(app, db, bcrypt):
             if access_code:
                 return jsonify({'code_exists' : 'true'})
             else:
-                return jsonify({'code_exists' : 'false'})
-
+                return jsonify({'code_exists' : 'false'})  
+            
     @app.route('/register/organisation/', methods = ['POST', 'GET'])
     def organisation():
         if request.method == 'GET':
@@ -209,20 +209,17 @@ def login_routes(app, bcrypt):
         logout_user()
         session.clear()
         return redirect(url_for("home"))
-    
+
 def restricted_routes(app):
-    @app.route("/dashboard")
+    @app.route("/dashboard/")
     @login_required
     def dashboard():
         if "username" in session:
             if current_user.role == 'principal':
-                org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
-                org_name = org.org_name
-                access_code = org.access_code
-                return render_template("principal_main.html", username = session['username'], org_name = org_name, access = access_code)
+                return redirect(url_for("principal_dashboard"))
             else:
                 return render_template("dashboard.html", username = session['username'])
-        
+            
     @app.route("/pm_mess/", methods=['POST', 'GET'])
     @login_required
     def pm_mess():
@@ -254,6 +251,34 @@ def restricted_routes(app):
                 send(message, broadcast=True)
 
         return render_template("chat_room.html")
+
+def principal_routes(app):
+    @app.route("/principal/", methods = ['GET','POST'])
+    @login_required
+    def principal_dashboard():
+        if request.method == 'GET':
+            org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
+            org_name = org.org_name
+            access_code = org.access_code
+            return render_template("principal_main.html", username = current_user.username, org_name = org_name, access = access_code)
+        elif request.method == 'POST':
+            username = request.form.get("username")
+            user = User.query.filter(User.username == username).first()
+            if not user:
+                return redirect(url_for("principal_dashboard"))            
+            elif user.org_id != current_user.org_id:
+                #need to fix error message here
+                return redirect(url_for("principal_dashboard"))
+            elif user.role not in ['student', 'teacher']:
+                #need to fix error message here
+                return redirect(url_for("principal_dashboard"))
+            else:
+                role = request.form.get("role")
+                user.role = role
+                user.org_id = current_user.org_id
+                db.session.commit()
+                return redirect(url_for("principal_dashboard"))
+
     
 
 

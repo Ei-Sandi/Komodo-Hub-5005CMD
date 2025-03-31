@@ -35,23 +35,23 @@ body{
     margin: 0;
     padding-bottom: 1rem;
 }
-.user-form label {
+#user-form label {
     text-align: left;
     margin: 10px 0 5px;
     font-weight: bold;
     color: #580801;
 }
-.user-form input {
+#user-form input {
     padding: 8px;
     border: 1px solid #580801;
     border-radius: 5px;
     outline: none;
     margin-top: 0.5rem;
 }
-.user-form p {
+#user-form p {
     margin-bottom: 0.5rem;
 }
-.user-form button {
+#user-form button {
     background-color: #a02420;
     border: none;
     color: white;
@@ -64,6 +64,6 @@ body{
     cursor: pointer;
     border-radius: 4px;
 }
-.user-form button:hover{
+#user-form button:hover{
     background-color: #580801;
 }
