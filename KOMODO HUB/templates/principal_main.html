@@ -3,32 +3,19 @@
 {% block head %}
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename = 'principal_main.css') }}">
-    <script defer src = "{{ url_for('static', filename='js/principal_user.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 {% endblock %}
 
 {% block body %}
 <h3 id = "welcome"> Welcome Back, {{username}} !</h3>
 <div class = "top-row">
-    <button>Manage Users</button>
-    <button>Manage Organisation</button>
+    <a href="{{ url_for('principal_dashboard') }}">Manage Users</a>
+    <a href="{{ url_for('principal_org') }}">Manage Organisation</a>
     <p> Access code: <mark>{{access}}</mark> </p>
 </div>
 
 <div class = "box">
-    <h3> Add user to {{org_name}} </h3>
-    <form id = "user-form" method="POST" action="/principal/" >
-        <label for="username">Username</label><br>
-        <input id="username" type="text" name="username" placeholder="Enter username" required>
-
-        <p>Role</p>
-        <input type="radio" id = "student" name = "role" value = "student" checked = "checked">
-        <label for="student">Student</label>
-        <input type="radio" id = "teacher" name = "role" value = "teacher">
-        <label for="teacher">Teacher</label>
-        <br>
-        <button type="submit">Assign</button>
-    </form>
+    {% block box %}
+    {% endblock %}
 </div>
 
 {% endblock %}

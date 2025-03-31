@@ -253,14 +253,14 @@ def restricted_routes(app):
         return render_template("chat_room.html")
 
 def principal_routes(app):
-    @app.route("/principal/", methods = ['GET','POST'])
+    @app.route("/principal/user/", methods = ['GET','POST'])
     @login_required
     def principal_dashboard():
         if request.method == 'GET':
             org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
             org_name = org.org_name
             access_code = org.access_code
-            return render_template("principal_main.html", username = current_user.username, org_name = org_name, access = access_code)
+            return render_template("principal_user.html", username = current_user.username, org_name = org_name, access = access_code)
         elif request.method == 'POST':
             username = request.form.get("username")
             user = User.query.filter(User.username == username).first()
@@ -268,16 +268,55 @@ def principal_routes(app):
                 return redirect(url_for("principal_dashboard"))            
             elif user.org_id != current_user.org_id:
                 #need to fix error message here
-                return redirect(url_for("principal_dashboard"))
+                return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
             elif user.role not in ['student', 'teacher']:
                 #need to fix error message here
-                return redirect(url_for("principal_dashboard"))
+                return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
             else:
                 role = request.form.get("role")
                 user.role = role
                 user.org_id = current_user.org_id
                 db.session.commit()
                 return redirect(url_for("principal_dashboard"))
+
+    @app.route("/principal/org/", methods = ['GET','POST'])
+    @login_required        
+    def principal_org():
+        if request.method == 'GET':
+            org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
+            org_name = org.org_name
+            province = org.province
+            country = org.country
+            access_code = org.access_code
+            description = org.intro
+            return render_template("principal_org.html", username = current_user.username, org_name = org_name, access = access_code, province = province, country = country, description = description)
+        elif request.method == 'POST':
+            org_name = request.form.get("org_name")
+            province = request.form.get("province")
+            country = request.form.get("country")
+            description = request.form.get("description")
+
+            org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
+            org.org_name = org_name
+            org.province = province
+            org.country = country
+            org.into = description
+            db.session.commit()
+            return redirect(url_for("principal_org"))
+
+    @app.route('/save_access_code', methods=['POST'])
+    def save_access_code():
+        data = request.json
+        access_code = data.get('access_code')
+
+        if not access_code:
+            return jsonify({"message": "No access code received"}), 400
+        
+        org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
+        org.access_code = access_code
+        db.session.commit()
+
+        return jsonify({"message": f"Access Code '{access_code}' saved successfully!", "redirect": url_for("principal_org")})
 
     
 

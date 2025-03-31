@@ -11,14 +11,19 @@ body{
 .top-row{
     display: flex;
 }
-.top-row button{
+.top-row a{
     background-color: transparent;
     border: none;
     font-family: "Gothic A1";
     font-weight: bold;
+    text-decoration: none;
     color: #580801;
     font-size: 1.2rem;
     margin: auto;
+}
+.top-row a:hover{
+    font-size: 1.25rem;
+    text-decoration: underline;
 }
 .top-row p {
     font-size: 1.2rem;
@@ -35,13 +40,13 @@ body{
     margin: 0;
     padding-bottom: 1rem;
 }
-#user-form label {
+.box label {
     text-align: left;
     margin: 10px 0 5px;
     font-weight: bold;
     color: #580801;
 }
-#user-form input {
+.box input {
     padding: 8px;
     border: 1px solid #580801;
     border-radius: 5px;
@@ -51,7 +56,7 @@ body{
 #user-form p {
     margin-bottom: 0.5rem;
 }
-#user-form button {
+.box button {
     background-color: #a02420;
     border: none;
     color: white;
@@ -64,6 +69,27 @@ body{
     cursor: pointer;
     border-radius: 4px;
 }
-#user-form button:hover{
+.box button:hover{
     background-color: #580801;
+}
+/*org*/
+#org-form{
+    display: flex;
+}
+#org-form .left{
+    margin: auto;
+    margin-top: 0;
+}
+#org-form .right{
+    margin: auto;
+    margin-top: 0;
+}
+.right textarea {
+    width: 100%;
+    height: 15vh;
+    border: 1px solid #580801;
+    border-radius: 5px;
+    outline: none;
+    margin-top: 0.5rem;
+    resize: none;
 }
