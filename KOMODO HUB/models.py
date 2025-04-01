@@ -14,9 +14,6 @@ class User(db.Model, UserMixin):
     role = db.Column(db.String(10), default = "student")
     class_id = db.Column(db.Integer)
     org_id = db.Column(db.Integer, db.ForeignKey('organisation.org_id'))
-
-    def __repr__(self):
-        return f"<User: {self.username}, Role: {self.role}>"
     
     def get_id(self):
         return self.uid

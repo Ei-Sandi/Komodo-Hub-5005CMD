@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from models import *
 from werkzeug.utils import secure_filename
 from flask_socketio import SocketIO, join_room, leave_room, send
-
+import random, string
 
 def all_routes(app):
     @app.route("/")
@@ -11,8 +11,7 @@ def all_routes(app):
     def home():
         if current_user.is_authenticated:
             username = current_user.username
-            role = current_user.role
-            return redirect(url_for("dashboard", username=username, role=role))
+            return redirect(url_for("dashboard", username=username))
         else:
             return render_template("home.html")
     
@@ -40,10 +39,33 @@ def all_routes(app):
     def discussion():
         return render_template("discussion.html")
     
-    #testing privatemain template
-    @app.route("/privatemain/")
-    def privatemain():
-        return render_template("PrivateMain.html")
+    @app.route("/student_classroom/")
+    def student_classroom():
+        return render_template("student_classroom.html")
+    
+    @app.route("/teacher_classroom/")
+    def teacher_classroom():
+        return render_template("teacher_classroom.html")
+    
+    @app.route('/week_s/')
+    def week_s():
+        course = request.args.get('course')
+        # Fetch course data from database
+        return render_template('week_s.html', course_name=course)
+    
+    @app.route('/admin/')
+    def admin():
+        return render_template("admin.html")
+
+    @app.route('/upload', methods=['POST'])
+    def upload():
+        # Handle file upload logic
+        return redirect(url_for('submission_success'))
+
+    @app.route('/api/upload', methods=['POST'])
+    def api_upload():
+        # Handle API upload logic
+        return jsonify(success=True)
     
 def register_routes(app, db, bcrypt):
     @app.route("/register/")
@@ -56,12 +78,13 @@ def register_routes(app, db, bcrypt):
             return render_template('RegInd.html')
         elif request.method == 'POST':
             role = 'student'
-
+            org = None
             if 'orgName' in session:
-                newOrg = Organisation(org_name = session['orgName'],province = session['province'], country = session['country'], intro = session['intro'])
-                role = 'principal'
+                newOrg = Organisation(org_name = session['orgName'],province = session['province'], country = session['country'], intro = session['intro'], access_code = session['access'])
                 db.session.add(newOrg)
                 db.session.commit()
+                role = 'principal'
+                org = Organisation.query.filter(Organisation.org_name == session['orgName']).first()
 
             username = request.form['username']
             email = request.form['email']
@@ -70,10 +93,16 @@ def register_routes(app, db, bcrypt):
             dob = request.form['dob']
             password = request.form['Pass']
             hashed_password = bcrypt.generate_password_hash(password)
-            code = request.form['code']
+            org_id = org.org_id if org else None
+            if org:
+                pass
+            else:
+                code = request.form['code']
+                org = Organisation.query.filter(Organisation.access_code == code).first()
+                org_id = org.org_id if org else None
 
             #add new user into database
-            new_user = User(username = username,email = email, first_name = firstName, last_name = lastName, dob = dob, password = hashed_password, role = role)
+            new_user = User(username = username,email = email, first_name = firstName, last_name = lastName, dob = dob, password = hashed_password, role = role, org_id = org_id)
             db.session.add(new_user)
             db.session.commit()
             session.clear()
@@ -98,7 +127,17 @@ def register_routes(app, db, bcrypt):
                 return jsonify({'username_exists' : 'true'})
             else:
                 return jsonify({'username_exists' : 'false'})
-
+    
+    @app.route('/validate-accesscode/', methods = ['POST'])
+    def validate_accesscode():
+        if request.method == 'POST':
+            access = request.get_json()['code']
+            access_code = Organisation.query.filter(Organisation.access_code == access).first()
+            if access_code:
+                return jsonify({'code_exists' : 'true'})
+            else:
+                return jsonify({'code_exists' : 'false'})  
+            
     @app.route('/register/organisation/', methods = ['POST', 'GET'])
     def organisation():
         if request.method == 'GET':
@@ -108,6 +147,7 @@ def register_routes(app, db, bcrypt):
             session['province'] = request.form['province']
             session['country'] = request.form['country']
             session['intro'] = request.form['intro']
+            session['access'] = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
             #logo = request.files['filename']
             #if logo:
                 #session['logo'] = logo.read() #read the image as binary
@@ -169,9 +209,9 @@ def login_routes(app, bcrypt):
         logout_user()
         session.clear()
         return redirect(url_for("home"))
-    
+
 def restricted_routes(app):
-    @app.route("/dashboard")
+    @app.route("/dashboard/")
     @login_required
     def dashboard():
         if "username" in session:
@@ -212,6 +252,10 @@ def restricted_routes(app):
 
         message_history = Room2.query.all() 
         return render_template("Room1.html", message=message_history)
+            if current_user.role == 'principal':
+                return redirect(url_for("principal_dashboard"))
+            else:
+                return render_template("dashboard.html", username = session['username'])
             
     @app.route("/pm_mess/", methods=['POST', 'GET'])
     @login_required
@@ -249,6 +293,88 @@ def restricted_routes(app):
         message_history = Messages.query.all() 
         return render_template("pm_mess.html", message = message_history)
     
+<<<<<<< HEAD
+=======
+    @app.route('/chat_room/', methods=['POST', 'GET'])
+    @login_required
+    def chat_room():
+        socketio = SocketIO(app, cors_allowed_origins="*")
+
+        @socketio.on('message')
+        def handle_message(message):
+            print("Message Recieved " + message)
+            if message != "Connected":
+                send(message, broadcast=True)
+
+        return render_template("chat_room.html")
+
+def principal_routes(app):
+    @app.route("/principal/user/", methods = ['GET','POST'])
+    @login_required
+    def principal_dashboard():
+        if request.method == 'GET':
+            org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
+            org_name = org.org_name
+            access_code = org.access_code
+            return render_template("principal_user.html", username = current_user.username, org_name = org_name, access = access_code)
+        elif request.method == 'POST':
+            username = request.form.get("username")
+            user = User.query.filter(User.username == username).first()
+            if not user:
+                return redirect(url_for("principal_dashboard"))            
+            elif user.org_id != current_user.org_id:
+                #need to fix error message here
+                return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
+            elif user.role not in ['student', 'teacher']:
+                #need to fix error message here
+                return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
+            else:
+                role = request.form.get("role")
+                user.role = role
+                user.org_id = current_user.org_id
+                db.session.commit()
+                return redirect(url_for("principal_dashboard"))
+
+    @app.route("/principal/org/", methods = ['GET','POST'])
+    @login_required        
+    def principal_org():
+        if request.method == 'GET':
+            org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
+            org_name = org.org_name
+            province = org.province
+            country = org.country
+            access_code = org.access_code
+            description = org.intro
+            return render_template("principal_org.html", username = current_user.username, org_name = org_name, access = access_code, province = province, country = country, description = description)
+        elif request.method == 'POST':
+            org_name = request.form.get("org_name")
+            province = request.form.get("province")
+            country = request.form.get("country")
+            description = request.form.get("description")
+
+            org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
+            org.org_name = org_name
+            org.province = province
+            org.country = country
+            org.into = description
+            db.session.commit()
+            return redirect(url_for("principal_org"))
+
+    @app.route('/save_access_code', methods=['POST'])
+    def save_access_code():
+        data = request.json
+        access_code = data.get('access_code')
+
+        if not access_code:
+            return jsonify({"message": "No access code received"}), 400
+        
+        org = Organisation.query.filter(Organisation.org_id == current_user.org_id).first()
+        org.access_code = access_code
+        db.session.commit()
+
+        return jsonify({"message": f"Access Code '{access_code}' saved successfully!", "redirect": url_for("principal_org")})
+
+>>>>>>> 19a8a41442f47f593a48bf111be161f10a0b7a45
     
     @app.route('/activity/')
     @login_required
