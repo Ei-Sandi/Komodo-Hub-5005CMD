@@ -14,33 +14,4 @@ $(document).ready(function(){
     });
 });
 
-const BoxA = document.getElementById("BoxA");
-const Mess_btn = document.getElementById("Mess_btn");
-const Close_Mess = document.getElementById("Close_Mess");
-const openBtn = document.getElementById("PersonA");
-const openBtn2 = document.getElementById("PersonB");
-const closeBtn = document.getElementById("close");
-const closeBtn2 = document.getElementById("close2");
-const modal = document.getElementById("modal");
-const modal2 = document.getElementById("modal2")
-
-Mess_btn.addEventListener("click", () =>{
-    BoxA.classList.add("open");
-});
-Close_Mess.addEventListener("click", () =>{
-    BoxA.classList.remove("open");
-    modal.classList.remove("open");
-    modal2.classList.remove("open");
-})
-openBtn.addEventListener("click", () => {
-    modal.classList.add("open");
-});
-openBtn2.addEventListener("click", () => {
-    modal2.classList.add("open");
-});
-closeBtn.addEventListener("click", () =>{
-    modal.classList.remove("open");
-});
-closeBtn2.addEventListener("click", () =>{
-    modal2.classList.remove("open");
-});
+//Check if account can join room

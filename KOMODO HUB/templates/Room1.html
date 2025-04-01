@@ -10,10 +10,18 @@
 {% endblock %}
 
 {% block body %}
-<div id="message_history">
+<div class="c_box">
+    <div id="message_history">
+        {% for msg in message %}
+            <li>
+                {{ msg.Message }}
+            </li>
+        {% endfor %}
+    </div>
+
+    <div class="mess_box">
+    <input class="mess" id="chat_message" type="text" placeholder="Enter Message">
+    <button class="btn_s" id="send">Send</button>
+    </div>
 </div>
-<form id = "chat_form">
-<input id="chat_message" type="text" placeholder="Enter Message">
-<button>Send</button>
-</form>
 {% endblock %}

@@ -9,13 +9,8 @@
 {% endblock %}
 
 {% block body %}
-    <div class="BoxA" id="BoxA">
-        <button id="PersonA">General</button>
-        <button id="PersonB">Private</button>
-        <button id="Close_Mess">Close</button>
-    </div>
-    <div class="modal" id="modal">
-        <div class = "modal-inner">
+    <div class="Box" id="modal">
+        <div class = "Box-inner">
             <div id="MessageBox">
                 {% for msg in message %}
                     <li>
@@ -26,22 +21,25 @@
             <div id="Message_Input">
             <input id="Message" name="Message" type="text" placeholder="Type Message">
             <button id="S_btn">Send</button>
-            <button id="close">Close</button>
             </div>
         </div>
     </div>
-    <div class="modal2" id="modal2">
-        <div class = "modal-inner2">
-            <div id="MessageBox">
-            <form action="{{url_for('chat_room')}}">
-            <input id="username1" name="username1" type="text" placeholder="Your Username">
-            <input id="username2" name = "username2" type="text" placeholder="Other Username">
-            <button>Join</button>
+    <div class="Box2" id="modal2">
+        <div class = "Box-inner2">
+            <div id="JoinRoom">
+            <form action="{{url_for('pm_mess')}}" method="POST">
+            <label for="room">Choose a room</label>
+            <select id="room" name="room">
+                <option value=""></option>
+                <option value="Room1">Students Only</option>
+                <option value="Room2">Teachers Only</option>
+            </select>
+            <button type="submit">Join</button>
             </form>
-            <button id="close2">Close</button>
-            </div>
+            {% for message in get_flashed_messages() %}
+                <p>{{ message }}</p>
+            {% endfor %}
             </div>
         </div>
     </div>
-    <button id="Mess_btn" class="box">Messages</button>
 {% endblock %}

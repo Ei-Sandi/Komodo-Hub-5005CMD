@@ -1,0 +1,68 @@
+{% extends 'PrivateMain.html' %}
+
+{% block head %}
+<link rel="stylesheet" href = "{{url_for('static', filename = 'Activity.css' )}}"/>
+<title>Quiz 1</title>
+{% endblock %}
+
+{% block body %}
+<div class="BigBox">
+    <h2 class="Text">Quiz 1</h2>
+    <form action="{{url_for('quiz1')}}" method="POST">
+        <div class="Q">
+        <label for="Q1">Q1. Which animal lives in southeastern Indonesia?</label>
+        <select id="Q1" name="Q1">
+            <option value="ans"></option>
+            <option value="ans1">Tiger</option>
+            <option value="ans2">Komodo Dragon</option>
+            <option value="ans3">Monkey</option>
+            <option value="ans4">Butterfly</option>
+        </select>
+        </div>
+        <div class="Q">
+        <label for="Q2">Q2.Which tiger has the darkest orange fur?</label>
+        <select id="Q2" name="Q2">
+            <option value="ans"></option>
+            <option value="ans1"> Sumatran Tiger</option>
+            <option value="ans2">Bengal Tiger</option>
+            <option value="ans3">Caspian Tiger</option>
+            <option value="ans4">Javan Tiger</option>
+        </select>
+        </div>
+        <div class="Q">
+        <label for="Q3">Q3.What is the scientific name for Sumatran Elephants ?</label>
+        <select id="Q3" name="Q3">
+            <option value="ans"></option>
+            <option value="ans1">Elephant</option>
+            <option value="ans2">Panthera tigris</option>
+            <option value="ans3">Elephas maximus sumatranus</option>
+            <option value="ans4">Cercopithecidae</option>
+        </select>
+        </div>
+        <div class="Q">
+        <label for="Q4">Q4.Are Komodo Dragons actually dragons ?</label>
+        <select id="Q4" name="Q4">
+            <option value="ans"></option>
+            <option value="ans1">Yes</option>
+            <option value="ans2">No</option>
+        </select>
+        </div>
+        <div class="Q">
+        <label for="Q5">Q5.How many teeth do Saltwater Crocodiles have?</label>
+        <select id="Q5" name="Q5">
+            <option value="ans"></option>
+            <option value="ans1">200</option>
+            <option value="ans2">3000</option>
+            <option value="ans3">50</option>
+            <option value="ans4">66</option>
+        </select>
+        </div>
+        <button class="Fin">Finish Quiz</button>
+    </form>
+    <div class="FlashBox">
+        {% for message in get_flashed_messages() %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

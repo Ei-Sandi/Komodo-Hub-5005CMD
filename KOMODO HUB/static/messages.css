@@ -1,82 +1,92 @@
-#Mess_btn{
-    display: flex;
-    position: flex;
-    border: solid;
-    position: flex;
-    margin-left: 88%;
-}
-
 button:hover{
     background-color: grey;
 }
-#PersonA{
-    border: solid;
-    width: 100%;
-    text-align: center;
-    margin-top: 2rem;
-}
-#PersonB{
-    border: solid;
-    width: 100%;
-    text-align: center;
-    margin-top: 2rem;
-}
-.BoxA{
-    position: flex;
-    height: 0rem;
-    width: 10rem;
-    margin-left: 85%;
-    overflow: hidden;
-}
-.BoxA.open{
-    border: solid;
-    height: 30rem;
-}
-.modal {
-    opacity: 0;
-
-}
-.modal.open{
+.Box{
     opacity: 1;
 
 }
-.modal2 {
-    opacity: 0;
-
-}
-.modal2.open{
+.Box2{
     opacity: 1;
 
 }
+
 #MessageBox{
+    border-radius: 0.5rem;
+    color: black;
+    background-color: white;
+    height: 90%;
+}
+#JoinRoom{
+    border-radius: 0.5rem;
     border: solid rgb(166, 10, 10);
     color: black;
     background-color: white;
-    height: 100%;
+    padding: 12.5rem 10rem 12.5rem 10rem;
+    text-align: center;
 }
 #Message_Input{
-    border: solid rgb(166, 10, 10);
+    border-radius: 0.5rem;
     background-color: white;
 }
-.modal-inner{
+.Box-inner{
+    border: solid rgb(166, 10, 10);
     position:fixed;
-    margin-top: -30%;
+    margin-top: 3%;
     margin-left: 2%;
     height: 30rem;
     width: 30rem;
     background-color: white;
 }
-.modal-inner2{
+.Box-inner2{
     position:fixed;
-    margin-top: -30%;
-    margin-left: 30%;
-    height: 30rem;
+    margin-top: 3%;
+    margin-left: 40%;
+    height: auto;
     width: 30rem;
     background-color: white;
 }
 #message_history{
     background-color: white;
-    border: solid;
-    height: 20rem;
-    width: 20rem;
+    height: 90%;
+    width: 100%;
+}
+.c_box{
+    height: 30rem;
+    width: 50rem;
+    border: solid rgb(166, 10, 10);
+    border-radius: 0.3rem;
+    background-color: white;
+    margin-top: 5%;
+    margin-left: 20%;
+}
+.mess{
+    height: 70%;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+.btn_s{
+    border: solid rgb(166, 10, 10);
+    border-radius: 0.625rem;
+    height: 70%;
+    width: 20%;
+    background-color: white;
+    color: rgb(166, 10, 10);
+    margin-top: 1%;
+    cursor: pointer;
+
+    font-family: "inter";
+    text-align: center;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+.mess_box{
+    border-radius: 0.3rem;
+    display: flex;
+    width: auto;
+    height: 10%;
+    background-color: rgb(166, 10, 10);
+}
+.li{
+    font-family: "inter";
+    font-size: 2rem;
 }

@@ -53,3 +53,20 @@ class Messages(db.Model):
     __tablename__ = "chat_logs"
     id = db.Column(db.Integer, primary_key = True)
     Message = db.Column(db.Text)
+
+class Room1(db.Model):
+    __tablename__ = "Room1"
+    id = db.Column(db.Integer, primary_key = True)
+    Message = db.Column(db.Text)
+
+class Room2(db.Model):
+    __tablename__ = "Room2"
+    id = db.Column(db.Integer, primary_key = True)
+    Message = db.Column(db.Text)
+
+class Quiz1(db.Model):
+    __tablename__ = "Quiz1"
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.Text)
+    score = db.Column(db.Text)
+
