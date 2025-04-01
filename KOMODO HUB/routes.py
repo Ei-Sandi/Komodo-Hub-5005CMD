@@ -38,6 +38,14 @@ def all_routes(app):
     def discussion():
         return render_template("discussion.html")
     
+    @app.route('/animals')
+    def animals():
+        return render_template('animals.html')
+
+    @app.route('/species/<name>')
+    def species(name):
+        return render_template('species.html', species_name=name)
+    
     #testing privatemain template
     @app.route("/privatemain/")
     def privatemain():

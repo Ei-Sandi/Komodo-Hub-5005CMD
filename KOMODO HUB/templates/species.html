@@ -1,0 +1,13 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='animals.css') }}">
+    <title>Species</title>    
+    {% endblock %}
+
+{% block body %}
+    
+    <h1 class="title">{{ species_name }}</h1>
+    <p>Explore more about {{ species_name }}.</p>
+    <a href="{{ url_for('animals') }}" class="btn">Back to Animals</a>
+{% endblock %}

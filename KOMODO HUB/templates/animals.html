@@ -1,0 +1,20 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href= "{{ url_for('static', filename = 'animals.css') }}" />
+    <title>Animals</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">Animal Species</h1>
+
+    <div class="grid-container">
+        <a href="{{ url_for('species', name='Mammals') }}" class="grid-item">Mammals</a>
+        <a href="{{ url_for('species', name='Birds') }}" class="grid-item">Birds</a>
+        <a href="{{ url_for('species', name='Fish') }}" class="grid-item">Fish</a>
+        <a href="{{ url_for('species', name='Invertebrates') }}" class="grid-item">Invertebrates</a>
+        <a href="{{ url_for('species', name='Amphibians') }}" class="grid-item">Amphibians</a>
+        <a href="{{ url_for('species', name='Reptiles') }}" class="grid-item">Reptiles</a>
+    </div>
+    
+{% endblock %}

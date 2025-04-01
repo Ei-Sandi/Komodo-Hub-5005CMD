@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+header {
+    background-color: #b70000;
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.title {
+    color: #b70000;
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers items horizontally */
+    gap: 20px; /* Adds spacing between buttons */
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+    min-width: 150px;
+}
+
+.grid-item:hover {
+    background-color: lightgray;
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #b70000;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+footer {
+    background-color: #b70000;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+}
