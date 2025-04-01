@@ -256,6 +256,24 @@ def restricted_routes(app):
 
         message_history = Room2.query.all() 
         return render_template("Room1.html", message=message_history)
+    
+    @app.route('/Room3/')
+    @login_required
+    def chat_room3():
+        socketio = SocketIO(app, cors_allowed_origins="*")
+        username = current_user.username
+        @socketio.on('message')
+        def handle_message(message):
+            print("Message Recieved " + message)
+            msg = Room3(Message= username +  message)
+            db.session.add(msg)
+            db.session.commit()
+
+            if message != "Connected":
+                send(message, broadcast=True)
+
+        message_history = Room3.query.all() 
+        return render_template("Room1.html", message=message_history)
             
     @app.route("/pm_mess/", methods=['POST', 'GET'])
     @login_required
@@ -286,6 +304,12 @@ def restricted_routes(app):
             if room=="Room2":
                 if "teacher" in roles.role:
                     return redirect("/Room2/")
+                else:
+                    flash("You can't join this room")
+                    return redirect("/pm_mess/")
+            if room=="Room3":
+                if "principal" == roles.role:
+                    return redirect("/Room3/")
                 else:
                     flash("You can't join this room")
                     return redirect("/pm_mess/")

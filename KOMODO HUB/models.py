@@ -61,6 +61,11 @@ class Room2(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     Message = db.Column(db.Text)
 
+class Room3(db.Model):
+    __tablename__ = "Room3"
+    id = db.Column(db.Integer, primary_key = True)
+    Message = db.Column(db.Text)
+
 class Quiz1(db.Model):
     __tablename__ = "Quiz1"
     id = db.Column(db.Integer, primary_key = True)
