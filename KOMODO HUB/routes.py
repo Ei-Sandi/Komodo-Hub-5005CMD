@@ -388,6 +388,11 @@ def principal_routes(app):
     def quizzes():
         return render_template("Quizzes.html")
     
+    @app.route('/design/')
+    @login_required
+    def design():
+        return render_template("Design.html")
+    
     @app.route('/quiz1/', methods=["POST", "GET"])
     @login_required
     def quiz1():
