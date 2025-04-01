@@ -216,6 +216,10 @@ def restricted_routes(app):
     def dashboard():
         if "username" in session:
             return render_template("dashboard.html", username = session['username'])
+        if current_user.role == 'principal':
+                return redirect(url_for("principal_dashboard"))
+        else:
+            return render_template("dashboard.html", username = session['username'])
 
     @app.route('/Room1/')
     @login_required
@@ -252,10 +256,6 @@ def restricted_routes(app):
 
         message_history = Room2.query.all() 
         return render_template("Room1.html", message=message_history)
-            if current_user.role == 'principal':
-                return redirect(url_for("principal_dashboard"))
-            else:
-                return render_template("dashboard.html", username = session['username'])
             
     @app.route("/pm_mess/", methods=['POST', 'GET'])
     @login_required
@@ -293,8 +293,6 @@ def restricted_routes(app):
         message_history = Messages.query.all() 
         return render_template("pm_mess.html", message = message_history)
     
-<<<<<<< HEAD
-=======
     @app.route('/chat_room/', methods=['POST', 'GET'])
     @login_required
     def chat_room():
@@ -374,7 +372,6 @@ def principal_routes(app):
 
         return jsonify({"message": f"Access Code '{access_code}' saved successfully!", "redirect": url_for("principal_org")})
 
->>>>>>> 19a8a41442f47f593a48bf111be161f10a0b7a45
     
     @app.route('/activity/')
     @login_required
