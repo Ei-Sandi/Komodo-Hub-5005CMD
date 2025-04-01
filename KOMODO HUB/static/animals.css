@@ -37,10 +37,12 @@ nav a {
 .grid-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centers items horizontally */
-    gap: 20px; /* Adds spacing between buttons */
-    padding: 20px;
-}
+    justify-content: space-evenly; 
+    align-items: center;
+    gap: 20px; 
+    padding: 40px 20px;
+} 
+
 
 .grid-item {
     background-color: white;
@@ -75,4 +77,7 @@ footer {
     color: white;
     padding: 10px;
     margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, jsonify
 from flask_login import login_user, logout_user, current_user, login_required
 from models import *
 from werkzeug.utils import secure_filename
@@ -46,7 +46,44 @@ def all_routes(app):
     def species(name):
         return render_template('species.html', species_name=name)
     
-    #testing privatemain template
+    @app.route('/reptiles')
+    def reptiles():
+        return render_template('reptiles.html')
+
+    @app.route('/reptiles/<species>')
+    def reptile_species(species):
+        species_data = {
+            "komodo_dragon": {
+                "title": "Komodo Dragon",
+                "scientific_name": "Varanus Komodoensis",
+                "status": "Endangered",
+                "description": ("Komodo dragons, found only on a few Indonesian islands, are classified "
+                                "as Endangered due to habitat loss, climate change, and human activities. "
+                                "Rising sea levels and land development threaten their habitat, "
+                                "while declining prey populations and poaching further impact their survival. "
+                                "Human-dragon conflicts also pose risks as encounters increase. Conservation efforts, "
+                                "including Komodo National Park, anti-poaching laws, and ecotourism, aim to protect them, "
+                                "but climate change remains a major long-term threat."),
+                "images": [
+                    "images/komodo_dragon1.jpeg",
+                    "images/komodo_dragon2.jpeg",
+                    "images/komodo_dragon3.jpeg",
+                    "images/komodo_dragon4.jpeg",
+                ]
+            }
+        }
+        data = species_data.get(species)
+        if data:
+            return render_template(
+                'species.html', 
+                species_name=data["title"], 
+                scientific_name=data["scientific_name"], 
+                status=data["status"], 
+                description=data["description"],
+                images=data["images"]
+            )  
+        return render_template('404.html')
+
     @app.route("/privatemain/")
     def privatemain():
         return render_template("PrivateMain.html")
@@ -148,7 +185,6 @@ def restricted_routes(app):
     def PM_Mess():
         message_history = Messages.query.all() 
         return render_template("PM_Mess.html", message = message_history)
-    
 
 
 
