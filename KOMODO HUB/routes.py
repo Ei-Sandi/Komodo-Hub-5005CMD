@@ -341,9 +341,6 @@ def principal_routes(app):
             user = User.query.filter(User.username == username).first()
             if not user:
                 return redirect(url_for("principal_dashboard"))            
-            elif user.org_id != current_user.org_id:
-                #need to fix error message here
-                return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
             elif user.role not in ['student', 'teacher']:
                 #need to fix error message here
                 return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
