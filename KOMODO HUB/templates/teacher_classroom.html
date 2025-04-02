@@ -1,0 +1,32 @@
+{% extends 'PrivateMain.html' %}
+
+{% block head %}
+
+    <title>Komodo Hub - Course Enrollment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'teacher_classroom.css') }}">
+    <script defer src = "{{ url_for('static', filename='js/teacher_classroom.js') }}"></script>
+{% endblock %}
+
+{%block body%}
+
+<nav>
+    <h2>My Courses</h2>
+    <a href="{{ url_for('week_s') }}">Student Panel</a>
+</nav>
+
+<div class="container">
+    <div>
+        <input type="text" id="courseName" placeholder="Enter Course Name">
+        <button class="button" onclick="addCourse()">Add Course</button>
+    </div>
+    <div id="teacherCourses">
+        <!-- Courses will appear here with remove buttons -->
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

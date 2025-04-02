@@ -1,20 +1,16 @@
 {% extends 'PrivateMain.html' %}
 
 {% block head %}
-<link rel="stylesheet" href = "{{url_for('static', filename = 'PM_Message.css' )}}"/>
-<script src="Open_Message.js"></script>
+<link rel="stylesheet" href = "{{url_for('static', filename = 'messages.css' )}}"/>
+<script defer src="{{ url_for('static', filename='js/gen_mess.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js" integrity="sha512-8BHxHDLsOHx+flIrQ0DrZcea7MkHqRU5GbTHmbdzMRnAaoCIkZ97PqZcXJkKZckMMhqfoeaJE+DNUVuyoQsO3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <title>Chats</title>
 {% endblock %}
 
 {% block body %}
-    <div class="BoxA" id="BoxA">
-        <button id="PersonA">Reetika</button>
-        <button id="Close_Mess">Close</button>
-    </div>
-    <div class="modal" id="modal">
-        <div class = "modal-inner">
+    <div class="Box" id="modal">
+        <div class = "Box-inner">
             <div id="MessageBox">
                 {% for msg in message %}
                     <li>
@@ -23,50 +19,28 @@
                 {% endfor %}
             </div>
             <div id="Message_Input">
-            <input id="UserName" name="UserName" type="text" placeholder="Username">
             <input id="Message" name="Message" type="text" placeholder="Type Message">
             <button id="S_btn">Send</button>
-            <button id="close">Close</button>
             </div>
         </div>
     </div>
-    <button id="Mess_btn" class="box">Messages</button>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            // var socket = io.connect("http://192.168.1.108:5000")
-            var socket = io.connect("http://localhost:5000")
-            // socket.on('connect', function() {
-            //     socket.send("Connected")
-            // });
-
-            socket.on('message', function(msg){
-                $('#MessageBox').append('<li>'+msg+'</li>');
-            });
-
-            $('#S_btn').on('click', function(){
-                socket.send($('#UserName').val() + ': ' + $('#Message').val());
-                $('#Message').val('');
-            });
-        });
-
-        const BoxA = document.getElementById("BoxA");
-        const Mess_btn = document.getElementById("Mess_btn");
-        const Close_Mess = document.getElementById("Close_Mess");
-        const openBtn = document.getElementById("PersonA");
-        const closeBtn = document.getElementById("close");
-        const modal = document.getElementById("modal");
-
-        Mess_btn.addEventListener("click", () =>{
-            BoxA.classList.add("open");
-        });
-        Close_Mess.addEventListener("click", () =>{
-            BoxA.classList.remove("open");
-        })
-        openBtn.addEventListener("click", () => {
-            modal.classList.add("open");
-        });
-        closeBtn.addEventListener("click", () =>{
-            modal.classList.remove("open");
-        })
-    </script>
+    <div class="Box2" id="modal2">
+        <div class = "Box-inner2">
+            <div id="JoinRoom">
+            <form action="{{url_for('pm_mess')}}" method="POST">
+            <label for="room">Choose a room</label>
+            <select id="room" name="room">
+                <option value=""></option>
+                <option value="Room1">Students Only</option>
+                <option value="Room2">Teachers Only</option>
+                <option value="Room3">Principals Only</option>
+            </select>
+            <button type="submit">Join</button>
+            </form>
+            {% for message in get_flashed_messages() %}
+                <p>{{ message }}</p>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

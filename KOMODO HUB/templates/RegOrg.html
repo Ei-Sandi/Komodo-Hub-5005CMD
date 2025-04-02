@@ -3,44 +3,48 @@
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='/Registration.css') }}">
     <title>Registration - Organisation</title>
+    <script defer src="{{ url_for('static', filename='js/regOrg.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 {% endblock %}
 
 {% block body%}
 <div class="BigBox">
 <div class="enterText"><h2>Register For An Organisation</h2></div>
 
-<form action="{{url_for('organisation')}}" enctype="multipart/form-data" method = "POST" name="form2" id="form2">
+<form action="{{url_for('organisation')}}" enctype="multipart/form-data" method = "POST" name="orgForm" id="orgForm">
     <div class = "colContainer">
         <div class = "columns">
-            <label for="orgName">Organisation Name: </label>
-            <input type="text" name="orgName" placeholder="Coventry University" required>
+            <div class="input-control">
+                <label for="orgName">Organisation Name: </label>
+                <input id = "orgName" type="text" name="orgName" placeholder="Coventry University" required>
+                <div class = "error"></div>
+            </div>
 
-            <label for="province">Province: </label>
-            <input type="text" name="province" placeholder="West Midlands" required>
+            <div class="input-control">
+                <label for="province">Province: </label>
+                <input type="text" name="province" placeholder="West Midlands" required>
+                <div class = "error"></div>
+            </div>
         </div>
 
         <div class = "columns">
-            <label for="country">Country: </label>
-            <input type="text" name="country" placeholder="England" required>
+            <div class="input-control">
+                <label for="country">Country: </label>
+                <input type="text" name="country" placeholder="England" required>
+                <div class = "error"></div>
+            </div>
 
-            <label for="filename">Organisation logo: </label>
-            <input type="file" name="filename" required>
+            <div class="input-control">
+                <label for="filename">Organisation logo: </label>
+                <input type="file" name="filename">
+                <div class = "error"></div>
+            </div>
         </div>
     </div>
 
     <label id="introTxt" for="intro">Brief Introduction (Max 500 characters): </label>
     <textarea id="Intro" name="intro" rows="5%" maxlength="500" placeholder="A brief explanation of your organisation..." required></textarea>
-
-    <button type="submit">NEXT</button>
+    <button id = "orgBtn" type="submit">NEXT</button>
 </form>
-
-{% block content %}
-<div class="container">
-    {% for message in get_flashed_messages() %}
-        <h2>{{ message }}</h2>
-    {% endfor %}
-</div>
-{% endblock %}
-
 </div>
 {% endblock %}

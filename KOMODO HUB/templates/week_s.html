@@ -1,0 +1,213 @@
+{% extends 'PrivateMain.html' %} 
+
+{% block head%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komodo Hub Classroom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navigation Styles */
+        .nav-bar {
+            background-color: #f8f9fa;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #800000;
+        }
+
+        .nav-links a, .main-links a {
+            color: #800000;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: bold;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            min-height: 80vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 2rem;
+            border-right: 2px solid #ddd;
+        }
+
+        .week-list {
+            list-style: none;
+        }
+
+        .week-item {
+            margin: 1rem 0;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .week-item:hover {
+            background-color: #800000;
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+        }
+
+        .upload-section {
+            margin-top: 2rem;
+            border: 2px dashed #800000;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        /* Form Styles */
+        .upload-form input[type="file"],
+        .upload-form textarea {
+            width: 100%;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .upload-btn {
+            background-color: #800000;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #800000;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+{% endblock %}
+
+
+{% block body%}
+    <nav class="nav-bar">
+        <div class="main-links">
+            <a href="#">Main Page</a>
+            <a href="#">Classroom</a>
+            <a href="#">Activity</a>
+        </div>
+        <div class="nav-links">
+            <a href="#">News</a>
+            <a href="#">Forums</a>
+            <a href="#">About us</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Komodo Dragon Curriculum</h2>
+            <ul class="week-list">
+                <li class="week-item" onclick="showWeekContent(1)">Week 1: Introduction</li>
+                <li class="week-item" onclick="showWeekContent(2)">Week 2: Anatomy</li>
+                <li class="week-item" onclick="showWeekContent(3)">Week 3: Diet/Hunting</li>
+                <li class="week-item" onclick="showWeekContent(4)">Week 4: LifeCycle</li>
+                <li class="week-item" onclick="showWeekContent(5)">Week 5: Habitat</li>
+                <li class="week-item" onclick="showWeekContent(6)">Week 6: Threats</li>
+                <li class="week-item" onclick="showWeekContent(7)">Week 7: Cultural Significance</li>
+                <li class="week-item" onclick="showWeekContent(8)">Week 8: Final Project</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div id="week-header">
+                <h2>Select a Week to Begin</h2>
+                <p>Click on any week in the sidebar to view content and submit work</p>
+            </div>
+
+            <div class="upload-section" id="upload-area" style="display: none;">
+                <h3 id="current-week">Week 1: Introduction</h3>
+                <form class="upload-form" onsubmit="handleSubmit(event)">
+                    <input type="file" id="file-upload" multiple>
+                    <textarea id="notes" placeholder="Add your notes here..." rows="5"></textarea>
+                    <button type="submit" class="upload-btn">Submit Work</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Contact Us</a>
+        <p>©2025 KOMODO HUB, INC</p>
+    </footer>
+
+    <script>
+        function showWeekContent(weekNumber) {
+            const weeks = [
+                "Introduction",
+                "Anatomy",
+                "Diet/Hunting",
+                "LifeCycle",
+                "Habitat",
+                "Threats",
+                "Cultural Significance",
+                "Final Project"
+            ];
+
+            document.getElementById('current-week').textContent = 
+                `Week ${weekNumber}: ${weeks[weekNumber-1]}`;
+            
+            document.getElementById('week-header').style.display = 'none';
+            document.getElementById('upload-area').style.display = 'block';
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const files = document.getElementById('file-upload').files;
+            const notes = document.getElementById('notes').value;
+            
+            // Here you would typically handle file upload and notes submission
+            // This is where you'd connect to your backend
+            console.log('Submitted files:', files);
+            console.log('Submitted notes:', notes);
+            
+            alert('Work submitted successfully!');
+            document.getElementById('upload-area').style.display = 'none';
+            document.getElementById('week-header').style.display = 'block';
+        }
+    </script>
+{% endblock %}

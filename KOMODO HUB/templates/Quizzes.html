@@ -1,0 +1,10 @@
+{% extends 'PrivateMain.html' %}
+
+{% block head %}
+<link rel="stylesheet" href = "{{url_for('static', filename = 'Activity.css' )}}"/>
+<title>Quizzes</title>
+{% endblock %}
+
+{% block body %}
+<div class="Box"><a class="Links" href="{{ url_for('quiz1') }}">Quiz 1</a></div>
+{% endblock %}
