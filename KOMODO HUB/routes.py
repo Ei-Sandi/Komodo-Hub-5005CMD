@@ -214,8 +214,6 @@ def restricted_routes(app):
     @app.route("/dashboard/")
     @login_required
     def dashboard():
-        if "username" in session:
-            return render_template("dashboard.html", username = session['username'])
         if current_user.role == 'principal':
                 return redirect(url_for("principal_dashboard"))
         else:
@@ -319,7 +317,7 @@ def restricted_routes(app):
     
 
 def principal_routes(app):
-    @app.route("/principal/user/", methods = ['GET','POST'])
+    @app.route("/principal/", methods = ['GET','POST'])
     @login_required
     def principal_dashboard():
         if request.method == 'GET':
