@@ -216,6 +216,8 @@ def restricted_routes(app):
     @app.route("/dashboard/")
     @login_required
     def dashboard():
+        if "username" in session:
+            return render_template("dashboard.html", username = session['username'])
         if current_user.role == 'principal':
             return redirect(url_for("principal_dashboard"))
         else:
