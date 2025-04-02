@@ -98,6 +98,7 @@ def register_routes(app, db, bcrypt):
             password = request.form['Pass']
             hashed_password = bcrypt.generate_password_hash(password)
             code = request.form['code']
+            
 
             #add new user into database
             new_user = User(username = username,email = email, first_name = firstName, last_name = lastName, dob = dob, password = hashed_password, role = role)
