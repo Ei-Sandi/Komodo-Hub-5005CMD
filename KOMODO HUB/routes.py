@@ -67,6 +67,8 @@ def all_routes(app):
         # Handle API upload logic
         return jsonify(success=True)
     
+    
+    
 def register_routes(app, db, bcrypt):
     @app.route("/register/")
     def register():
@@ -214,10 +216,22 @@ def restricted_routes(app):
     @app.route("/dashboard/")
     @login_required
     def dashboard():
+        
+        if "username" in session:
+            return render_template("dashboard.html", username = session['username'])
         if current_user.role == 'principal':
                 return redirect(url_for("principal_dashboard"))
         else:
             return render_template("dashboard.html", username = session['username'])
+        
+    @app.route("/classroom/")
+    @login_required
+    def classroom():
+        if current_user.role == 'student':
+            return render_template ("student_classroom.html")
+        else:
+            return render_template ("teacher_classroom.html")
+    
 
     @app.route('/Room1/')
     @login_required
@@ -367,6 +381,8 @@ def principal_routes(app):
             org.into = description
             db.session.commit()
             return redirect(url_for("principal_org"))
+        
+    
 
     @app.route('/save_access_code', methods=['POST'])
     def save_access_code():
