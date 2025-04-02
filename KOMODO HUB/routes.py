@@ -216,7 +216,6 @@ def restricted_routes(app):
     @app.route("/dashboard/")
     @login_required
     def dashboard():
-        
         if "username" in session:
             return render_template("dashboard.html", username = session['username'])
         if current_user.role == 'principal':
@@ -449,6 +448,5 @@ def principal_routes(app):
             flash("Your score is " + str(Score) + " out of 5")
             return redirect("/quiz1/")
         return render_template("Quiz1.html")
-
 
 
