@@ -317,18 +317,6 @@ def restricted_routes(app):
         message_history = Messages.query.all() 
         return render_template("pm_mess.html", message = message_history)
     
-    @app.route('/chat_room/', methods=['POST', 'GET'])
-    @login_required
-    def chat_room():
-        socketio = SocketIO(app, cors_allowed_origins="*")
-
-        @socketio.on('message')
-        def handle_message(message):
-            print("Message Recieved " + message)
-            if message != "Connected":
-                send(message, broadcast=True)
-
-        return render_template("chat_room.html")
 
 def principal_routes(app):
     @app.route("/principal/user/", methods = ['GET','POST'])
