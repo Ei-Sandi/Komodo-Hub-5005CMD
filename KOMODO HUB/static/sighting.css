@@ -127,16 +127,3 @@ button {
 button:hover {
     background-color: #990000;
 }
-
-footer {
-    background-color: #C00000;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 20px;
-}
-
-footer a {
-    color: white;
-    text-decoration: none;
-}
