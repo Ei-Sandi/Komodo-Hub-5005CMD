@@ -67,6 +67,14 @@ def all_routes(app):
         # Handle API upload logic
         return jsonify(success=True)
     
+    @app.route("/sighting/")
+    def sighting():
+        return render_template("sighting.html")
+    
+    @app.route("/donation/")
+    def donation():
+        return render_template("donation.html")
+    
 def register_routes(app, db, bcrypt):
     @app.route("/register/")
     def register():
