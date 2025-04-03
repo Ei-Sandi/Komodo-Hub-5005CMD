@@ -1,0 +1,51 @@
+{% extends 'publicmain.html'%}
+
+{%block head%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komodo Hub - Report Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'sighting.css') }}">
+{%endblock%}
+
+{%block body%}
+        <h1>Report an Endangered Species Sighting</h1>
+        <form>
+            <div>
+                <label>Species Name</label>
+                <input type="text" placeholder="Search species...">
+            </div>
+            <div>
+                <label>Conservation Status</label>
+                <select>
+                    <option>Select</option>
+                    <option>Endangered</option>
+                    <option>Critically Endangered</option>
+                    <option>Vulnerable</option>
+                    <option>Near Threatened</option>
+                </select>
+            </div>
+            
+            <div>
+                <label>Location</label>
+                <input type="text" placeholder="Enter location or drop pin">
+            </div>
+            <div>
+                <label>Date</label>
+                <input type="date">
+            </div>
+            
+            <div class="image-upload full-width">
+                <label>Drag and Drop image here or click to upload</label>
+                <input type="file">
+            </div>
+            
+            <div class="full-width">
+                <label>Description</label>
+                <textarea placeholder="Description..."></textarea>
+            </div>
+            
+            <div class="submit-container">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+{%endblock%}
