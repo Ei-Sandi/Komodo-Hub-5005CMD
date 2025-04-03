@@ -75,6 +75,10 @@ def all_routes(app):
     def donation():
         return render_template("donation.html")
     
+    @app.route("/Animal/")
+    def Animal():
+        return render_template("Animal.html")
+    
 def register_routes(app, db, bcrypt):
     @app.route("/register/")
     def register():

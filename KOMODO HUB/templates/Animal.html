@@ -1,0 +1,19 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <title>Log in</title>
+    <link rel="stylesheet" href= "{{ url_for('static', filename = 'Animal.css') }}">   
+    <script defer src = "{{ url_for('static', filename='js/Animal.js') }}"></script>
+    
+{% endblock %}
+
+{% block body%}
+<div class="container">
+    <div class="category" href="{{ url_for('home') }}">Mammals</div>
+    <div class="category" href="{{ url_for('home') }}">Birds</div>
+    <div class="category" href="{{ url_for('home') }}">Fish</div>
+    <div class="category" href="{{ url_for('home') }}">Invertebrates</div>
+    <div class="category" href="{{ url_for('home') }}">Amphibians</div>
+    <div class="category" href="{{ url_for('home') }}">Reptiles</div>
+</div>
+{% endblock %}
