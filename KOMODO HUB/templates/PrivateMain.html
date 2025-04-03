@@ -34,8 +34,10 @@
         <div class="vertical-navbar">
             <ul>
                 <li><a href="" class="verti-item">Main Page</a></li>
+                {% if current_user.is_authenticated and current_user.role in ['teacher', 'admin', 'student'] %}
                 <li><a href="{{ url_for('classroom') }}" class="verti-item">Classroom</a></li>
                 <li><a href="{{ url_for('activity') }}" class="verti-item">Activity</a></li>
+                {% endif %}
                 <li><a href="{{ url_for('pm_mess') }}" class="verti-item">Chat</a></li>
             </ul>
         </div>
