@@ -1,0 +1,14 @@
+{% extends 'PrivateMain.html' %}
+
+{% block head %}
+<link rel="stylesheet" href = "{{url_for('static', filename = 'Activity.css' )}}"/>
+<title>Games</title>
+{% endblock %}
+
+{% block body %}
+<div class="Box">
+    <a class="Links" href="https://www.englishclub.com/esl-games/vocabulary/crossword-animals.php">Crosswords</a>
+    <a class="Links" href="https://thewordsearch.com/cat/animals/">Word Search</a>
+    <a class="Links" href="https://kids.nationalgeographic.com/games/puzzles/article/matching-animals">Matching Game</a>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session, jsonify
+from flask import render_template, request, redirect, url_for, session, jsonify, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from models import *
 from werkzeug.utils import secure_filename
@@ -67,6 +67,7 @@ def all_routes(app):
         # Handle API upload logic
         return jsonify(success=True)
     
+<<<<<<< HEAD
     @app.route("/sighting/")
     def sighting():
         return render_template("sighting.html")
@@ -74,6 +75,9 @@ def all_routes(app):
     @app.route("/donation/")
     def donation():
         return render_template("donation.html")
+=======
+    
+>>>>>>> origin/main
     
 def register_routes(app, db, bcrypt):
     @app.route("/register/")
@@ -222,21 +226,84 @@ def restricted_routes(app):
     @app.route("/dashboard/")
     @login_required
     def dashboard():
-        if "username" in session:
-            if current_user.role == 'principal':
-                return redirect(url_for("principal_dashboard"))
-            else:
-                return render_template("dashboard.html", username = session['username'])
+        if current_user.role == 'principal':
+            return redirect(url_for("principal_dashboard"))
+        else:
+            return render_template("dashboard.html", username = session['username'])
+        
+    @app.route("/classroom/")
+    @login_required
+    def classroom():
+        if current_user.role == 'student':
+            return render_template ("student_classroom.html")
+        else:
+            return render_template ("teacher_classroom.html")
+    
+
+    @app.route('/Room1/')
+    @login_required
+    def chat_room1():
+        socketio = SocketIO(app, cors_allowed_origins="*")
+        username = current_user.username
+        @socketio.on('message')
+        def handle_message(message):
+            print("Message Recieved " + message)
+            msg = Room1(Message= username +  message)
+            db.session.add(msg)
+            db.session.commit()
+
+            if message != "Connected":
+                send(message, broadcast=True)
+
+        message_history = Room1.query.all() 
+        return render_template("Room1.html", message=message_history)
+
+    @app.route('/Room2/')
+    @login_required
+    def chat_room2():
+        socketio = SocketIO(app, cors_allowed_origins="*")
+        username = current_user.username
+        @socketio.on('message')
+        def handle_message(message):
+            print("Message Recieved " + message)
+            msg = Room2(Message= username +  message)
+            db.session.add(msg)
+            db.session.commit()
+
+            if message != "Connected":
+                send(message, broadcast=True)
+
+        message_history = Room2.query.all() 
+        return render_template("Room1.html", message=message_history)
+    
+    @app.route('/Room3/')
+    @login_required
+    def chat_room3():
+        socketio = SocketIO(app, cors_allowed_origins="*")
+        username = current_user.username
+        @socketio.on('message')
+        def handle_message(message):
+            print("Message Recieved " + message)
+            msg = Room3(Message= username +  message)
+            db.session.add(msg)
+            db.session.commit()
+
+            if message != "Connected":
+                send(message, broadcast=True)
+
+        message_history = Room3.query.all() 
+        return render_template("Room1.html", message=message_history)
             
     @app.route("/pm_mess/", methods=['POST', 'GET'])
     @login_required
     def pm_mess():
         username = current_user.username
+        roles = User.query.filter(User.username == username).first()
         socketio = SocketIO(app, cors_allowed_origins="*")
 
         @socketio.on('message')
         def handle_message(message):
-            print("Message Recieved " + message)
+            print("Message Received " + message)
             msg = Messages(Message= username +  message)
             db.session.add(msg)
             db.session.commit()
@@ -244,24 +311,34 @@ def restricted_routes(app):
             if message != "Connected":
                 send(message, broadcast=True)
 
+        if request.method == "POST":
+            room=request.form["room"]
+
+            if room=="Room1":
+                if "student" == roles.role:
+                    return redirect("/Room1/")
+                else:
+                    flash("You can't join this room")
+                    return redirect("/pm_mess/")
+            if room=="Room2":
+                if "teacher" in roles.role:
+                    return redirect("/Room2/")
+                else:
+                    flash("You can't join this room")
+                    return redirect("/pm_mess/")
+            if room=="Room3":
+                if "principal" == roles.role:
+                    return redirect("/Room3/")
+                else:
+                    flash("You can't join this room")
+                    return redirect("/pm_mess/")
+            
         message_history = Messages.query.all() 
         return render_template("pm_mess.html", message = message_history)
     
-    @app.route('/chat_room/', methods=['POST', 'GET'])
-    @login_required
-    def chat_room():
-        socketio = SocketIO(app, cors_allowed_origins="*")
-
-        @socketio.on('message')
-        def handle_message(message):
-            print("Message Recieved " + message)
-            if message != "Connected":
-                send(message, broadcast=True)
-
-        return render_template("chat_room.html")
 
 def principal_routes(app):
-    @app.route("/principal/user/", methods = ['GET','POST'])
+    @app.route("/principal/", methods = ['GET','POST'])
     @login_required
     def principal_dashboard():
         if request.method == 'GET':
@@ -274,9 +351,6 @@ def principal_routes(app):
             user = User.query.filter(User.username == username).first()
             if not user:
                 return redirect(url_for("principal_dashboard"))            
-            elif user.org_id != current_user.org_id:
-                #need to fix error message here
-                return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
             elif user.role not in ['student', 'teacher']:
                 #need to fix error message here
                 return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
@@ -311,6 +385,8 @@ def principal_routes(app):
             org.into = description
             db.session.commit()
             return redirect(url_for("principal_org"))
+        
+    
 
     @app.route('/save_access_code', methods=['POST'])
     def save_access_code():
@@ -327,6 +403,55 @@ def principal_routes(app):
         return jsonify({"message": f"Access Code '{access_code}' saved successfully!", "redirect": url_for("principal_org")})
 
     
+    @app.route('/activity/')
+    @login_required
+    def activity():
+        return render_template("Activities.html")
+    
+    @app.route('/games/')
+    @login_required
+    def games():
+        return render_template("Games.html")
+    
+    @app.route('/quizzes/')
+    @login_required
+    def quizzes():
+        return render_template("Quizzes.html")
+    
+    @app.route('/design/')
+    @login_required
+    def design():
+        return render_template("Design.html")
+    
+    @app.route('/quiz1/', methods=["POST", "GET"])
+    @login_required
+    def quiz1():
+        if request.method == "POST":
+            username = current_user.username
+            Score = 0
+            Answer1 = request.form['Q1']
+            Answer2 = request.form['Q2']
+            Answer3 = request.form['Q3']
+            Answer4 = request.form['Q4']
+            Answer5 = request.form['Q5']
 
+            if Answer1 == "ans2":
+                Score += 1
+            if Answer2 == "ans1":
+                Score += 1
+            if Answer3 == "ans3":
+                Score += 1
+            if Answer4 == "ans2":
+                Score += 1
+            if Answer5 == "ans4":
+                Score += 1
+
+            score = Quiz1(username = username, score = Score)
+            db.session.add(score)
+            db.session.commit()
+            
+            flash("Your score is " + str(Score) + " out of 5")
+            return redirect("/quiz1/")
+        return render_template("Quiz1.html")
 
 
