@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask_login import UserMixin
 from app import db
 
@@ -50,6 +51,14 @@ class Messages(db.Model):
     __tablename__ = "chat_logs"
     id = db.Column(db.Integer, primary_key = True)
     Message = db.Column(db.Text)
+
+class Comments(db.Model):
+    __tablename__ = "comments"
+    cmt_id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(50), nullable = False)
+    comment = db.Column(db.Text, nullable = False)
+    timestamp = db.Column(db.DateTime, default=datetime.now)
+    reply_id = db.Column(db.Integer, db.ForeignKey('comments.cmt_id'), nullable=True)
 
 class Room1(db.Model):
     __tablename__ = "Room1"

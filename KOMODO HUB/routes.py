@@ -37,7 +37,8 @@ def all_routes(app):
     
     @app.route("/discussion/")
     def discussion():
-        return render_template("discussion.html")
+        messages = Comments.query.order_by(Comments.timestamp.asc()).all()
+        return render_template("discussion_pub.html", messages = messages)
     
     @app.route("/student_classroom/")
     def student_classroom():
@@ -230,6 +231,71 @@ def restricted_routes(app):
             return redirect(url_for("principal_dashboard"))
         else:
             return render_template("dashboard.html", username = session['username'])
+        
+    @app.route("/dashboard/discussion_priv/", methods=['GET', 'POST'])
+    @login_required
+    def discussion_priv():
+        socketio = SocketIO(app, cors_allowed_origins="*")
+        history = Comments.query.order_by(Comments.timestamp.asc()).all()
+
+        @socketio.on('message')
+        def get_comment(data):
+            username = current_user.username
+            message = data.get("message")
+
+            if not message.strip():
+                return
+
+            new_comment = Comments(username=username, comment=message, timestamp=datetime.now())
+            db.session.add(new_comment)
+            db.session.commit()
+
+            socketio.emit('new_message', {
+                "username": username,
+                "message": message,
+                "timestamp": new_comment.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+                "cmt_id": new_comment.cmt_id
+            })
+
+        @socketio.on('delete_message')
+        def delete_message(data):
+            socketio = SocketIO(app, cors_allowed_origins="*")
+            comment_id = data.get("cmt_id")
+            username = current_user.username
+
+            if not comment_id:
+                return
+
+            comment = Comments.query.get(comment_id)
+
+            if comment and comment.username == username:
+                db.session.delete(comment)
+                db.session.commit()
+
+                socketio.emit('message_deleted', {"cmt_id": comment_id})
+
+        @socketio.on('message')
+        def get_comment(data):
+            username = current_user.username
+            message = data.get("message")
+            reply_id = data.get("reply_id")
+
+            if not message.strip():
+                return
+
+            new_comment = Comments(username=username, comment=message, timestamp=datetime.now(), reply_id=reply_id)
+            db.session.add(new_comment)
+            db.session.commit()
+
+            socketio.emit('new_message', {
+                "username": username,
+                "message": message,
+                "timestamp": new_comment.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+                "cmt_id": new_comment.cmt_id,
+                "reply_id": reply_id
+            })
+
+        return render_template("discussion_priv.html", messages=history)
         
     @app.route("/classroom/")
     @login_required

@@ -1,0 +1,31 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+  <title>Discussion Public</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='discussion_pub.css') }}">
+{% endblock %}
+
+{% block body %}
+  <h1>Community Discussion</h1>
+  
+  <div id="signup-box">
+    <p id="signup">Want to comment?</p>
+    <a href="{{ url_for('login') }}">Log in here</a>
+  </div>
+
+  <div id="chat-box">
+    {% for msg in messages|selectattr("reply_id", "equalto", None)|reverse if not msg.reply_id %}
+      <div class="message-box" id="msg-{{ msg.cmt_id }}">
+          <p>{{ msg.username }}: {{ msg.comment }}</p>
+          <small>({{ msg.timestamp.strftime('%Y-%m-%d %H:%M:%S') }})</small>
+
+          {% for reply in messages if reply.reply_id == msg.cmt_id %}
+            <div class="reply-box" id="msg-{{ reply.cmt_id }}">
+                <p>{{ reply.username }}: {{ reply.comment }}</p>
+                <small>({{ reply.timestamp.strftime('%Y-%m-%d %H:%M:%S') }})</small>
+            </div>
+          {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

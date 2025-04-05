@@ -1,0 +1,47 @@
+{% extends 'PrivateMain.html' %}
+
+{% block head %}
+  <title>Discussion Private</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'discussion_priv.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
+  <script src="{{ url_for('static', filename='js/discussion_priv.js') }}"></script>
+{% endblock %}
+
+
+{% block body%}
+  <h1>Discussion Board</h1>
+
+  <input type="text" id="message" placeholder="Type your comment...">
+  <button class = "post-btn" onclick="sendMessage()">Post</button>
+  
+  <div id="chat-box">
+    {% for msg in messages|selectattr("reply_id", "equalto", None)|reverse %}
+    <div class="message-box" id="msg-{{ msg.cmt_id }}">
+        <p>{{ msg.username }}: {{ msg.comment }}</p>
+        <small>({{ msg.timestamp.strftime('%Y-%m-%d %H:%M:%S') }})</small>
+  
+        {% if msg.username == current_user.username %}
+            <button class="delete-btn" onclick="deleteComment({{ msg.cmt_id }})">X</button>
+        {% endif %}
+  
+        <button onclick="showReplyBox({{ msg.cmt_id }})">Reply</button>
+        <div id="reply-box-{{ msg.cmt_id }}" style="display:none;">
+            <input type="text" id="reply-input-{{ msg.cmt_id }}" placeholder="Type your reply...">
+            <button onclick="sendReply({{ msg.cmt_id }})">Post Reply</button>
+        </div>
+  
+        {% for reply in messages if reply.reply_id == msg.cmt_id %}
+          <div class="reply-box" id="msg-{{ reply.cmt_id }}">
+              <p>{{ reply.username }}: {{ reply.comment }}</p>
+              <small>({{ reply.timestamp.strftime('%Y-%m-%d %H:%M:%S') }})</small>
+  
+              {% if reply.username == current_user.username %}
+                  <button class="delete-btn" onclick="deleteComment({{ reply.cmt_id }})">X</button>
+              {% endif %}
+          </div>
+        {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
