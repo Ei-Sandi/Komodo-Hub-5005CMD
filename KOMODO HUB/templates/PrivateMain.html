@@ -28,7 +28,10 @@
                     <a href="#" id = "edg-species">Report Endangered Species</a>
                 </div>
             </div>
-            <button id = "profile-btn"><img id = "profile-icon" src = "/static/images/profile.png"></button>
+            <a href="{{ url_for('edit_profile') }}" class="profile-btn">
+                <button id = "profile-btn"><img id = "profile-icon" src = "/static/images/profile.png"></button>
+            </a>
+              
             <a href="{{ url_for('logout') }}" class="hori-item" id = "signout">Sign Out</a>
         </div>
         <div class="vertical-navbar">

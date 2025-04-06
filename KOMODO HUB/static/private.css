@@ -75,6 +75,7 @@ html, body{
     background-color: transparent;
     border: none;
     margin-left: auto;
+    cursor: pointer;
 }
 #profile-icon{
     width: 45px;

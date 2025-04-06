@@ -521,3 +521,37 @@ def principal_routes(app):
         return render_template("Quiz1.html")
 
 
+    @app.route('/profile/edit', methods=['GET', 'POST'])
+    @login_required
+    def edit_profile():
+        user = User.query.get(current_user.uid)
+        org = None
+
+        if user.org_id:
+            org = Organisation.query.get(user.org_id)
+
+        if request.method == 'POST':
+            new_username = request.form.get('username')
+            if new_username != user.username:
+                existing_user = User.query.filter_by(username=new_username).first()
+                if existing_user:
+                    flash('Username already taken please choose another', 'error')
+                    return redirect(url_for('edit_profile'))
+                user.username = new_username
+            user.email = request.form.get('email')
+            user.first_name = request.form.get('first_name')
+            user.last_name = request.form.get('last_name')
+
+            if org:
+                org.org_name = request.form.get('org_name')
+                org.province = request.form.get('province')
+                org.country = request.form.get('country')
+
+            db.session.commit()
+            flash('Profile updated successfully', 'success')
+            return redirect(url_for('edit_profile'))
+
+        return render_template('edit_profile.html', user=user, org=org)
+
+
+
