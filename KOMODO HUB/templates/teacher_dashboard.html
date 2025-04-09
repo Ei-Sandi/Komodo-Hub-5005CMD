@@ -33,15 +33,16 @@
         </div>
         <div class="vertical-navbar">
             <ul>
-                <li><a href="" class="verti-item">Main Page</a></li>
+                <li><a href="{{ url_for('teacher_dashboard') }}" class="verti-item">Main Page</a></li>
                 <li><a href="{{ url_for('teacher_classroom') }}" class="verti-item">Classroom</a></li>
-                </li><li><a href="{{ url_for('activity') }}" class="verti-item">Activity</a></li>
+                <li><a href="{{ url_for('activity') }}" class="verti-item">Activity</a></li>
                 <li><a href="{{ url_for('pm_mess') }}" class="verti-item">Chat</a></li>
             </ul>
         </div>
 
         <div class="body-content">
             {% block body %}
+            <h1> Welcome {{username}} This is teacher dashboard.</h1>
             {% endblock %}
         </div>
         

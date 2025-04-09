@@ -229,6 +229,10 @@ def restricted_routes(app):
     def dashboard():
         if current_user.role == 'principal':
             return redirect(url_for("principal_dashboard"))
+        elif current_user.role == 'student':
+            return render_template("student_dashboard.html", username = session['username'])
+        elif current_user.role == 'teacher':
+            return render_template("teacher_dashboard.html", username = session['username'])
         else:
             return render_template("dashboard.html", username = session['username'])
         

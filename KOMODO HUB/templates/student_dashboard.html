@@ -14,11 +14,12 @@
     </head>
 
     <body>
+        
+
         <div class="horizontal-navbar">
             <a href="{{ url_for('home') }}" class="hori-logo">KOMODO HUB</a>
-            <a href="" class="hori-item">Animals</a>
-            <a href="{{ url_for('home') }}#About-Us" class="hori-item">About Us</a>
-            <a href="{{ url_for('home') }}#Contact" class="hori-item">Contact Us</a>
+            <a href="{{ url_for('Animal') }}" class="hori-item">Animals</a>
+            
             <div class = "hori-item dropdown">
                 <a>Get Involved</a>
                 <div class="dropdown-content">
@@ -42,6 +43,7 @@
 
         <div class="body-content">
             {% block body %}
+            <h1> Welcome {{username}} This is student dashboard.</h1>
             {% endblock %}
         </div>
         
