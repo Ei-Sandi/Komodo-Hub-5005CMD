@@ -23,10 +23,10 @@
             <div class = "hori-item dropdown">
                 <a>Get Involved</a>
                 <div class="dropdown-content">
-                    <a href="#">Discussion</a>
-                    <a href="#">Volunteering</a>
-                    <a href="#">Donations</a>
-                    <a href="#" id = "edg-species">Report Endangered Species</a>
+                    <a href="{{ url_for('discussion_priv') }}">Discussion</a>
+                    <a href="{{ url_for('volunteer') }}">Volunteering</a>
+                    <a href="{{ url_for('donation') }}">Donations</a>
+                    <a href="{{ url_for('sighting') }}">Report Endangered Species</a>
                 </div>
             </div>
             <button id = "profile-btn"><img id = "profile-icon" src = "/static/images/profile.png"></button>
@@ -34,8 +34,8 @@
         </div>
         <div class="vertical-navbar">
             <ul>
-                <li><a href="" class="verti-item">Main Page</a></li>
-                <li><a href="{{ url_for('student_classroom') }}" class="verti-item">Classroom</a></li>
+                <li><a href="{{ url_for('mainpage') }}" class="verti-item">Main Page</a></li>
+                <li><a href="{{ url_for('classroom') }}" class="verti-item">Classroom</a></li>
                 </li><li><a href="{{ url_for('activity') }}" class="verti-item">Activity</a></li>
                 <li><a href="{{ url_for('pm_mess') }}" class="verti-item">Chat</a></li>
             </ul>

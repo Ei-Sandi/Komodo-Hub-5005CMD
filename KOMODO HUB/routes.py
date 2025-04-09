@@ -26,6 +26,10 @@ def all_routes(app):
     @app.route("/volunteer/")
     def volunteer():
         return render_template("volunteer.html")
+    
+    @app.route("/mainpage/")
+    def mainpage():
+        return render_template("mainpage.html")
 
     @app.route("/volunteer/litter")
     def litter():
@@ -40,13 +44,6 @@ def all_routes(app):
         messages = Comments.query.order_by(Comments.timestamp.asc()).all()
         return render_template("discussion_pub.html", messages = messages)
     
-    @app.route("/student_classroom/")
-    def student_classroom():
-        return render_template("student_classroom.html")
-    
-    @app.route("/teacher_classroom/")
-    def teacher_classroom():
-        return render_template("teacher_classroom.html")
     
     @app.route('/week_s/')
     def week_s():
@@ -231,8 +228,8 @@ def restricted_routes(app):
             return redirect(url_for("principal_dashboard"))
         elif current_user.role == 'student':
             return render_template("student_dashboard.html", username = session['username'])
-        elif current_user.role == 'teacher':
-            return render_template("teacher_dashboard.html", username = session['username'])
+        # elif current_user.role == 'teacher':
+        #     return render_template("teacher_dashboard.html", username = session['username'])
         else:
             return render_template("dashboard.html", username = session['username'])
         

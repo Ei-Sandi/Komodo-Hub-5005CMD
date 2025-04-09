@@ -12,7 +12,7 @@ function loadCourses() {
         courseDiv.classList.add("course");
         
         courseDiv.innerHTML = `
-            <img src="https://www.flaticon.com/free-icons/computer" alt="Course">
+            <img src="/static/images/images.png" alt="Course">
             <span>${course}</span>
             <button class="button">Continue</button>
         `;
