@@ -580,19 +580,6 @@ def principal_routes(app):
                 user.org_id = current_user.org_id
                 db.session.commit()
                 return redirect(url_for("principal_dashboard"))
-            
-    @app.route('/get_graph/<string:graph_type>', methods=['GET'])
-    def get_graph(graph_type):
-        graphs = {
-            "user_behaviour": {"title": "User Behaviour Graph", "data": [10, 20, 30, 40]},
-            "user_demography": {"title": "User Demography Graph", "data": [15, 25, 35, 45]},
-            "subscriptions": {"title": "Subscriptions Graph", "data": [50, 60, 70, 80]},
-            "service_availability": {"title": "Service Availability Graph", "data": [40, 50, 30, 20]},
-            "service_popularity": {"title": "Service Popularity Graph", "data": [5, 15, 25, 35]},
-            "maintenance_reports": {"title": "Maintenance/Reports Graph", "data": [8, 18, 28, 38]}
-        }
-        return jsonify(graphs.get(graph_type, {"error": "Graph not found"}))
-
 
     @app.route("/principal/org/", methods = ['GET','POST'])
     @login_required        
