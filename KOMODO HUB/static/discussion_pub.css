@@ -1,0 +1,44 @@
+#signup-box {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    background: #d10121;
+    padding: 10px;
+    border: 2px solid #a02420;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.message-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.reply-box {
+    margin-left: 40px;
+    padding: 8px;
+    border-left: 2px solid #ccc;
+    background-color: #f3f3f3;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+h1{
+    font-family: 'Just Another Hand';
+    font-size: 3rem;
+    font-weight: 100;
+    margin-bottom: 0;
+    margin-top: 1rem;
+    color: #a02420;
+}
+
+a{
+    color: white;
+}
+
+#signup{
+    color: white;
+}

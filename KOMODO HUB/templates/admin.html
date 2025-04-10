@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Creation</title>
+    <style>
+        .tab {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 20px;
+        }
+        .active-tab {
+            display: block;
+        }
+        .button-group {
+            margin: 20px;
+        }
+        .syllabus-week {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Course Creation Tabs -->
+    <div id="tab1" class="tab active-tab">
+        <h2>Course Basics</h2>
+        <input type="text" placeholder="Course Title" id="courseTitle">
+        <input type="text" placeholder="Course Category" id="courseCategory">
+    </div>
+
+    <div id="tab2" class="tab">
+        <h2>Course Details</h2>
+        <textarea placeholder="Course Description" id="courseDescription"></textarea>
+    </div>
+
+    <div id="tab3" class="tab">
+        <h2>Course Objectives</h2>
+        <div id="objectivesContainer">
+            <input type="text" placeholder="Learning Objective" class="objective">
+        </div>
+        <button onclick="addObjective()">Add Objective</button>
+    </div>
+
+    <!-- Weekly Syllabus Page -->
+    <div id="weeklySyllabus" class="tab">
+        <h2>Weekly Syllabus</h2>
+        <div id="weeksContainer">
+            <div class="syllabus-week">
+                <h3>Week 1</h3>
+                <input type="text" placeholder="Week Title" class="week-title">
+                <textarea placeholder="Topics covered" class="week-topics"></textarea>
+            </div>
+        </div>
+        <button onclick="addWeek()">Add Week</button>
+        <button onclick="saveSyllabus()">Save Syllabus</button>
+    </div>
+
+    <div class="button-group">
+        <button id="prevBtn" onclick="previousTab()">Previous</button>
+        <button id="nextBtn" onclick="nextTab()">Continue</button>
+    </div>
+
+    <script>
+        let currentTab = 1;
+        const totalTabs = 3;
+
+        function showTab(tabNumber) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active-tab');
+            });
+            
+            if(tabNumber <= totalTabs) {
+                document.getElementById(`tab${tabNumber}`).classList.add('active-tab');
+            } else {
+                document.getElementById('weeklySyllabus').classList.add('active-tab');
+            }
+            
+            document.getElementById('prevBtn').style.display = 
+                (tabNumber === 1 || tabNumber > totalTabs) ? 'none' : 'inline';
+            document.getElementById('nextBtn').style.display = 
+                (tabNumber > totalTabs) ? 'none' : 'inline';
+        }
+
+        function nextTab() {
+            if(currentTab < totalTabs) {
+                currentTab++;
+                showTab(currentTab);
+            } else {
+                // When reaching the last tab, switch to weekly syllabus
+                showTab(totalTabs + 1);
+            }
+        }
+
+        function previousTab() {
+            if(currentTab > 1) {
+                currentTab--;
+                showTab(currentTab);
+            }
+        }
+
+        function addObjective() {
+            const container = document.getElementById('objectivesContainer');
+            const newObjective = document.createElement('input');
+            newObjective.type = 'text';
+            newObjective.className = 'objective';
+            newObjective.placeholder = 'Learning Objective';
+            container.appendChild(newObjective);
+        }
+
+        function addWeek() {
+            const container = document.getElementById('weeksContainer');
+            const weekNumber = container.children.length + 1;
+            
+            const weekDiv = document.createElement('div');
+            weekDiv.className = 'syllabus-week';
+            weekDiv.innerHTML = `
+                <h3>Week ${weekNumber}</h3>
+                <input type="text" placeholder="Week Title" class="week-title">
+                <textarea placeholder="Topics covered" class="week-topics"></textarea>
+                <button onclick="this.parentElement.remove()">Remove</button>
+            `;
+            
+            container.appendChild(weekDiv);
+        }
+
+        function saveSyllabus() {
+            const weeks = [];
+            document.querySelectorAll('.syllabus-week').forEach(weekElement => {
+                const title = weekElement.querySelector('.week-title').value;
+                const topics = weekElement.querySelector('.week-topics').value;
+                weeks.push({ title, topics });
+            });
+
+            // Here you would typically send the data to your server
+            console.log('Saving syllabus:', weeks);
+            alert('Syllabus saved successfully!');
+        }
+
+        // Initialize first tab
+        showTab(1);
+    </script>
+</body>
+</html>

@@ -20,9 +20,11 @@
             <a href="{{ url_for('login') }}" class="logobar-item logobar-login">Log in</a>
             <a href="{{ url_for('register') }}" class="logobar-item">Register</a>
         </div>
+
         <div class="navbar">
+    
             <a href="{{ url_for('home') }}" class="navbar-item">Home</a>
-            <a href="{{ url_for('animals') }}" class="navbar-item">Animals</a>
+            <a href="{{ url_for('Animal') }}" class="navbar-item">Animals</a>
             <a href="{{ url_for('home') }}#About-Us" class="navbar-item">About Us</a>
             <a href="{{ url_for('home') }}#Contact" class="navbar-item">Contact Us</a>
             <div class = "navbar-item dropdown">
@@ -30,8 +32,8 @@
                 <div class="dropdown-content">
                     <a href="{{ url_for('discussion') }}">Discussion</a>
                     <a href="{{ url_for('volunteer') }}">Volunteering</a>
-                    <a href="#">Donations</a>
-                    <a href="#">Report Endangered Species</a>
+                    <a href="{{ url_for('donation') }}">Donations</a>
+                    <a href="{{ url_for('sighting') }}">Report Endangered Species</a>
                 </div>
             </div>
         </div>

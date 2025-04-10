@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komodo Hub - Reports</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">KOMODO HUB</div>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Submit report</a></li>
+                <li><a href="#" class="nav-link">View Report</a></li>
+                <li><a href="#" class="nav-link">About us</a></li>
+                <li><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="auth-links">
+            <a href="#" id="loginBtn">Log in</a>
+            <a href="#" id="registerBtn">Register</a>
+        </div>
+    </header>
+    <button id="darkModeToggle">Toggle Dark Mode</button>
+    <main>
+        <h1>View reports</h1>
+        <p>See the latest reports on endangered species sightings and conservation efforts.</p>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search reports..." onkeyup="searchReports()">
+            <button onclick="searchReports()">Search</button>
+        </div>
+        <div class="report">
+            <img src="tiger.jpg" alt="Sumatran Tiger">
+            <div class="report-content">
+                <h2>Sumatran Tiger Spotted</h2>
+                <p><strong>Location:</strong> Sumatra National Park</p>
+                <p><strong>Date:</strong> March 20, 2025</p>
+                <p><strong>Description:</strong> A healthy adult tiger was spotted near the river.</p>
+                <p class="extra-details">Monitoring needed.</p>
+                <button class="toggle-details">Show More</button>
+            </div>
+        </div>
+        <div class="report">
+            <img src="rhino.jpg" alt="Javan Rhino">
+            <div class="report-content">
+                <h2>Javan Rhino Sighting</h2>
+                <p><strong>Location:</strong> Ujung Kulon National Park</p>
+                <p><strong>Date:</strong> March 18, 2025</p>
+                <p><strong>Description:</strong> A lone rhino was seen grazing near the reserve.</p>
+                <p class="extra-details">Signs of good health.</p>
+                <button class="toggle-details">Show More</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+        <p>&copy;2025 KOMODO HUB, INC</p>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login/Register</h2>
+            <p>Feature coming soon!</p>
+        </div>
+    </div>
+</body>
+</html>

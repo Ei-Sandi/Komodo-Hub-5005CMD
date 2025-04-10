@@ -1,0 +1,23 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    const submitButton = document.querySelector("button[type='submit']");
+    const fileInput = document.querySelector("input[type='file']");
+    const imageUploadDiv = document.querySelector(".image-upload");
+
+    // Prevent form submission for demonstration purposes
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();  // Stops the form from submitting normally
+        alert("Report submitted successfully!");  // Confirmation alert
+    });
+
+    // When the image upload area is clicked, trigger the file input click
+    imageUploadDiv.addEventListener("click", function () {
+        fileInput.click();
+    });
+
+    // Display file name once an image is chosen
+    fileInput.addEventListener("change", function () {
+        const fileName = fileInput.files[0] ? fileInput.files[0].name : "No file chosen";
+        imageUploadDiv.innerHTML = `File chosen: ${fileName}`;  // Update text inside the upload div
+    });
+});

@@ -17,27 +17,30 @@
         <div class="horizontal-navbar">
             <a href="{{ url_for('home') }}" class="hori-logo">KOMODO HUB</a>
             <a href="" class="hori-item">Animals</a>
-            <a href="{{ url_for('home') }}#About-Us" class="hori-item">About Us</a>
-            <a href="{{ url_for('home') }}#Contact" class="hori-item">Contact Us</a>
+        
             <div class = "hori-item dropdown">
                 <a>Get Involved</a>
                 <div class="dropdown-content">
-                    <a href="#">Discussion</a>
-                    <a href="#">Volunteering</a>
-                    <a href="#">Donations</a>
-                    <a href="#" id = "edg-species">Report Endangered Species</a>
+                    <a href="{{ url_for('discussion_priv') }}">Discussion</a>
+                    <a href="{{ url_for('volunteer') }}">Volunteering</a>
+                    <a href="{{ url_for('donation') }}">Donations</a>
+                    <a href="{{ url_for('sighting') }}">Report Endangered Species</a>
                 </div>
             </div>
-            <button id = "profile-btn"><img id = "profile-icon" src = "/static/images/profile.png"></button>
+            <a href="{{ url_for('edit_profile') }}" class="profile-btn">
+                <button id = "profile-btn"><img id = "profile-icon" src = "/static/images/profile.png"></button>
+            </a>
+              
             <a href="{{ url_for('logout') }}" class="hori-item" id = "signout">Sign Out</a>
         </div>
         <div class="vertical-navbar">
             <ul>
-                <li><a href="" class="verti-item">Main Page</a></li>
-                <li><a href="" class="verti-item">Classroom</a></li>
+                <li><a href="{{ url_for('mainpage') }}" class="verti-item">Main Page</a></li>
+                {% if current_user.is_authenticated and current_user.role in ['teacher', 'admin', 'student'] %}
+                <li><a href="{{ url_for('classroom') }}" class="verti-item">Classroom</a></li>
                 <li><a href="{{ url_for('activity') }}" class="verti-item">Activity</a></li>
+                {% endif %}
                 <li><a href="{{ url_for('pm_mess') }}" class="verti-item">Chat</a></li>
-                <li><a href="{{ url_for('student_classroom') }}" class="verti-item">Classroom</a></li>
             </ul>
         </div>
 

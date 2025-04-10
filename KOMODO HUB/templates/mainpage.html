@@ -1,0 +1,42 @@
+{% extends 'PrivateMain.html' %}
+
+{% block head %}
+<link rel="stylesheet" href = "{{url_for('static', filename = 'mainpage.css' )}}"/>
+<title>Main page</title>
+<script defer src = "{{ url_for('static', filename='js/mainpage.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+ <header>
+
+    <h1>Hidden Treasures in Danger</h1>
+    <p>Discover the lesser-known species of Indonesia that need our help.</p>
+  </header>
+
+  <main class="card-container">
+    <!-- Species Cards -->
+    <div class="card">
+      <img src="/static/images/Adult_male_Bawean_deer_Axis_kuhlii.JPG" alt="Bawean Deer">
+      <h2>Bawean Deer</h2>
+      <p>Found only on Bawean Island, this shy deer is critically endangered due to habitat loss.</p>
+      <button onclick="learnMore('https://en.wikipedia.org/wiki/Bawean_deer')">Learn More</button>
+    </div>
+
+    
+
+    <div class="card">
+      <img src="/static/images/images-3.jpeg" alt="Anoa">
+      <h2>Anoa</h2>
+      <p>Indonesia's smallest buffalo, the Anoa lives in Sulawesi’s rainforest and is endangered.</p>
+      <button onclick="learnMore('https://en.wikipedia.org/wiki/Anoa')">Learn More</button>
+    </div>
+
+    <div class="card">
+      <img src="/static/images/images-4.jpeg" alt="Javan Slow Loris">
+      <h2>Javan Slow Loris</h2>
+      <p>This nocturnal primate is often illegally sold as a pet, but its bite is venomous.</p>
+      <button onclick="learnMore('https://en.wikipedia.org/wiki/Javan_slow_loris')">Learn More</button>
+    </div>
+  </main>
+
+{% endblock %}

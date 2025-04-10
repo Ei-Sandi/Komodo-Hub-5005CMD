@@ -26,6 +26,10 @@ def all_routes(app):
     @app.route("/volunteer/")
     def volunteer():
         return render_template("volunteer.html")
+    
+    @app.route("/mainpage/")
+    def mainpage():
+        return render_template("mainpage.html")
 
     @app.route("/volunteer/litter")
     def litter():
@@ -37,7 +41,8 @@ def all_routes(app):
     
     @app.route("/discussion/")
     def discussion():
-        return render_template("discussion.html")
+        messages = Comments.query.order_by(Comments.timestamp.asc()).all()
+        return render_template("discussion_pub.html", messages = messages)
     
     @app.route('/animals')
     def animals():
@@ -285,6 +290,18 @@ def all_routes(app):
         # Handle API upload logic
         return jsonify(success=True)
     
+    @app.route("/sighting/")
+    def sighting():
+        return render_template("sighting.html")
+    
+    @app.route("/donation/")
+    def donation():
+        return render_template("donation.html")
+    
+    @app.route("/Animal/")
+    def Animal():
+        return render_template("Animal.html")
+    
 def register_routes(app, db, bcrypt):
     @app.route("/register/")
     def register():
@@ -432,18 +449,88 @@ def restricted_routes(app):
     @app.route("/dashboard/")
     @login_required
     def dashboard():
-        if "username" in session:
-            return render_template("dashboard.html", username = session['username'])
-        
-    @login_required    
-    @app.route("/PM_Mess/")
-    def PM_Mess():
-        message_history = Messages.query.all() 
-        return render_template("PM_Mess.html", message = message_history)
         if current_user.role == 'principal':
-                return redirect(url_for("principal_dashboard"))
+            return redirect(url_for("principal_dashboard"))
+        elif current_user.role == 'student':
+            return render_template("student_dashboard.html", username = session['username'])
+        # elif current_user.role == 'teacher':
+        #     return render_template("teacher_dashboard.html", username = session['username'])
         else:
             return render_template("dashboard.html", username = session['username'])
+        
+    @app.route("/dashboard/discussion_priv/", methods=['GET', 'POST'])
+    @login_required
+    def discussion_priv():
+        socketio = SocketIO(app, cors_allowed_origins="*")
+        history = Comments.query.order_by(Comments.timestamp.asc()).all()
+
+        @socketio.on('message')
+        def get_comment(data):
+            username = current_user.username
+            message = data.get("message")
+
+            if not message.strip():
+                return
+
+            new_comment = Comments(username=username, comment=message, timestamp=datetime.now())
+            db.session.add(new_comment)
+            db.session.commit()
+
+            socketio.emit('new_message', {
+                "username": username,
+                "message": message,
+                "timestamp": new_comment.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+                "cmt_id": new_comment.cmt_id
+            })
+
+        @socketio.on('delete_message')
+        def delete_message(data):
+            socketio = SocketIO(app, cors_allowed_origins="*")
+            comment_id = data.get("cmt_id")
+            username = current_user.username
+
+            if not comment_id:
+                return
+
+            comment = Comments.query.get(comment_id)
+
+            if comment and comment.username == username:
+                db.session.delete(comment)
+                db.session.commit()
+
+                socketio.emit('message_deleted', {"cmt_id": comment_id})
+
+        @socketio.on('message')
+        def get_comment(data):
+            username = current_user.username
+            message = data.get("message")
+            reply_id = data.get("reply_id")
+
+            if not message.strip():
+                return
+
+            new_comment = Comments(username=username, comment=message, timestamp=datetime.now(), reply_id=reply_id)
+            db.session.add(new_comment)
+            db.session.commit()
+
+            socketio.emit('new_message', {
+                "username": username,
+                "message": message,
+                "timestamp": new_comment.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
+                "cmt_id": new_comment.cmt_id,
+                "reply_id": reply_id
+            })
+
+        return render_template("discussion_priv.html", messages=history)
+        
+    @app.route("/classroom/")
+    @login_required
+    def classroom():
+        if current_user.role == 'student':
+            return render_template ("student_classroom.html")
+        else:
+            return render_template ("teacher_classroom.html")
+    
 
     @app.route('/Room1/')
     @login_required
@@ -541,21 +628,9 @@ def restricted_routes(app):
         message_history = Messages.query.all() 
         return render_template("pm_mess.html", message = message_history)
     
-    @app.route('/chat_room/', methods=['POST', 'GET'])
-    @login_required
-    def chat_room():
-        socketio = SocketIO(app, cors_allowed_origins="*")
-
-        @socketio.on('message')
-        def handle_message(message):
-            print("Message Recieved " + message)
-            if message != "Connected":
-                send(message, broadcast=True)
-
-        return render_template("chat_room.html")
 
 def principal_routes(app):
-    @app.route("/principal/user/", methods = ['GET','POST'])
+    @app.route("/principal/", methods = ['GET','POST'])
     @login_required
     def principal_dashboard():
         if request.method == 'GET':
@@ -568,9 +643,6 @@ def principal_routes(app):
             user = User.query.filter(User.username == username).first()
             if not user:
                 return redirect(url_for("principal_dashboard"))            
-            elif user.org_id != current_user.org_id:
-                #need to fix error message here
-                return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
             elif user.role not in ['student', 'teacher']:
                 #need to fix error message here
                 return jsonify({"message": "You don't have access to this user.", "redirect": url_for("principal_dashboard")})
@@ -618,6 +690,8 @@ def principal_routes(app):
             org.into = description
             db.session.commit()
             return redirect(url_for("principal_org"))
+        
+    
 
     @app.route('/save_access_code', methods=['POST'])
     def save_access_code():
@@ -684,6 +758,39 @@ def principal_routes(app):
             flash("Your score is " + str(Score) + " out of 5")
             return redirect("/quiz1/")
         return render_template("Quiz1.html")
+
+
+    @app.route('/profile/edit', methods=['GET', 'POST'])
+    @login_required
+    def edit_profile():
+        user = User.query.get(current_user.uid)
+        org = None
+
+        if user.org_id:
+            org = Organisation.query.get(user.org_id)
+
+        if request.method == 'POST':
+            new_username = request.form.get('username')
+            if new_username != user.username:
+                existing_user = User.query.filter_by(username=new_username).first()
+                if existing_user:
+                    flash('Username already taken please choose another', 'error')
+                    return redirect(url_for('edit_profile'))
+                user.username = new_username
+            user.email = request.form.get('email')
+            user.first_name = request.form.get('first_name')
+            user.last_name = request.form.get('last_name')
+
+            if org:
+                org.org_name = request.form.get('org_name')
+                org.province = request.form.get('province')
+                org.country = request.form.get('country')
+
+            db.session.commit()
+            flash('Profile updated successfully', 'success')
+            return redirect(url_for('edit_profile'))
+
+        return render_template('edit_profile.html', user=user, org=org)
 
 
 

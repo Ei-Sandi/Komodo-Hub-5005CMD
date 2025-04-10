@@ -34,7 +34,7 @@ function loadCourses() {
         courseDiv.classList.add("course");
         
         courseDiv.innerHTML = `
-            <img src="https://www.flaticon.com/free-icons/computer" alt="Course Icon">
+            <img src="/static/images/images.png" alt="Course Icon">
             <span>${course}</span>
             <button class="button continue-btn" onclick="continueCourse('${course}')"  >Continue</button>
             <button class="button remove-btn" onclick="removeCourse(${index})">Remove</button>
