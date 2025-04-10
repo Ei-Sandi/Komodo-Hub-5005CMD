@@ -1,0 +1,38 @@
+{% extends 'PrivateMain.html'%}
+
+{% block head %}
+  <title>Picking</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'litter_picking.css') }}">
+{% endblock %}
+
+
+{% block body%}
+
+<div class="hero">
+    <div class="column leftcolumn">
+        <h1>Beach Clean Up in Pelabuhanratu</h1>
+        <p>On June 22nd, our team of volunteers will be collecting litter to help protect the habitat of endangered animals.
+            Beaches are often littered with items such as plastic bottles, fishing nets and other debris that can pose a serious
+            threat to wildlife that ingest or get stuck in these items. By clearing Indonesia’s beaches of this waste, we can make 
+            a direct improvement on the ecosystem and its inhabitants. To support our helpers, all necessary equipment including 
+            gloves, bin bags and grabbers are provided by Komodo Hub.
+        </p>
+    </div>
+    <div class="column">
+        <div class = "imgs">
+            <img src = "/static/images/litter.png">
+        </div>
+    </div>
+</div>
+
+<div class = "Container">
+    <h2 class = "title">Extra Details</h2>
+</div>
+    <h2 class = "title">Location</h2>
+    <p>Pelabuhan Ratu Beach, Jawa Barat, Indonesia</p>
+    <h2 class = "title">Time</h2>
+    <p>9:00AM - 3:00PM with a break from 12:00AM - 1:00PM</p>
+</div>
+
+
+{% endblock %}

@@ -475,6 +475,26 @@ def principal_routes(app):
     def activity():
         return render_template("Activities.html")
     
+    @app.route("/dashboard/volunteer_priv/")
+    def volunteer_priv():
+        return render_template("volunteer_priv.html")
+    
+    @app.route("/dashboard/volunteer_priv/feeding_priv")
+    def feeding_priv():
+        return render_template("animal_feeding_priv.html")
+    
+    @app.route("/dashboard/volunteer/litter_priv")
+    def litter_priv():
+        return render_template("litter_picking_priv.html")
+    
+    @app.route("/donation_priv/")
+    def donation_priv():
+        return render_template("donation_priv.html")
+    
+    @app.route("/sighting_priv/")
+    def sighting_priv():
+        return render_template("sighting_priv.html")
+    
     @app.route('/games/')
     @login_required
     def games():

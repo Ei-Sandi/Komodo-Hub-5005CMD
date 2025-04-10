@@ -1,0 +1,38 @@
+{% extends 'PrivateMain.html'%}
+
+{% block head %}
+  <title>Feeding</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'animal_feeding.css') }}">
+{% endblock %}
+
+
+{% block body%}
+
+<div class="hero">
+    <div class="column leftcolumn">
+        <h1>Feeding Baby Animals with IAR</h1>
+        <p>On September 16th, we’ll be helping to feed and take care of endangered baby animals, including orphaned Sumatran orangutans. 
+            Komodo Hub is working in collaboration with IAR Indonesia Foundation- a committed animal preservation group working to protect 
+            native species. Many of these animals have been rescued from destroyed habitats so proper feeding is crucial to their rehabilitation. 
+            Volunteers will aid in preparing special diets, including fresh fruits and milk formulas tailored to each species. Necessary training 
+            and instructions will be provided on site on the day of the feeding as well as feeding equipment.
+        </p>
+    </div>
+    <div class="column">
+        <div class = "imgs">
+            <img src = "/static/images/monke.png">
+        </div>
+    </div>
+</div>
+
+<div class = "Container">
+    <h2 class = "title">Extra Details</h2>
+</div>
+    <h2 class = "title">Location</h2>
+    <p>IAR Foundation, West Java, Indonesia</p>
+    <h2 class = "title">Time</h2>
+    <p>Morning feeding from 7:00AM - 9:00AM and afternoon feeding from 3:00PM - 5:00PM</p>
+</div>
+
+
+{% endblock %}
