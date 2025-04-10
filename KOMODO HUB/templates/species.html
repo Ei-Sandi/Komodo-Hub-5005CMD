@@ -1,0 +1,31 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='species.css') }}">
+    <title>{{ species_name }}</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">{{ species_name }}</h1>
+
+    <div class="layout-container">
+        
+        <div class="left-images">
+            {% for image in images[:2] %}
+            <img src="{{ url_for('static', filename=image) }}" alt="{{ species_name }}">
+            {% endfor %}
+        </div>
+
+        <div class="description-box">
+            <h2>Scientific Name: {{ scientific_name }}</h2>
+            <h3>Status: {{ status }}</h3>
+            <p>{{ description }}</p>
+        </div>
+
+        <div class="right-images">
+            {% for image in images[2:] %} 
+            <img src="{{ url_for('static', filename=image) }}" alt="{{ species_name }}">
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

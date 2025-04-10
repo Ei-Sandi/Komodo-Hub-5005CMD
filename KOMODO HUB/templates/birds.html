@@ -1,0 +1,48 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='species.css') }}">
+    <title>Birds</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">Birds</h1>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <a href="{{ url_for('birds_species', species='blue_fronted_lorikeet') }}">
+                <img src="{{ url_for('static', filename='images/blue_fronted_lorikeet.jpg') }}" alt="Blue-Fronted Lorikeet">
+            <a>  
+            <p>Blue-Fronted Lorikeet</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('birds_species', species='sumatran_ground_cuckoo') }}">
+                <img src="{{ url_for('static', filename='images/sumatran_ground_cuckoo.jpg') }}" alt="Sumatran Ground Cuckoo">
+            <a>
+            <p>Sumatran Ground Cuckoo</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('birds_species', species='siau_scops_owl') }}">
+                <img src="{{ url_for('static', filename='images/siau_scops_owl.jpg') }}" alt="Siau Scops-Owl">
+            <a>
+            <p>Siau Scops-Owl</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('birds_species', species='black_chinned_monarch') }}">
+                <img src="{{ url_for('static', filename='images/black_chinned_monarch.jpg') }}" alt="Black-Chinned Monarch">
+            <a>
+            <p>Black-Chinned Monarch</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('birds_species', species='javanese_lapwing') }}">
+                <img src="{{ url_for('static', filename='images/javanese_lapwing.jpg') }}" alt="Javanese Lapwing">
+            <a>
+            <p>Javanese Lapwing</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('birds_species', species='sangihe_shrikethrush') }}">
+                <img src="{{ url_for('static', filename='images/sangihe_shrikethrush.jpg') }}" alt="Sangihe Shrikethrush">
+            <a>
+            <p>Sangihe Shrikethrush</p>
+        </div>
+    </div>
+{% endblock %}

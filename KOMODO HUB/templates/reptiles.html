@@ -1,0 +1,48 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='species.css') }}">
+    <title>Reptiles</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">Reptiles</h1>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <a href="{{ url_for('reptile_species', species='komodo_dragon') }}">
+                <img src="{{ url_for('static', filename='images/komodo_dragon.jpeg') }}" alt="Komodo Dragon">
+            <a>  
+            <p>Komodo Dragon</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('reptile_species', species='flying_dragon') }}">
+                <img src="{{ url_for('static', filename='images/flying_dragon.jpeg') }}" alt="Common Flying Dragon">
+            <a>
+            <p>Common Flying Dragon</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('reptile_species', species='river_terrapin') }}">
+                <img src="{{ url_for('static', filename='images/river_terrapin.jpeg') }}" alt="Southern River Terrapin">
+            <a>
+            <p>Southern River Terrapin</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('reptile_species', species='water_monitor') }}">
+                <img src="{{ url_for('static', filename='images/water_monitor.jpeg') }}" alt="Asian Water Monitor">
+            <a>
+            <p>Asian Water Monitor</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('reptile_species', species='python') }}">
+                <img src="{{ url_for('static', filename='images/python.jpeg') }}" alt="Reticulated Python">
+            <a>
+            <p>Reticulated Python</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('reptile_species', species='saltwater_crocodile') }}">
+                <img src="{{ url_for('static', filename='images/saltwater_crocodile.jpeg') }}" alt="Saltwater Crocodile">
+            <a>
+            <p>Saltwater Crocodile</p>
+        </div>
+    </div>
+{% endblock %}

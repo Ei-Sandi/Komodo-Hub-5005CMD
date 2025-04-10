@@ -1,0 +1,48 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='species.css') }}">
+    <title>Mammals</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">Mammals</h1>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <a href="{{ url_for('mammals_species', species='sumatran_tiger') }}">
+                <img src="{{ url_for('static', filename='images/sumatran_tiger.jpeg') }}" alt="Sumatran Tiger">
+            <a>  
+            <p>Sumatran Tiger</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('mammals_species', species='javan_rhino') }}">
+                <img src="{{ url_for('static', filename='images/javan_rhino.jpeg') }}" alt="Javan Rhinoceros">
+            <a>
+            <p>Javan Rhinoceros</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('mammals_species', species='bornean_orangutan') }}">
+                <img src="{{ url_for('static', filename='images/bornean_orangutan.jpeg') }}" alt="Bornean Orangutan">
+            <a>
+            <p>Bornean Orangutan</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('mammals_species', species='sumatran_elephant') }}">
+                <img src="{{ url_for('static', filename='images/sumatran_elephant.jpeg') }}" alt="Sumatran Elephant">
+            <a>
+            <p>Sumatran Elephant</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('mammals_species', species='anoa') }}">
+                <img src="{{ url_for('static', filename='images/anoa.jpeg') }}" alt="Anoa">
+            <a>
+            <p>Anoa</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('mammals_species', species='bawean_deer') }}">
+                <img src="{{ url_for('static', filename='images/bawean_deer.jpeg') }}" alt="Bawean Deer">
+            <a>
+            <p>Bawean Deer</p>
+        </div>
+    </div>
+{% endblock %}

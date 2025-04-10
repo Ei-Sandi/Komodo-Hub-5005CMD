@@ -44,6 +44,231 @@ def all_routes(app):
         messages = Comments.query.order_by(Comments.timestamp.asc()).all()
         return render_template("discussion_pub.html", messages = messages)
     
+    @app.route('/animals')
+    def animals():
+        return render_template('animals.html')
+
+    @app.route('/species/<name>')
+    def species(name):
+        return render_template('species.html', species_name=name)
+    
+    @app.route('/reptiles')
+    def reptiles():
+        return render_template('reptiles.html')
+
+    @app.route('/reptiles/<species>')
+    def reptile_species(species):
+        species_data = {
+            "komodo_dragon": {
+                "title": "Komodo Dragon",
+                "scientific_name": "Varanus Komodoensis",
+                "status": "Endangered",
+                "description": ("Komodo dragons, found only on a few Indonesian islands, are classified "
+                                "as Endangered due to habitat loss, climate change, and human activities. "
+                                "Rising sea levels and land development threaten their habitat, "
+                                "while declining prey populations and poaching further impact their survival. "
+                                "Human-dragon conflicts also pose risks as encounters increase. Conservation efforts, "
+                                "including Komodo National Park, anti-poaching laws, and ecotourism, aim to protect them, "
+                                "but climate change remains a major long-term threat."),
+                "images": [
+                    "images/komodo_dragon1.jpeg",
+                    "images/komodo_dragon2.jpeg",
+                    "images/komodo_dragon3.jpeg",
+                    "images/komodo_dragon4.jpeg",
+                ]
+            }
+        }
+        data = species_data.get(species)
+        if data:
+            return render_template(
+                'species.html', 
+                species_name=data["title"], 
+                scientific_name=data["scientific_name"], 
+                status=data["status"], 
+                description=data["description"],
+                images=data["images"]
+            )  
+        return render_template('404.html')
+    
+    @app.route('/mammals')
+    def mammals():
+        return render_template('mammals.html')
+
+    @app.route('/mammals/<species>')
+    def mammals_species(species):
+        species_data = {
+            "sumatran_tiger": {
+                "title": "Sumatran Tiger",
+                "scientific_name": "Panthera Tigris Sumatrae",
+                "status": "Critically Endangered",
+                "description": ("Sumatran tigers, native to Indonesia's Sumatra Island, are critically endangered "
+                                "due to habitat loss, poaching, and human-wildlife conflict. "
+                                "Deforestation for palm oil plantations and illegal logging has fragmented their habitat, "
+                                "while poaching for body parts and prey depletion further threaten their survival. "
+                                "Conservation efforts include anti-poaching initiatives, habitat restoration, and community engagement."),
+                "images": ["images/sumatran_tiger1.jpeg",
+                    "images/sumatran_tiger2.jpeg",
+                    "images/sumatran_tiger3.jpeg",
+                    "images/sumatran_tiger4.jpeg",
+                ]
+            }
+        }
+        data = species_data.get(species)
+        if data:
+            return render_template(
+                'species.html', 
+                species_name=data["title"], 
+                scientific_name=data["scientific_name"], 
+                status=data["status"], 
+                description=data["description"],
+                images=data["images"]
+            )  
+        return render_template('404.html')
+
+    @app.route('/birds')
+    def birds():
+        return render_template('birds.html')
+    
+    @app.route('/birds/<species>')
+    def birds_species(species):
+        species_data = {
+            "blue_fronted_lorikeet" : {
+            "title": "Blue-Fronted Lorikeet",
+            "scientific_name": "Charmosyna Toxopei",
+            "status": "Vulnerable",
+            "description": ("The Blue-Fronted Lorikeet, endemic to Indonesia, is classified as Vulnerable due to habitat loss "
+                                "from deforestation and illegal trapping for the pet trade. "
+                                "Conservation efforts include habitat protection and community awareness programs."),
+            "images": ["images/blue_fronted_lorikeet1.jpg",
+                    "images/blue_fronted_lorikeet2.jpg",
+                    "images/blue_fronted_lorikeet3.jpg",
+                    "images/blue_fronted_lorikeet4.jpg",
+                ]
+            }
+        }
+
+        data = species_data.get(species)
+        if data:
+            return render_template(
+                'species.html', 
+                species_name=data["title"], 
+                scientific_name=data["scientific_name"], 
+                status=data["status"], 
+                description=data["description"],
+                images=data["images"]
+            )  
+        return render_template('404.html')
+
+    @app.route('/amphibians')
+    def amphibians():
+        return render_template('amphibians.html')
+    
+    @app.route('/amphibians/<species>')
+    def amphibians_species(species):
+        species_data = {
+            "bornean_flat_headed_frog": {
+                "title": "Bornean Flat-Headed Frog",
+                "scientific_name": "Barbourula Kalimantanensis",
+                "status": "Critically Endangered",
+                "description": ("The Bornean Flat-Headed Frog, native to Borneo, is critically endangered due to habitat loss "
+                                "from deforestation and pollution. "
+                                "Conservation efforts focus on habitat protection and raising awareness about its plight."),
+                "images": ["images/bornean_flat_headed_frog1.jpg",
+                    "images/bornean_flat_headed_frog2.jpg",
+                    "images/bornean_flat_headed_frog3.jpg",
+                    "images/bornean_flat_headed_frog4.jpg",
+                ]
+            }
+        }
+        data = species_data.get(species)
+        if data:
+            return render_template(
+                'species.html', 
+                species_name=data["title"], 
+                scientific_name=data["scientific_name"], 
+                status=data["status"], 
+                description=data["description"],
+                images=data["images"]
+            )  
+        return render_template('404.html')
+    
+    @app.route('/fish')
+    def fish():
+        return render_template('fish.html')
+    
+    @app.route('/fish/<species>')
+    def fish_species(species):
+        species_data = {
+            "featherback_knifefish": {
+                "title": "Featherback/Knifefish",
+                "scientific_name": "Chitala Chitala",
+                "status": "Vulnerable",
+                "description": ("The Featherback/Knifefish, native to Southeast Asia, is vulnerable due to habitat loss "
+                                "from deforestation and pollution. "
+                                "Conservation efforts focus on habitat protection and sustainable fishing practices."),
+                "images": ["images/featherback_knifefish1.jpg",
+                    "images/featherback_knifefish2.jpg",
+                    "images/featherback_knifefish3.jpg",
+                    "images/featherback_knifefish4.jpg",
+                ]
+            } 
+        }  
+        data = species_data.get(species)
+        if data:
+            return render_template(
+                'species.html', 
+                species_name=data["title"], 
+                scientific_name=data["scientific_name"], 
+                status=data["status"], 
+                description=data["description"],
+                images=data["images"]
+            )  
+        return render_template('404.html')
+    
+    @app.route('/invertebrates')
+    def invertebrates():
+        return render_template('invertebrates.html')
+    
+    @app.route('/invertebrates/<species>')
+    def invertebrates_species(species):
+        species_data = {
+            "coconut_crabs": {
+                "title": "Coconut Crabs",
+                "scientific_name": "Birgus Latro",
+                "status": "Vulnerable",
+                "description": ("Coconut crabs, native to tropical islands, are vulnerable due to habitat loss "
+                                "from deforestation and overharvesting. "
+                                "Conservation efforts focus on habitat protection and sustainable harvesting practices."),
+                "images": ["images/coconut_crabs1.jpg",
+                    "images/coconut_crabs2.jpg",
+                    "images/coconut_crabs3.jpg",
+                    "images/coconut_crabs4.jpg",
+                ]
+            }  
+        }
+
+        data = species_data.get(species)
+        if data:
+            return render_template(
+                'species.html', 
+                species_name=data["title"], 
+                scientific_name=data["scientific_name"], 
+                status=data["status"], 
+                description=data["description"],
+                images=data["images"]
+            )  
+        return render_template('404.html')
+
+    @app.route("/privatemain/")
+    def privatemain():
+        return render_template("PrivateMain.html")
+    @app.route("/student_classroom/")
+    def student_classroom():
+        return render_template("student_classroom.html")
+    
+    @app.route("/teacher_classroom/")
+    def teacher_classroom():
+        return render_template("teacher_classroom.html")
     
     @app.route('/week_s/')
     def week_s():
@@ -427,6 +652,19 @@ def principal_routes(app):
                 user.org_id = current_user.org_id
                 db.session.commit()
                 return redirect(url_for("principal_dashboard"))
+            
+    @app.route('/get_graph/<string:graph_type>', methods=['GET'])
+    def get_graph(graph_type):
+        graphs = {
+            "user_behaviour": {"title": "User Behaviour Graph", "data": [10, 20, 30, 40]},
+            "user_demography": {"title": "User Demography Graph", "data": [15, 25, 35, 45]},
+            "subscriptions": {"title": "Subscriptions Graph", "data": [50, 60, 70, 80]},
+            "service_availability": {"title": "Service Availability Graph", "data": [40, 50, 30, 20]},
+            "service_popularity": {"title": "Service Popularity Graph", "data": [5, 15, 25, 35]},
+            "maintenance_reports": {"title": "Maintenance/Reports Graph", "data": [8, 18, 28, 38]}
+        }
+        return jsonify(graphs.get(graph_type, {"error": "Graph not found"}))
+
 
     @app.route("/principal/org/", methods = ['GET','POST'])
     @login_required        

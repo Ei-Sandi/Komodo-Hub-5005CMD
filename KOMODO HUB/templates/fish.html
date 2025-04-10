@@ -1,0 +1,48 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='species.css') }}">
+    <title>Fish</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">Fish</h1>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <a href="{{ url_for('fish_species', species='featherback_knifefish') }}">
+                <img src="{{ url_for('static', filename='images/featherback_knifefish.jpg') }}" alt="Featherback/Knifefish">
+            <a>  
+            <p>Featherback/Knifefish</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('fish_species', species='sawfish') }}">
+                <img src="{{ url_for('static', filename='images/sawfish.jpg') }}" alt="Sawfish">
+            <a>
+            <p>Sawfish</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('fish_species', species='freshwater_whipray') }}">
+                <img src="{{ url_for('static', filename='images/freshwater_whipray.jpg') }}" alt="Freshwater Whipray">
+            <a>
+            <p>Freshwater Whipray</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('fish_species', species='humphead_wrasse') }}">
+                <img src="{{ url_for('static', filename='images/humphead-wrasse.jpg') }}" alt="Humphead Wrasse">
+            <a>
+            <p>Humphead Wrasse</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('fish_species', species='irian_arowana') }}">
+                <img src="{{ url_for('static', filename='images/irian_arowana.jpg') }}" alt="Irian Arowana">
+            <a>
+            <p>Irian Arowana</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('fish_species', species='mahakam_river_dolphins') }}">
+                <img src="{{ url_for('static', filename='images/mahakam_river_dolphins.jpg') }}" alt="Mahakam River Dolphins">
+            <a>
+            <p>Mahakam River Dolphins</p>
+        </div>
+    </div>
+{% endblock %}
