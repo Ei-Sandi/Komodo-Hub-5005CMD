@@ -1,0 +1,48 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='species.css') }}">
+    <title>Amphibians</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">Amphibians</h1>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <a href="{{ url_for('amphibians_species', species='bornean_flat_headed_frog') }}">
+                <img src="{{ url_for('static', filename='images/bornean_flat_headed_frog.jpg') }}" alt="Bornean Flat-Headed Frog">
+            <a>  
+            <p>Bornean Flat-Headed Frog</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('amphibians_species', species='bleeding_toad') }}">
+                <img src="{{ url_for('static', filename='images/bleeding_toad.jpg') }}" alt="Bleeding Toad">
+            <a>
+            <p>Bleeding Toad</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('amphibians_species', species='fanged_river_frog') }}">
+                <img src="{{ url_for('static', filename='images/fanged_river_frog.jpg') }}" alt="Fanged River Frog">
+            <a>
+            <p>Fanged River Frog</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('amphibians_species', species='sambas_stream_toad') }}">
+                <img src="{{ url_for('static', filename='images/sambas_stream_toad.jpg') }}" alt="Sambas Stream Toad">
+            <a>
+            <p>Sambas Stream Toad</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('amphibians_species', species='wallaces_flying_frog') }}">
+                <img src="{{ url_for('static', filename='images/wallaces_flying_frog.jpg') }}" alt="Wallace's Flying Frog">
+            <a>
+            <p>Wallace's Flying Frog</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('amphibians_species', species='malesian_frog') }}">
+                <img src="{{ url_for('static', filename='images/malesian_frog.jpg') }}" alt="Malesian Frog">
+            <a>
+            <p>Malesian Frog</p>
+        </div>
+    </div>
+{% endblock %}

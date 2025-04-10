@@ -1,0 +1,28 @@
+{% extends 'principal_main.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='principal_main.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="graph-area">
+            <canvas id="graphCanvas"></canvas>
+        </div>
+        <div class="buttons-area">
+            <button class="sidebar-btn" onclick="loadGraph('user_behaviour')">User Behaviour</button>
+            <button class="sidebar-btn" onclick="loadGraph('user_demography')">User Demography</button>
+            <button class="sidebar-btn" onclick="loadGraph('subscriptions')">Subscriptions</button>
+            <button class="sidebar-btn" onclick="loadGraph('service_availability')">Service Availability</button>
+            <button class="sidebar-btn" onclick="loadGraph('service_popularity')">Service Popularity</button>
+            <button class="sidebar-btn" onclick="loadGraph('maintenance_reports')">Maintenance/Reports</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='principal_dashboard.js') }}"></script>
+{% endblock %}
+
+

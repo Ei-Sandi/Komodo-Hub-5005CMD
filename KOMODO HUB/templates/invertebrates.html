@@ -1,0 +1,48 @@
+{% extends 'publicmain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='species.css') }}">
+    <title>Invertebrates</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">Invertebrates</h1>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <a href="{{ url_for('invertebrates_species', species='coconut_crabs') }}">
+                <img src="{{ url_for('static', filename='images/coconut_crabs.jpg') }}" alt="Coconut Crabs">
+            <a>  
+            <p>Coconut Crabs</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('invertebrates_species', species='triton_trumpets') }}">
+                <img src="{{ url_for('static', filename='images/triton_trumpets.jpg') }}" alt="Triton Trumpets">
+            <a>
+            <p>Triton Trumpets</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('invertebrates_species', species='sea_snails') }}">
+                <img src="{{ url_for('static', filename='images/sea_snails.jpg') }}" alt="Sea Snails">
+            <a>
+            <p>Sea Snails</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('invertebrates_species', species='green_turban_snails') }}">
+                <img src="{{ url_for('static', filename='images/green_turban_snails.jpg') }}" alt="Green Turban Snails">
+            <a>
+            <p>Green Turban Snails</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('invertebrates_species', species='nautilus_shells') }}">
+                <img src="{{ url_for('static', filename='images/nautilus_shells.jpg') }}" alt="Nautilus Shells">
+            <a>
+            <p>Nautilus Shells</p>
+        </div>
+        <div class="gallery-item">
+            <a href="{{ url_for('invertebrates_species', species='crocus_clams') }}">
+                <img src="{{ url_for('static', filename='images/crocus_clams.jpg') }}" alt="Crocus Clams">
+            <a>
+            <p>Crocus Clams</p>
+        </div>
+    </div>
+{% endblock %}
