@@ -531,6 +531,10 @@ def restricted_routes(app):
         else:
             return render_template ("teacher_classroom.html")
     
+    @app.route("/AnimalPrivate/")
+    @login_required
+    def AnimalsPrivate():
+        return render_template ("AnimalsPrivate.html")
 
     @app.route('/Room1/')
     @login_required

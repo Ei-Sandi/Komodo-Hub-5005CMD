@@ -1,0 +1,19 @@
+{% extends 'PrivateMain.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='animals.css') }}">
+    <title>Animals</title>
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">Animal Species</h1>
+
+    <div class="grid-container">
+        <a href="{{ url_for('mammals') }}" class="grid-item">Mammals</a>
+        <a href="{{ url_for('birds') }}" class="grid-item">Birds</a>
+        <a href="{{ url_for('fish') }}" class="grid-item">Fish</a>
+        <a href="{{ url_for('invertebrates') }}" class="grid-item">Invertebrates</a>
+        <a href="{{ url_for('amphibians') }}" class="grid-item">Amphibians</a>
+        <a href="{{ url_for('reptiles') }}" class="grid-item">Reptiles</a>
+    </div>
+{% endblock %}
