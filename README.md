@@ -55,7 +55,7 @@ Developed using Agile methodology, Komodo Hub was built through collaborative ef
 
 3. **Run the Flask application:**
    ```bash
-   flask run
+   python run.py
    ```
    The app will be accessible at `http://localhost:5000/`
 
@@ -115,5 +115,3 @@ Developed using Agile methodology, Komodo Hub was built through collaborative ef
 This project is for educational purposes.
 
 ---
-
-© 2025 KOMODO HUB, INC
