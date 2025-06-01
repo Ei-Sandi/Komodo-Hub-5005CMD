@@ -70,49 +70,42 @@ Developed using Agile methodology, Komodo Hub was built through collaborative ef
         <img src="https://avatars.githubusercontent.com/u/150097294?v=4" width="80" alt="Ei-Sandi"/><br>
         <sub><b>Ei-Sandi</b></sub>
       </a>
-      <br><sup>38 commits</sup>
     </td>
     <td align="center">
       <a href="https://github.com/ReetikaRT">
         <img src="https://avatars.githubusercontent.com/u/198248747?v=4" width="80" alt="ReetikaRT"/><br>
         <sub><b>ReetikaRT</b></sub>
       </a>
-      <br><sup>34 commits</sup>
     </td>
     <td align="center">
       <a href="https://github.com/Fadekemi001">
         <img src="https://avatars.githubusercontent.com/u/117522812?v=4" width="80" alt="Fadekemi001"/><br>
         <sub><b>Fadekemi001</b></sub>
       </a>
-      <br><sup>25 commits</sup>
     </td>
     <td align="center">
       <a href="https://github.com/Ashmitha-13">
         <img src="https://avatars.githubusercontent.com/u/197902293?v=4" width="80" alt="Ashmitha-13"/><br>
         <sub><b>Ashmitha-13</b></sub>
       </a>
-      <br><sup>7 commits</sup>
     </td>
     <td align="center">
       <a href="https://github.com/nowickam1">
         <img src="https://avatars.githubusercontent.com/u/162703651?v=4" width="80" alt="nowickam1"/><br>
         <sub><b>nowickam1</b></sub>
       </a>
-      <br><sup>4 commits</sup>
     </td>
     <td align="center">
       <a href="https://github.com/faizat0506">
         <img src="https://avatars.githubusercontent.com/u/159166162?v=4" width="80" alt="faizat0506"/><br>
         <sub><b>faizat0506</b></sub>
       </a>
-      <br><sup>3 commits</sup>
     </td>
     <td align="center">
       <a href="https://github.com/Nicoleokpa">
         <img src="https://avatars.githubusercontent.com/u/208040888?v=4" width="80" alt="Nicoleokpa"/><br>
         <sub><b>Nicoleokpa</b></sub>
       </a>
-      <br><sup>1 commit</sup>
     </td>
   </tr>
 </table>
